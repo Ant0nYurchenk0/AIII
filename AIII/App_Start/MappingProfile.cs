@@ -9,8 +9,11 @@ namespace AIII.App_Start
     {
         public MappingProfile()
         {
-            Mapper.CreateMap<Movie, MovieDto>();
-            Mapper.CreateMap<MovieDto, Movie>();
+            Mapper.CreateMap<CustomMovie, CustomMovieDto>();
+            Mapper.CreateMap<CustomMovieDto, CustomMovie>();
+
+            Mapper.CreateMap<UserRating, UserRatingDto>();
+            Mapper.CreateMap<UserRatingDto, UserRating>();
         }
     }
 }

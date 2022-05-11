@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace AIII.Dtos
 {
-    public class MovieShortInfoDto
+    public class CustomMovieShortInfoDto
     {
         public int MovieId { get; set; }
-
-        public int? ImdbMovieId { get; set; }
 
         public string Title { get; set; }
 
