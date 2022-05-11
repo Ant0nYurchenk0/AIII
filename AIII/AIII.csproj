@@ -194,6 +194,10 @@
     <Compile Include="Migrations\202205101634113_CreateMovieTable.designer.cs">
       <DependentUpon>202205101634113_CreateMovieTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202205110737472_AddImdbIdPropertyToMovieTable.cs" />
+    <Compile Include="Migrations\202205110737472_AddImdbIdPropertyToMovieTable.designer.cs">
+      <DependentUpon>202205110737472_AddImdbIdPropertyToMovieTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -278,6 +282,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202205101634113_CreateMovieTable.resx">
       <DependentUpon>202205101634113_CreateMovieTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205110737472_AddImdbIdPropertyToMovieTable.resx">
+      <DependentUpon>202205110737472_AddImdbIdPropertyToMovieTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

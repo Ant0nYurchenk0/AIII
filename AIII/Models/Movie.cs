@@ -9,6 +9,8 @@ namespace AIII.Models
     {
         public int MovieId { get; set; }
 
+        public int? ImdbMovieId { get; set; }
+
         public string Title { get; set; }
 
         public string Poster { get; set; }
