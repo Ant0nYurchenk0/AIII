@@ -2,7 +2,7 @@
 
 namespace AIII.Dtos
 {
-    public class MovieDto
+    public class CustomMovieDto
     {
         public int MovieId { get; set; }
 
@@ -25,13 +25,5 @@ namespace AIII.Dtos
         public double Budget { get; set; }
 
         public double BoxOffice { get; set; }
-
-        public string RatingIMDB { get; set; }
-
-        public double SiteUserRating { get; set; }
-
-        public int GoodEmodjiAmount { get; set; }
-
-        public int BadEmodjiAmount { get; set; }
     }
 }
