@@ -11,6 +11,7 @@ namespace AIII.Models
         [Key]
         public string Id { get; set; }
 
+        [Required]
         public string Title { get; set; }
 
         public string Image { get; set; }

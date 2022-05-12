@@ -206,6 +206,10 @@
     <Compile Include="Migrations\202205111225047_ChangeMovieTableCreateCustomMovieTableCreateUserRatingTable.designer.cs">
       <DependentUpon>202205111225047_ChangeMovieTableCreateCustomMovieTableCreateUserRatingTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202205120800214_ChangeCustomMovieModel.cs" />
+    <Compile Include="Migrations\202205120800214_ChangeCustomMovieModel.designer.cs">
+      <DependentUpon>202205120800214_ChangeCustomMovieModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\202205120747322_AdaptForImdbApi.cs" />
     <Compile Include="Migrations\202205120747322_AdaptForImdbApi.designer.cs">
       <DependentUpon>202205120747322_AdaptForImdbApi.cs</DependentUpon>
@@ -278,7 +282,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Movies\NewMovie.cshtml" />
+    <Content Include="Views\CustomMovie\CustomMovieForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -306,6 +310,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202205111225047_ChangeMovieTableCreateCustomMovieTableCreateUserRatingTable.resx">
       <DependentUpon>202205111225047_ChangeMovieTableCreateCustomMovieTableCreateUserRatingTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205120800214_ChangeCustomMovieModel.resx">
+      <DependentUpon>202205120800214_ChangeCustomMovieModel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202205120747322_AdaptForImdbApi.resx">
       <DependentUpon>202205120747322_AdaptForImdbApi.cs</DependentUpon>
