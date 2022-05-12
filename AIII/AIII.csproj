@@ -183,16 +183,17 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Api\ImdbController.cs" />
     <Compile Include="Controllers\Api\MoviesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\CustomMovieController.cs" />
-    <Compile Include="Dtos\CustomMovieDto.cs" />
-    <Compile Include="Dtos\CustomMovieShortInfoDto.cs" />
+    <Compile Include="Dtos\MovieShortInfoDto.cs" />
+    <Compile Include="Dtos\MovieFullInfoDto.cs" />
     <Compile Include="Dtos\UserRatingDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Imdb_Api\Imdb.cs" />
     <Compile Include="Migrations\202205101634113_CreateMovieTable.cs" />
     <Compile Include="Migrations\202205101634113_CreateMovieTable.designer.cs">
       <DependentUpon>202205101634113_CreateMovieTable.cs</DependentUpon>
@@ -209,6 +210,10 @@
     <Compile Include="Migrations\202205120800214_ChangeCustomMovieModel.designer.cs">
       <DependentUpon>202205120800214_ChangeCustomMovieModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202205120747322_AdaptForImdbApi.cs" />
+    <Compile Include="Migrations\202205120747322_AdaptForImdbApi.designer.cs">
+      <DependentUpon>202205120747322_AdaptForImdbApi.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -216,7 +221,9 @@
     <Compile Include="Models\CustomMovie.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\UserRating.cs" />
+    <Compile Include="Objects\BoxOffice.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ImdbRepository.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -279,6 +286,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Imdb\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -305,6 +313,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202205120800214_ChangeCustomMovieModel.resx">
       <DependentUpon>202205120800214_ChangeCustomMovieModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205120747322_AdaptForImdbApi.resx">
+      <DependentUpon>202205120747322_AdaptForImdbApi.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
