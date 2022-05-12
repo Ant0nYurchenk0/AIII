@@ -2,6 +2,7 @@
 using AIII.Imdb_Api;
 using AIII.Models;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,6 +35,27 @@ namespace AIII.Repositories
                     var EmpResponse = Res.Content.ReadAsStringAsync().Result;
                     result = JsonConvert.DeserializeObject<MovieFullInfoDto>(EmpResponse);
                     result.Budget = JsonConvert.DeserializeObject<dynamic>(EmpResponse).boxOffice.budget;
+                }
+            }
+            return result;
+        }
+
+        internal List<MovieShortInfoDto> SearchTitle(string param)
+        {
+            string Baseurl = Imdb.SearchTitle+ param;
+            var result = new List<MovieShortInfoDto>();
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(Baseurl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage Res = client.GetAsync("").Result;
+                if (Res.IsSuccessStatusCode)
+                {
+                    var EmpResponse = Res.Content.ReadAsStringAsync().Result;
+                    var jsonResult = JObject.Parse(EmpResponse);
+                    var results = jsonResult["results"].ToString();
+                    result = JsonConvert.DeserializeObject<List<MovieShortInfoDto>>(results);
                 }
             }
             return result;

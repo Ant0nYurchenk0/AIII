@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
-using System.Web.Mvc;
 
 namespace AIII.Controllers.Api
 {
@@ -18,10 +17,23 @@ namespace AIII.Controllers.Api
         {
             _repository = new ImdbRepository();
         }
-        public MovieFullInfoDto GetMovie(string id)
+
+        [HttpGet]
+        [Route("Movie")]
+        public IHttpActionResult GetMovie(string id)
         {
             var movie = _repository.SearchById(id);
-            return Mapper.Map<MovieFullInfoDto>(movie);
+            return Ok(movie);
         }
+
+        [HttpGet]
+        [Route("api/imdb/searchtitle")]
+        public IHttpActionResult SearchTitle()
+        {
+            var param = Request.RequestUri.Query.ToString();
+            var movie = _repository.SearchTitle(param);
+            return Ok(movie);
+        }
+
     }
 }

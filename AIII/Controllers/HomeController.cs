@@ -12,7 +12,6 @@ namespace AIII.Controllers
         public ActionResult Index()
         {
             var repo = new ImdbRepository();
-            var obj = repo.SearchById("tt1375666");
             return View();
         }
 
