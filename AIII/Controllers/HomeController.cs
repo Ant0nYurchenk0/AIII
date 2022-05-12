@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AIII.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,6 +11,8 @@ namespace AIII.Controllers
     {
         public ActionResult Index()
         {
+            var repo = new ImdbRepository();
+            var obj = repo.SearchById("tt1375666");
             return View();
         }
 
@@ -24,6 +27,10 @@ namespace AIII.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+        public ActionResult ShowImdbMovie(string id)
+        {
             return View();
         }
     }
