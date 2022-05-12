@@ -11,16 +11,19 @@ namespace AIII.Models
         [Key]
         public int MovieId { get; set; }
 
+        [Required]
         public string Title { get; set; }
 
         public string Poster { get; set; }
 
+        [Required]
         public DateTime Year { get; set; }
 
         public string Genre { get; set; }
 
         public string Type { get; set; }
 
+        [Required]
         public string Country { get; set; }
 
         public string Plot { get; set; }

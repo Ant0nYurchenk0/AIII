@@ -186,7 +186,7 @@
     <Compile Include="Controllers\Api\MoviesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\MoviesController.cs" />
+    <Compile Include="Controllers\CustomMovieController.cs" />
     <Compile Include="Dtos\CustomMovieDto.cs" />
     <Compile Include="Dtos\CustomMovieShortInfoDto.cs" />
     <Compile Include="Dtos\UserRatingDto.cs" />
@@ -204,6 +204,10 @@
     <Compile Include="Migrations\202205111225047_ChangeMovieTableCreateCustomMovieTableCreateUserRatingTable.cs" />
     <Compile Include="Migrations\202205111225047_ChangeMovieTableCreateCustomMovieTableCreateUserRatingTable.designer.cs">
       <DependentUpon>202205111225047_ChangeMovieTableCreateCustomMovieTableCreateUserRatingTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205120800214_ChangeCustomMovieModel.cs" />
+    <Compile Include="Migrations\202205120800214_ChangeCustomMovieModel.designer.cs">
+      <DependentUpon>202205120800214_ChangeCustomMovieModel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -271,7 +275,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Movies\NewMovie.cshtml" />
+    <Content Include="Views\CustomMovie\CustomMovieForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -298,6 +302,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202205111225047_ChangeMovieTableCreateCustomMovieTableCreateUserRatingTable.resx">
       <DependentUpon>202205111225047_ChangeMovieTableCreateCustomMovieTableCreateUserRatingTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205120800214_ChangeCustomMovieModel.resx">
+      <DependentUpon>202205120800214_ChangeCustomMovieModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

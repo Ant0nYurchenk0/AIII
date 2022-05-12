@@ -18,29 +18,29 @@ namespace AIII.Controllers.Api
             _context = new ApplicationDbContext();
         }
 
-        public IEnumerable<MovieDto> GetMovies()
+        public IEnumerable<CustomMovieDto> GetMovies()
         {
-            return _context.Movies.ToList().Select(Mapper.Map<Movie, MovieDto>);
+            return _context.CustomMovies.ToList().Select(Mapper.Map<CustomMovie, CustomMovieDto>);
         }
 
-        public MovieDto GetMovie(int id)
+        public CustomMovieDto GetMovie(int id)
         {
-            var movie = _context.Movies.SingleOrDefault(m => m.MovieId == id);
+            var movie = _context.CustomMovies.SingleOrDefault(m => m.MovieId == id);
 
-            if(movie == null)
+            if (movie == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            return Mapper.Map<Movie,MovieDto>(movie);
+            return Mapper.Map<CustomMovie, CustomMovieDto>(movie);
         }
 
         [HttpPost]
-        public MovieDto CreateMovie(MovieDto movieDto)
+        public CustomMovieDto CreateMovie(CustomMovieDto movieDto)
         {
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
 
-            var movie = Mapper.Map<MovieDto, Movie>(movieDto);
-            _context.Movies.Add(movie);
+            var movie = Mapper.Map<CustomMovieDto, CustomMovie>(movieDto);
+            _context.CustomMovies.Add(movie);
             _context.SaveChanges();
 
             movieDto.MovieId = movie.MovieId;
@@ -48,17 +48,17 @@ namespace AIII.Controllers.Api
         }
 
         [HttpPut]
-        public void UpdateMovie(int id,MovieDto movieDto)
+        public void UpdateMovie(int id, CustomMovieDto movieDto)
         {
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
 
-            var movieInDb = _context.Movies.SingleOrDefault(m => m.MovieId == id);
+            var movieInDb = _context.CustomMovies.SingleOrDefault(m => m.MovieId == id);
 
-            if(movieInDb == null)
+            if (movieInDb == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            Mapper.Map(movieDto,movieInDb);
+            Mapper.Map(movieDto, movieInDb);
             movieInDb.Title = movieDto.Title;
             movieInDb.Poster = movieDto.Poster;
             movieInDb.Year = movieDto.Year;
@@ -69,10 +69,6 @@ namespace AIII.Controllers.Api
             movieInDb.Plot = movieDto.Plot;
             movieInDb.Budget = movieDto.Budget;
             movieInDb.BoxOffice = movieDto.BoxOffice;
-            movieInDb.RatingIMDB = movieDto.RatingIMDB;
-            movieInDb.SiteUserRating = movieDto.SiteUserRating;
-            movieInDb.GoodEmodjiAmount = movieDto.GoodEmodjiAmount;
-            movieInDb.BadEmodjiAmount = movieDto.BadEmodjiAmount;
 
             _context.SaveChanges();
         }
@@ -80,12 +76,12 @@ namespace AIII.Controllers.Api
         [HttpDelete]
         public void RemoveMovie(int id)
         {
-            var movieInDb = _context.Movies.SingleOrDefault(m => m.MovieId == id);
+            var movieInDb = _context.CustomMovies.SingleOrDefault(m => m.MovieId == id);
 
             if (movieInDb == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            _context.Movies.Remove(movieInDb);
+            _context.CustomMovies.Remove(movieInDb);
             _context.SaveChanges();
         }
     }
