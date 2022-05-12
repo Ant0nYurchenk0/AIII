@@ -9,28 +9,27 @@ using System.Web.Http;
 
 namespace AIII.Controllers.Api
 {
-    public class MoviesController : ApiController
+    public class CustomMoviesController : ApiController
     {
-        private ApplicationDbContext _context;
-
-        public MoviesController()
+        private IAlllDbContext _context;
+        public CustomMoviesController(IAlllDbContext context)
         {
-            _context = new ApplicationDbContext();
+            _context = context;
         }
 
         public IEnumerable<MovieFullInfoDto> GetMovies()
         {
-            return _context.Movies.ToList().Select(Mapper.Map<Movie, MovieFullInfoDto>);
+            return _context.CustomMovies.ToList().Select(Mapper.Map<CustomMovie, MovieFullInfoDto>);
         }
 
         public MovieFullInfoDto GetMovie(string id)
         {
-            var movie = _context.CustomMovies.SingleOrDefault(m => m.MovieId == id);
+            var movie = _context.CustomMovies.SingleOrDefault(m => m.Id == id);
 
             if (movie == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            return Mapper.Map<Movie, MovieFullInfoDto>(movie);
+            return Mapper.Map<CustomMovie, MovieFullInfoDto>(movie);
         }
 
         [HttpPost]
@@ -39,8 +38,8 @@ namespace AIII.Controllers.Api
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
 
-            var movie = Mapper.Map<MovieFullInfoDto, Movie>(movieDto);
-            _context.Movies.Add(movie);
+            var movie = Mapper.Map<MovieFullInfoDto, CustomMovie>(movieDto);
+            _context.CustomMovies.Add(movie);
             _context.SaveChanges();
 
             movieDto.Id = movie.Id;
@@ -75,7 +74,7 @@ namespace AIII.Controllers.Api
         [HttpDelete]
         public void DeleteMovie(string id)
         {
-            var movieInDb = _context.CustomMovies.SingleOrDefault(m => m.MovieId == id);
+            var movieInDb = _context.CustomMovies.SingleOrDefault(m => m.Id == id);
 
             if (movieInDb == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);

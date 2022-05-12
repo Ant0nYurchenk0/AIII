@@ -29,9 +29,9 @@ namespace AIII.Controllers
             return View("CustomMovieForm");
         }
 
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
-            var customMovie = _context.CustomMovies.SingleOrDefault(m => m.MovieId == id);
+            var customMovie = _context.CustomMovies.SingleOrDefault(m => m.Id == id);
 
             if (customMovie == null)
                 return HttpNotFound();
@@ -45,11 +45,11 @@ namespace AIII.Controllers
             if(!ModelState.IsValid)
                 return View("CustomMovieForm", customMovie);
 
-            if(customMovie.MovieId == 0)
+            if(customMovie.Id == null)
                 _context.CustomMovies.Add(customMovie);
             else
             {
-                var customMovieInDb = _context.CustomMovies.Single(m => m.MovieId == customMovie.MovieId);
+                var customMovieInDb = _context.CustomMovies.Single(m => m.Id == customMovie.Id);
 
                 Mapper.Map(customMovie, customMovieInDb);
             }
