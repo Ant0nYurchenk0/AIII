@@ -184,7 +184,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\ImdbController.cs" />
-    <Compile Include="Controllers\Api\MoviesController.cs" />
+    <Compile Include="Controllers\Api\CustomMoviesController.cs" />
+    <Compile Include="Controllers\CustomMovieController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Dtos\MovieShortInfoDto.cs" />
@@ -216,7 +217,10 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CustomMoviesDbContext.cs" />
+    <Compile Include="Models\IAlllDbContext.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\IMDBMoviesDbContext.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\CustomMovie.cs" />
     <Compile Include="Models\Movie.cs" />

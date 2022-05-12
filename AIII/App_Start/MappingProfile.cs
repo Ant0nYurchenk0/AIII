@@ -9,9 +9,6 @@ namespace AIII.App_Start
     {
         public MappingProfile()
         {
-            Mapper.CreateMap<CustomMovie, MovieFullInfoDto>();
-            Mapper.CreateMap<MovieFullInfoDto, CustomMovie>();
-
             Mapper.CreateMap<CustomMovie, MovieShortInfoDto>();
             Mapper.CreateMap<MovieShortInfoDto, CustomMovie>();
 
