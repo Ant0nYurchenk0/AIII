@@ -25,12 +25,12 @@ namespace AIII.Controllers.Api
 
         public MovieFullInfoDto GetMovie(string id)
         {
-            var movie = _context.CustomMovies.SingleOrDefault(m => m.MovieId == id);
+            var movie = _context.CustomMovies.SingleOrDefault(m => m.Id == id);
 
             if (movie == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            return Mapper.Map<Movie, MovieFullInfoDto>(movie);
+            return Mapper.Map<CustomMovie, MovieFullInfoDto>(movie);
         }
 
         [HttpPost]
@@ -75,7 +75,7 @@ namespace AIII.Controllers.Api
         [HttpDelete]
         public void DeleteMovie(string id)
         {
-            var movieInDb = _context.CustomMovies.SingleOrDefault(m => m.MovieId == id);
+            var movieInDb = _context.CustomMovies.SingleOrDefault(m => m.Id == id);
 
             if (movieInDb == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);

@@ -187,6 +187,7 @@
     <Compile Include="Controllers\Api\IImdbApiController.cs" />
     <Compile Include="Controllers\Api\ImdbApiController.cs" />
     <Compile Include="Controllers\Api\MoviesController.cs" />
+    <Compile Include="Controllers\CustomMovieController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ImdbController.cs" />
