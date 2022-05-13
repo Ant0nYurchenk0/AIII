@@ -215,6 +215,18 @@
     <Compile Include="Migrations\202205120747322_AdaptForImdbApi.designer.cs">
       <DependentUpon>202205120747322_AdaptForImdbApi.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202205121316224_AddPropertyToCustomMovieTable.cs" />
+    <Compile Include="Migrations\202205121316224_AddPropertyToCustomMovieTable.designer.cs">
+      <DependentUpon>202205121316224_AddPropertyToCustomMovieTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205130634151_AddAnnotationToCustomMovieProperty.cs" />
+    <Compile Include="Migrations\202205130634151_AddAnnotationToCustomMovieProperty.designer.cs">
+      <DependentUpon>202205130634151_AddAnnotationToCustomMovieProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205130651348_ChangeCustomMoviePropertyName.cs" />
+    <Compile Include="Migrations\202205130651348_ChangeCustomMoviePropertyName.designer.cs">
+      <DependentUpon>202205130651348_ChangeCustomMoviePropertyName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CustomMoviesDbContext.cs" />
@@ -227,6 +239,7 @@
     <Compile Include="Models\UserRating.cs" />
     <Compile Include="Objects\BoxOffice.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\CustomMovieRepository.cs" />
     <Compile Include="Repositories\ImdbRepository.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -320,6 +333,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202205120747322_AdaptForImdbApi.resx">
       <DependentUpon>202205120747322_AdaptForImdbApi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205121316224_AddPropertyToCustomMovieTable.resx">
+      <DependentUpon>202205121316224_AddPropertyToCustomMovieTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205130634151_AddAnnotationToCustomMovieProperty.resx">
+      <DependentUpon>202205130634151_AddAnnotationToCustomMovieProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205130651348_ChangeCustomMoviePropertyName.resx">
+      <DependentUpon>202205130651348_ChangeCustomMoviePropertyName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
