@@ -20,6 +20,6 @@ namespace AIII.Dtos
         public double ImdbRating { get; set; }
         public string Countries { get; set; }
         public string Budget { get; set; }
-
+        public string CumulativeWorldwideGross { get; set; }
     }
 }

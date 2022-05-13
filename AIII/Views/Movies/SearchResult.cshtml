@@ -1,0 +1,13 @@
+﻿@model AIII.ViewModels.SearchResult
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.SearchString</h2>
+<ul>
+    @foreach(var item in Model.Movies)
+            {
+                <li>@item.Title</li>
+            }
+</ul>
+
