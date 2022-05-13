@@ -35,6 +35,7 @@ namespace AIII.Repositories
                     var EmpResponse = Res.Content.ReadAsStringAsync().Result;
                     result = JsonConvert.DeserializeObject<MovieFullInfoDto>(EmpResponse);
                     result.Budget = JsonConvert.DeserializeObject<dynamic>(EmpResponse).boxOffice.budget;
+                    result.CumulativeWorldwideGross = JsonConvert.DeserializeObject<dynamic>(EmpResponse).boxOffice.cumulativeWorldwideGross;
                 }
             }
             return result;
