@@ -25,9 +25,9 @@ namespace AIII.Controllers.Api
 
         public MovieFullInfoDto GetMovie(string id)
         {
-            var movie = _context.Movies.SingleOrDefault(m => m.Id == id);
+            var movie = _context.CustomMovies.SingleOrDefault(m => m.MovieId == id);
 
-            if(movie == null)
+            if (movie == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
             return Mapper.Map<Movie, MovieFullInfoDto>(movie);
@@ -55,10 +55,10 @@ namespace AIII.Controllers.Api
 
             var movieInDb = _context.CustomMovies.SingleOrDefault(m => m.Id == id);
 
-            if(movieInDb == null)
+            if (movieInDb == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            Mapper.Map(movieDto,movieInDb);
+            Mapper.Map(movieDto, movieInDb);
             movieInDb.Title = movieDto.Title;
             movieInDb.Image = movieDto.Image;
             movieInDb.ReleaseDate= movieDto.ReleaseDate;
@@ -75,12 +75,12 @@ namespace AIII.Controllers.Api
         [HttpDelete]
         public void DeleteMovie(string id)
         {
-            var movieInDb = _context.Movies.SingleOrDefault(m => m.Id == id);
+            var movieInDb = _context.CustomMovies.SingleOrDefault(m => m.MovieId == id);
 
             if (movieInDb == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            _context.Movies.Remove(movieInDb);
+            _context.CustomMovies.Remove(movieInDb);
             _context.SaveChanges();
         }
     }
