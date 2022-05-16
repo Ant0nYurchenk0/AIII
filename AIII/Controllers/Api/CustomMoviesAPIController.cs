@@ -12,10 +12,15 @@ namespace AIII.Controllers.Api
 {
     public class CustomMoviesAPIController : ApiController
     {
-        private IAlllDbContext _context;
-        public CustomMoviesAPIController(IAlllDbContext context)
+        private ApplicationDbContext _context;
+        public CustomMoviesAPIController()
         {
-            _context = context;
+            _context = new ApplicationDbContext();
+        }
+
+        public IEnumerable<MovieShortInfoDto> GetShortInfoMovies()
+        {
+            return _context.CustomMovies.ToList().Select(Mapper.Map<CustomMovie, MovieShortInfoDto>);
         }
 
         public IEnumerable<MovieFullInfoDto> GetMovies(string query = null)

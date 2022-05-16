@@ -15,15 +15,19 @@ namespace AIII.Controllers
     public class HomeController : Controller
     {
         IImdbApiController _imdbApi;
+        CustomMoviesAPIController _customApi;
         public HomeController()
         {
-            _imdbApi = new ImdbApiController();   
+            _imdbApi = new ImdbApiController();
+            _customApi = new CustomMoviesAPIController();
         }
+
         public ActionResult Index()
         {
             var movies = new HomeMovies();
             movies.PopularMovies = _imdbApi.GetPopularMovies().Take(10).ToList();
             movies.PopularTVs = _imdbApi.GetPopularTVs().Take(10).ToList();
+            movies.CustomMovies = _customApi.GetShortInfoMovies().Take(10).ToList();
             return View(movies);
         }
 

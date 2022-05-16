@@ -13,6 +13,13 @@
         <li>@item.Title</li>
     }
 </ul>
+<h3>@Html.ActionLink("Custom movies","Index","CustomMovie")</h3>
+<ul>
+    @foreach (var item in Model.CustomMovies)
+    {
+        <li>@item.Title</li>
+    }
+</ul>
 @using (Html.BeginForm("Search", "Imdb", FormMethod.Get))
 {
     <div class="form-group">

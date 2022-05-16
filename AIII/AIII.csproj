@@ -308,6 +308,7 @@
     <Content Include="Views\Movies\Index.cshtml" />
     <Content Include="Views\Movies\SearchResult.cshtml" />
     <Content Include="Views\CustomMovie\CustomMovieForm.cshtml" />
+    <Content Include="Views\CustomMovie\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
