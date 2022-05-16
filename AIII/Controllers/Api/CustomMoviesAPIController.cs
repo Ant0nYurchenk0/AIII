@@ -10,10 +10,10 @@ using System.Web.Http;
 
 namespace AIII.Controllers.Api
 {
-    public class CustomMoviesController : ApiController
+    public class CustomMoviesAPIController : ApiController
     {
         private IAlllDbContext _context;
-        public CustomMoviesController(IAlllDbContext context)
+        public CustomMoviesAPIController(IAlllDbContext context)
         {
             _context = context;
         }
@@ -21,25 +21,16 @@ namespace AIII.Controllers.Api
         public IEnumerable<MovieFullInfoDto> GetMovies(string query = null)
         {
             return _context.CustomMovies.ToList().Select(Mapper.Map<CustomMovie, MovieFullInfoDto>);
-
-            var moviesQuery = _context.CustomMovies;
-
-            if (!String.IsNullOrWhiteSpace(query))
-                moviesQuery = (System.Data.Entity.DbSet<CustomMovie>)moviesQuery.Where(m => m.Genres.Contains(query));
-
-            return moviesQuery
-                .ToList()
-                .Select(Mapper.Map< CustomMovie, MovieFullInfoDto>);
         }
 
-        public IHttpActionResult GetMovie(string id)
+        public MovieFullInfoDto GetMovie(string id)
         {
             var movie = _context.CustomMovies.SingleOrDefault(m => m.Id == id);
 
             if (movie == null)
-                return NotFound();
+                throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            return Ok(Mapper.Map<CustomMovie, MovieFullInfoDto>(movie));
+            return Mapper.Map<CustomMovie, MovieFullInfoDto>(movie);
         }
 
         [HttpPost]
@@ -83,17 +74,15 @@ namespace AIII.Controllers.Api
         }
 
         [HttpDelete]
-        public IHttpActionResult DeleteMovie(string id)
+        public void DeleteMovie(string id)
         {
             var movieInDb = _context.CustomMovies.SingleOrDefault(m => m.Id == id);
 
             if (movieInDb == null)
-                return NotFound();
+                throw  new HttpResponseException(HttpStatusCode.NotFound);
 
             _context.CustomMovies.Remove(movieInDb);
             _context.SaveChanges();
-
-            return Ok();
         }
     }
 }

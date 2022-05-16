@@ -1,4 +1,5 @@
-﻿using AIII.Models;
+﻿using AIII.Controllers.Api;
+using AIII.Models;
 using AIII.Repositories;
 using AutoMapper;
 using System;
@@ -12,14 +13,14 @@ namespace AIII.Controllers
 {
     public class CustomMovieController : Controller
     {
-        public IAlllDbContext _context;
+        private IAlllDbContext _context;
+        private CustomMoviesAPIController _apiController;
 
         public CustomMovieController(IAlllDbContext context)
         {
             _context = context;
         }
 
-        // GET: Movies
         public ActionResult Index()
         {
             return View();
@@ -38,6 +39,15 @@ namespace AIII.Controllers
                 return HttpNotFound();
 
             return View("CustomMovieForm", customMovie);
+        }
+
+        public ActionResult Delete(string id)
+        {
+            _apiController = new CustomMoviesAPIController(_context);
+
+            _apiController.DeleteMovie(id);
+
+            return RedirectToAction("Index");
         }
 
         [HttpPost]

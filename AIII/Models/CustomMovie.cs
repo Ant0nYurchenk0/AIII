@@ -16,6 +16,7 @@ namespace AIII.Models
         [Required]
         public string Title { get; set; }
 
+        [Display(Name = "Poster URL")]
         public string Image { get; set; }
 
         [Display(Name ="Release Date")]
