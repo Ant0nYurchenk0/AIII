@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using AIII.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace AIII.Controllers
 {
@@ -321,6 +322,46 @@ namespace AIII.Controllers
             var result = await UserManager.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
             return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
         }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult UsersRoles()
+        {
+            var users = UserManager.Users.ToList();
+
+            var result = users.Select(u => new UserWithRole
+            {
+                UserId = u.Id,
+                UserEmail = u.Email,
+                RolesNames = UserManager.GetRoles(u.Id).ToList()
+            });
+            
+            return View(result);
+        }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult AddModeratorRole(string userId)
+        {
+            try
+            {
+                UserManager.AddToRole(userId, "Moderator");
+            }
+            catch (Exception) { }
+
+            return RedirectToAction("UsersRoles");
+        }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult RemoveModeratorRole(string userId)
+        {
+            try
+            {
+                UserManager.RemoveFromRole(userId, "Moderator");
+            }
+            catch(Exception) { }
+
+            return RedirectToAction("UsersRoles");
+        }
+
 
         protected override void Dispose(bool disposing)
         {
