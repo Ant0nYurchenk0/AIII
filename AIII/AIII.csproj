@@ -197,18 +197,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202205110705515_InitialModelIdentity.cs" />
-    <Compile Include="Migrations\202205110705515_InitialModelIdentity.designer.cs">
-      <DependentUpon>202205110705515_InitialModelIdentity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202205111123450_SeedUserRoles.cs" />
-    <Compile Include="Migrations\202205111123450_SeedUserRoles.designer.cs">
-      <DependentUpon>202205111123450_SeedUserRoles.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202205130912021_SeedModeratorRole.cs" />
-    <Compile Include="Migrations\202205130912021_SeedModeratorRole.designer.cs">
-      <DependentUpon>202205130912021_SeedModeratorRole.cs</DependentUpon>
-    </Compile>		
     <Compile Include="Imdb_Api\Imdb.cs" />
     <Compile Include="Migrations\202205101634113_CreateMovieTable.cs" />
     <Compile Include="Migrations\202205101634113_CreateMovieTable.designer.cs">
@@ -338,15 +326,6 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202205110705515_InitialModelIdentity.resx">
-      <DependentUpon>202205110705515_InitialModelIdentity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202205111123450_SeedUserRoles.resx">
-      <DependentUpon>202205111123450_SeedUserRoles.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202205130912021_SeedModeratorRole.resx">
-      <DependentUpon>202205130912021_SeedModeratorRole.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202205101634113_CreateMovieTable.resx">
       <DependentUpon>202205101634113_CreateMovieTable.cs</DependentUpon>
     </EmbeddedResource>
