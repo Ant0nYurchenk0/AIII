@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "UserList";
+}
+@model IEnumerable<AIII.Models.IdentityModel>
+
+<div style="padding-top: 10%">
+    <div style="padding: 3%; background-color: black;">
+        <h4>Список пользоватлей</h4>
+        <hr />
+        <table class="table" style="width: 100%; background-color: black; color: white">
+            @foreach (var user in Model)
+            {
+            <tr>
+                <td>@user.Email</td>
+                <td>
+                    <a class="btn btn-sm btn-primary right" asp-action="Edit" asp-route-userid="@user.Id">Права доступа</a>
+                </td>
+            </tr>
+            }
+        </table>
+    </div>
+</div>

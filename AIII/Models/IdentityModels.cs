@@ -25,7 +25,7 @@ namespace AIII.Models
         public DbSet<CustomMovie> CustomMovies { get; set; }
 
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("IdentityConnection", throwIfV1Schema: false)
         {
         }
 

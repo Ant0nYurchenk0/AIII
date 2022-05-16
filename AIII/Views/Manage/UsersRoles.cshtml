@@ -1,0 +1,54 @@
+﻿@model IEnumerable<AIII.Models.UserWithRole>
+
+@{
+    ViewBag.Title = "UsersRoles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>UsersRoles</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RolesNames)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserEmail)
+        </td>
+        <td>
+            <ul>
+                @foreach (var role in item.RolesNames)
+                {
+                    <li class="nav">@Html.DisplayFor(modelItem => role)</li>
+                }
+            </ul>
+            
+        </td>
+        <td class="text-right" width="20%">
+            @if (User.Identity.Name != item.UserEmail)
+            {
+                if (!item.RolesNames.Contains("Moderator"))
+                {
+                    @Html.ActionLink("Set as moderator", "AddModeratorRole", new { userId = item.UserId })
+                }
+                else
+                {
+                    @Html.ActionLink("Remove from moderators", "RemoveModeratorRole", new { userId = item.UserId })
+                }
+            }
+        </td>
+    </tr>
+}
+
+</table>
