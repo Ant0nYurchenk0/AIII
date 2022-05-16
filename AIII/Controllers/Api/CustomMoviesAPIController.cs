@@ -1,6 +1,7 @@
 ﻿using AIII.Dtos;
 using AIII.Models;
 using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,18 +10,17 @@ using System.Web.Http;
 
 namespace AIII.Controllers.Api
 {
-    public class MoviesController : ApiController
+    public class CustomMoviesAPIController : ApiController
     {
-        private ApplicationDbContext _context;
-
-        public MoviesController()
+        private IAlllDbContext _context;
+        public CustomMoviesAPIController(IAlllDbContext context)
         {
-            _context = new ApplicationDbContext();
+            _context = context;
         }
 
-        public IEnumerable<MovieFullInfoDto> GetMovies()
+        public IEnumerable<MovieFullInfoDto> GetMovies(string query = null)
         {
-            return _context.Movies.ToList().Select(Mapper.Map<Movie, MovieFullInfoDto>);
+            return _context.CustomMovies.ToList().Select(Mapper.Map<CustomMovie, MovieFullInfoDto>);
         }
 
         public MovieFullInfoDto GetMovie(string id)
@@ -34,29 +34,29 @@ namespace AIII.Controllers.Api
         }
 
         [HttpPost]
-        public MovieFullInfoDto CreateMovie(MovieFullInfoDto movieDto)
+        public IHttpActionResult CreateMovie(MovieFullInfoDto movieDto)
         {
             if (!ModelState.IsValid)
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                return BadRequest();
 
-            var movie = Mapper.Map<MovieFullInfoDto, Movie>(movieDto);
-            _context.Movies.Add(movie);
+            var movie = Mapper.Map<MovieFullInfoDto, CustomMovie>(movieDto);
+            _context.CustomMovies.Add(movie);
             _context.SaveChanges();
 
             movieDto.Id = movie.Id;
-            return movieDto;
+            return Created(new Uri(Request.RequestUri + "/" + movie.Id), movieDto);
         }
 
         [HttpPut]
-        public void UpdateMovie(string id, MovieFullInfoDto movieDto)
+        public IHttpActionResult UpdateMovie(string id, MovieFullInfoDto movieDto)
         {
             if (!ModelState.IsValid)
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                return BadRequest();
 
             var movieInDb = _context.CustomMovies.SingleOrDefault(m => m.Id == id);
 
             if (movieInDb == null)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
 
             Mapper.Map(movieDto, movieInDb);
             movieInDb.Title = movieDto.Title;
@@ -70,6 +70,7 @@ namespace AIII.Controllers.Api
             movieInDb.Budget = movieDto.Budget;
 
             _context.SaveChanges();
+            return Ok();
         }
 
         [HttpDelete]
@@ -78,7 +79,7 @@ namespace AIII.Controllers.Api
             var movieInDb = _context.CustomMovies.SingleOrDefault(m => m.Id == id);
 
             if (movieInDb == null)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                throw  new HttpResponseException(HttpStatusCode.NotFound);
 
             _context.CustomMovies.Remove(movieInDb);
             _context.SaveChanges();

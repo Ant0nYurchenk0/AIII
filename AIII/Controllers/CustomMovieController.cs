@@ -1,7 +1,10 @@
-﻿using AIII.Models;
+﻿using AIII.Controllers.Api;
+using AIII.Models;
+using AIII.Repositories;
 using AutoMapper;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -10,15 +13,14 @@ namespace AIII.Controllers
 {
     public class CustomMovieController : Controller
     {
-        public ApplicationDbContext _context;
+        private IAlllDbContext _context;
+        private CustomMoviesAPIController _apiController;
 
-        public CustomMovieController()
+        public CustomMovieController(IAlllDbContext context)
         {
-            _context = new ApplicationDbContext();
+            _context = context;
         }
 
-
-        // GET: Movies
         public ActionResult Index()
         {
             return View();
@@ -39,14 +41,24 @@ namespace AIII.Controllers
             return View("CustomMovieForm", customMovie);
         }
 
+        public ActionResult Delete(string id)
+        {
+            _apiController = new CustomMoviesAPIController(_context);
+
+            _apiController.DeleteMovie(id);
+
+            return RedirectToAction("Index");
+        }
+
         [HttpPost]
         public ActionResult Save(CustomMovie customMovie)
         {
             if(!ModelState.IsValid)
                 return View("CustomMovieForm", customMovie);
 
-            if(customMovie.Id == string.Empty)
+            if(customMovie.MovieId == 0)
                 _context.CustomMovies.Add(customMovie);
+            }
             else
             {
                 var customMovieInDb = _context.CustomMovies.Single(m => m.Id == customMovie.Id);
@@ -55,6 +67,7 @@ namespace AIII.Controllers
             }
 
             _context.SaveChanges();
+            
             return RedirectToAction("Index");
         }
     }

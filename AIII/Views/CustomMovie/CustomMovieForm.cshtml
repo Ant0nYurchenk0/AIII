@@ -21,8 +21,8 @@
 
             <td>
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Genre)
-                    @Html.TextBoxFor(m => m.Genre, new { @class = "form-control" })
+                    @Html.LabelFor(m => m.Genres)
+                    @Html.TextBoxFor(m => m.Genres, new { @class = "form-control" })
                 </div>
             </td>
         </tr>
@@ -37,8 +37,8 @@
 
             <td>
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Year)
-                    @Html.TextBoxFor(m => m.Year, "{0:d MMM yyyy}", new { @class = "form-control" })
+                    @Html.LabelFor(m => m.ReleaseDate)
+                    @Html.TextBoxFor(m => m.ReleaseDate, "{0:d MMM yyyy}", new { @class = "form-control" })
                 </div>
             </td>
         </tr>
@@ -46,15 +46,15 @@
         <tr>
             <td>
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Country)
-                    @Html.TextBoxFor(m => m.Country, new { @class = "form-control" })
+                    @Html.LabelFor(m => m.Countries)
+                    @Html.TextBoxFor(m => m.Countries, new { @class = "form-control" })
                 </div>
             </td>
 
             <td>
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Cast)
-                    @Html.TextBoxFor(m => m.Cast, new { @class = "form-control" })
+                    @Html.LabelFor(m => m.Stars)
+                    @Html.TextBoxFor(m => m.Stars, new { @class = "form-control" })
                 </div>
             </td>
         </tr>
@@ -69,12 +69,20 @@
 
             <td>
                 <div class="form-group">
-                    @Html.LabelFor(m => m.BoxOffice)
-                    @Html.TextBoxFor(m => m.BoxOffice, new { @class = "form-control" })
+                    @Html.LabelFor(m => m.CumulativeWorldWideGross)
+                    @Html.TextBoxFor(m => m.CumulativeWorldWideGross, new { @class = "form-control" })
                 </div>
             </td>
         </tr>
 
+        <tr>
+             <td>
+                 <div class="form-group">
+                    @Html.LabelFor(m => m.Image)
+                    @Html.TextBoxFor(m => m.Image, new { @class = "form-control" })
+                 </div>
+             </td>
+        </tr>
     </table>
     <br />
 
@@ -82,7 +90,7 @@
         @Html.LabelFor(m => m.Plot)
         @Html.TextAreaFor(m => m.Plot,5, 50, new { @class = "form-control" })
     </div>
-    @Html.HiddenFor(m => m.MovieId)
+    @Html.HiddenFor(m => m.Id)
     <button type="submit" class="btn btn-primary">Save</button>
 }
 
