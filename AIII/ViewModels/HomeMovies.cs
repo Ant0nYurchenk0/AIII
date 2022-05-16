@@ -10,6 +10,6 @@ namespace AIII.ViewModels
     {
         public List<MovieShortInfoDto> PopularMovies { get; set; }
         public List<MovieShortInfoDto> PopularTVs { get; set; }
-
+        public List<MovieShortInfoDto> CustomMovies { get; set; }
     }
 }
