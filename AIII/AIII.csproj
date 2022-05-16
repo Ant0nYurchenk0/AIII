@@ -208,6 +208,7 @@
     <Compile Include="Migrations\202205130912021_SeedModeratorRole.cs" />
     <Compile Include="Migrations\202205130912021_SeedModeratorRole.designer.cs">
       <DependentUpon>202205130912021_SeedModeratorRole.cs</DependentUpon>
+    </Compile>		
     <Compile Include="Imdb_Api\Imdb.cs" />
     <Compile Include="Migrations\202205101634113_CreateMovieTable.cs" />
     <Compile Include="Migrations\202205101634113_CreateMovieTable.designer.cs">
@@ -345,6 +346,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202205130912021_SeedModeratorRole.resx">
       <DependentUpon>202205130912021_SeedModeratorRole.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202205101634113_CreateMovieTable.resx">
       <DependentUpon>202205101634113_CreateMovieTable.cs</DependentUpon>
     </EmbeddedResource>
