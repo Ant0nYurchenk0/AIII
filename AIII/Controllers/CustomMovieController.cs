@@ -56,7 +56,9 @@ namespace AIII.Controllers
             if(!ModelState.IsValid)
                 return View("CustomMovieForm", customMovie);
 
-            if(customMovie.MovieId == 0)
+            if(customMovie.Id == null) 
+            {
+                customMovie.Id = CustomMovieRepository.GetId();
                 _context.CustomMovies.Add(customMovie);
             }
             else
