@@ -26,8 +26,11 @@ namespace AIII.Controllers
             _apiController = new CustomMoviesAPIController();
 
             var movies = _apiController.GetMovies();
-            
-            return View(movies);
+
+            if(User.IsInRole("Admin") || User.IsInRole("Moderator"))
+                return View(movies);
+            else
+                return View("ReadOnlyCustomMovies",movies);
         }
 
         public ActionResult NewMovie()

@@ -4,7 +4,7 @@
 <div class="scrollmenu">
     @foreach (var item in Model.PopularMovies)
     {
-  <div class="card border-secondary mb-3" style="max-width: 20rem;">
+        <div class="card border-secondary mb-3" style="max-width: 20rem;">
             <div class="card-body">
                 <img class="card-img-top" src="@item.Image" alt="Card image cap">
                 <div class="card-title-back">
@@ -18,6 +18,22 @@
 <h3>Top TVs</h3>
 <div class="scrollmenu">
     @foreach (var item in Model.PopularTVs)
+    {
+        <div class="card border-secondary mb-3" style="max-width: 20rem;">
+            <div class="card-body">
+                <img class="card-img-top" src="@item.Image" alt="Card image cap">
+                <div class="card-title-back">
+                    <h4 class="card-title">@item.Title</h4>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<h3>
+    @Html.ActionLink("Old Movies", "Index", "CustomMovie")
+</h3>
+<div class="scrollmenu">
+    @foreach (var item in Model.CustomMovies)
     {
         <div class="card border-secondary mb-3" style="max-width: 20rem;">
             <div class="card-body">
