@@ -9,16 +9,16 @@
         </li>
     }
     <li>
-        <a class="nav-link" href="@Url.Action("Index", "Manage")">@User.Identity.GetUserName().Substring(0, 7) ...</a>
+        <a class="nav-link text-muted" href="@Url.Action("Index", "Manage")">@User.Identity.GetUserName().Substring(0, 7) ...</a>
     </li>
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right " }))
     {
         @Html.AntiForgeryToken()
-        <li><a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Log out</a></li>
+        <li><a class="nav-link text-danger" href="javascript:document.getElementById('logoutForm').submit()">Log out</a></li>
     }
 }
 else
 {
-    <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { @class = "nav-link", id = "registerLink" })</li>
-    <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { @class = "nav-link", id = "loginLink" })</li>
+    <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { @class = "nav-link text-success", id = "registerLink" })</li>
+    <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { @class = "nav-link text-success", id = "loginLink" })</li>
 }

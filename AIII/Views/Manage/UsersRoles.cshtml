@@ -6,12 +6,19 @@
 }
 <div class="main">
 
-    <h2>
-        UsersRoles
-    </h2>
-    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-info" })
+    <div class="row header">
 
-    <table class="table table-bordered">
+        <div class="col-1"></div>
+        <h2 class="col-2">
+            UsersRoles
+        </h2>
+        <div class="col-6"></div>
+        <div class="col-2">
+            @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-info " })
+        </div>
+        <div class="col-1"></div>
+    </div>
+    <table class="table table-bordered ">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.UserEmail)
@@ -42,11 +49,11 @@
                     {
                         if (!item.RolesNames.Contains("Moderator"))
                         {
-                            @Html.ActionLink("Set as moderator", "AddModeratorRole", new { userId = item.UserId }, new { @class = "btn btn-success" })
+                            @Html.ActionLink("Promote", "AddModeratorRole", new { userId = item.UserId }, new { @class = "btn btn-success" })
                         }
                         else
                         {
-                            @Html.ActionLink("Remove from moderators", "RemoveModeratorRole", new { userId = item.UserId }, new { @class = "btn btn-danger" })
+                            @Html.ActionLink("Demote", "RemoveModeratorRole", new { userId = item.UserId }, new { @class = "btn btn-danger" })
                         }
                     }
                 </td>

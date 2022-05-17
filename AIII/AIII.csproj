@@ -358,13 +358,13 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Manage\UsersRoles.cshtml" />
-    <Content Include="Views\Movies\Index.cshtml" />
     <Content Include="Views\Movies\SearchResult.cshtml" />
     <Content Include="Views\CustomMovie\CustomMovieForm.cshtml" />
     <Content Include="Views\Shared\_SearchForm.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\CustomMovie\Index.cshtml" />
     <Content Include="Views\Home\EditAbout.cshtml" />
+    <Content Include="Views\Movies\Details.cshtml" />
     <Content Include="Views\CustomMovie\ReadOnlyCustomMovies.cshtml" />
     <Content Include="Views\Home\ReadOnlyAbout.cshtml" />
   </ItemGroup>
