@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@material/textfield": "^14.0.0",
+    "material-components-web": "^14.0.0"
+  }
+}

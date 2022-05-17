@@ -32,13 +32,24 @@ namespace AIII.Controllers
             return View("..\\Movies\\SearchResult", movies);
         }
         [Route("Imdb/Search/")]
-        public ActionResult Search(string title, string country, string type, List<string> genres, List<string> releaseDate)
-        {
+        public ActionResult Search(string title, string country, string type, List<string> genres, List<string> releaseDate, List<string> userRating)
+        {            
+            if(AllNulls(title, country, type, genres, releaseDate, userRating))
+                return View("Index", "Home");
             var movies = new SearchResult();
-            movies.Movies = _api.Search(title, country, type, genres, releaseDate);
+            movies.Movies = _api.Search(title, country, type, genres, releaseDate, userRating);
             movies.SearchString = title;
             return View("..\\Movies\\SearchResult", movies);
         }
+
+        private bool AllNulls(params object[] parameters)
+        {
+            foreach (var item in parameters)
+                if (item != null)
+                    return false;
+            return true;
+        }
+
         public ActionResult RateMovie(string id)
         {
 

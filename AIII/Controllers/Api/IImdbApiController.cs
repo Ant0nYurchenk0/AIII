@@ -11,6 +11,6 @@ namespace AIII.Controllers.Api
         List<MovieShortInfoDto> GetPopularTVs();
         List<MovieShortInfoDto> GetTopMovies();
         List<MovieShortInfoDto> GetTopTVs();
-        List<MovieShortInfoDto> Search(string expression, string country, string type, List<string> genres, List<string> releaseDate);
+        List<MovieShortInfoDto> Search(string expression, string country, string type, List<string> genres, List<string> releaseDate, List<string> userRating);
     }
 }

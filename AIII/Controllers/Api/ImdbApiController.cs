@@ -28,18 +28,21 @@ namespace AIII.Controllers.Api
 
         [HttpGet]
         [Route("api/imdb/search")]
-        public List<MovieShortInfoDto> Search(string title, string country, string type, List<string> genres, List<string> releaseDate)
-        {            
+        public List<MovieShortInfoDto> Search(string title, string country, string type, List<string> genres, List<string> releaseDate, List<string> userRating)
+        {
+        
             title = title.Trim();
-            var genreStr = genres == null ? null : string.Join(",", genres);
-            var releaseDateStr = releaseDate == null ? null : string.Join(",",releaseDate);
+            var genreStr = genres == null || genres.Count == 0 ? null : string.Join(",", genres);
+            var releaseDateStr = releaseDate == null || releaseDate.Count == 0 ? null : string.Join(",",releaseDate);
+            var userRatingStr = userRating == null || userRating.Count == 0 ? null : string.Join(",", userRating);
             var param = "?"
                 + (string.IsNullOrEmpty(title) ? string.Empty : "title=" + title + "&")
                 + (string.IsNullOrEmpty(type) ? string.Empty : "title_type=" + type + "&")
                 + (string.IsNullOrEmpty(genreStr) ? string.Empty : "genres=" + genreStr + "&")
                 + (string.IsNullOrEmpty(country) ? string.Empty : "countries=" + country + "&")
+                + (string.IsNullOrEmpty(userRatingStr) ? string.Empty : "user_rating=" + userRatingStr + "&")
                 + (string.IsNullOrEmpty(releaseDateStr) ? string.Empty : "release_date=" + releaseDateStr + "&");
-            var movies = _repository.Search(param);
+            var movies = _repository.Search(param) ?? new List<MovieShortInfoDto>();
             return movies;
         }
 
