@@ -157,6 +157,8 @@ namespace AIII.Controllers
                     //var roleManager = new RoleManager<IdentityRole>(roleStore);
                     //await roleManager.CreateAsync(new IdentityRole("User"));
                     await UserManager.AddToRoleAsync(user.Id, "User");
+                    //await UserManager.AddToRoleAsync(user.Id, "Admin");
+                    //await UserManager.AddToRoleAsync(user.Id, "Moderator");
 
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
