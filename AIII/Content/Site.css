@@ -1,7 +1,8 @@
 ﻿
 body {
-    padding-bottom: 20px;
+    padding-bottom: 60px;
     height: 100%;
+    overflow-y:hidden;
 }
 ::-webkit-scrollbar {
     display: none;
@@ -73,9 +74,10 @@ nav{
 .main{    
     padding-top: 20px;
     overflow: scroll;
-    height: 100vh;
+    height: 95vh;
     box-sizing: border-box;
     text-align: center;
+    margin-bottom: 50px;
 }
 .container{
     max-width: 100%;
@@ -124,4 +126,12 @@ table{
 }
 .left{
     text-align: left;
+}
+.date {
+    color: #756194;
+    background-color: #30115e;
+    border-radius: 3px;
+    border-width: 0;
+    margin-left: 10px;
+    font-weight: 800;
 }
