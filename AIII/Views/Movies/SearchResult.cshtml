@@ -2,12 +2,19 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="main">
 
-<h2>@Model.SearchString</h2>
-<ul>
-    @foreach(var item in Model.Movies)
-            {
-                <li>@item.Title</li>
-            }
-</ul>
+    <h2 class="title">@Model.SearchString</h2>
+    @foreach (var item in Model.Movies)
+    {
+        <div class="card border-secondary mb-3" style="max-width: 20rem;">
+            <div class="card-body">
+                <img class="card-img-top" src="@item.Image" alt="Card image cap">
+                <div class="card-title-back">
+                    <h4 class="card-title">@item.Title</h4>
+                </div>
+            </div>
+        </div>
+    }
+</div>
 
