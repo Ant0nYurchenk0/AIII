@@ -1,7 +1,7 @@
 ﻿
 body {
     padding-bottom: 20px;
-    height: 100vh;
+    height: 100%;
 }
 ::-webkit-scrollbar {
     display: none;
@@ -59,7 +59,8 @@ div.scrollmenu {
     white-space: nowrap;
 }
 nav{
-    margin-bottom: 25px;
+    margin-bottom: 0;
+    
 }
 .card-title-back {
     width: 100%;
@@ -69,4 +70,38 @@ nav{
     position: absolute;
     bottom: 0;
 }
-
+.main{    
+    padding-top: 20px;
+    overflow: scroll;
+    height: 100vh;
+    box-sizing: border-box;
+    text-align: center;
+}
+.container{
+    max-width: 100%;
+    max-height: 100vh;
+}
+.nav-link{
+    display: inline;
+}
+.title{
+    text-align: left;
+}
+.member a{
+    text-decoration: none;
+}
+.member img {
+    margin-top: 50px;
+    margin-bottom: 20px;
+    border-radius: 50%;
+    text-decoration: none;
+    overflow: hidden;
+    width: 250px;
+    height: 250px;
+}
+.center{
+    margin: auto;
+}
+.table{
+    text-align: left;
+}
