@@ -25,6 +25,7 @@ select,
 textarea {
     max-width: 280px;
 }
+
 .mt-4 {
     margin-top: 0 !important; 
 }
@@ -68,3 +69,4 @@ nav{
     position: absolute;
     bottom: 0;
 }
+

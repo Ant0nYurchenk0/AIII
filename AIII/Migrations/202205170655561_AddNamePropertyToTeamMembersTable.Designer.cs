@@ -7,13 +7,13 @@ namespace AIII.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class SeedModeratorRole : IMigrationMetadata
+    public sealed partial class AddNamePropertyToTeamMembersTable : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(SeedModeratorRole));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddNamePropertyToTeamMembersTable));
         
         string IMigrationMetadata.Id
         {
-            get { return "202205130912021_SeedModeratorRole"; }
+            get { return "202205170655561_AddNamePropertyToTeamMembersTable"; }
         }
         
         string IMigrationMetadata.Source

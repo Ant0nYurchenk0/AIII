@@ -13,17 +13,21 @@ namespace AIII.Controllers
 {
     public class CustomMovieController : Controller
     {
-        private IAlllDbContext _context;
+        private ApplicationDbContext _context;
         private CustomMoviesAPIController _apiController;
 
-        public CustomMovieController(IAlllDbContext context)
+        public CustomMovieController()
         {
-            _context = context;
+            _context = new ApplicationDbContext();
         }
 
         public ActionResult Index()
         {
-            return View();
+            _apiController = new CustomMoviesAPIController();
+
+            var movies = _apiController.GetMovies();
+            
+            return View(movies);
         }
 
         public ActionResult NewMovie()
@@ -43,7 +47,7 @@ namespace AIII.Controllers
 
         public ActionResult Delete(string id)
         {
-            _apiController = new CustomMoviesAPIController(_context);
+            _apiController = new CustomMoviesAPIController();
 
             _apiController.DeleteMovie(id);
 

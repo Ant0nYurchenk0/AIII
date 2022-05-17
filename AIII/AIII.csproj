@@ -209,6 +209,7 @@
     <Compile Include="Migrations\202205130912021_SeedModeratorRole.designer.cs">
       <DependentUpon>202205130912021_SeedModeratorRole.cs</DependentUpon>
     </Compile>
+
     <Compile Include="Imdb_Api\Imdb.cs" />
     <Compile Include="Migrations\202205101634113_CreateMovieTable.cs" />
     <Compile Include="Migrations\202205101634113_CreateMovieTable.designer.cs">
@@ -242,6 +243,18 @@
     <Compile Include="Migrations\202205130651348_ChangeCustomMoviePropertyName.designer.cs">
       <DependentUpon>202205130651348_ChangeCustomMoviePropertyName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202205170644256_CreateTeamMemberTable.cs" />
+    <Compile Include="Migrations\202205170644256_CreateTeamMemberTable.designer.cs">
+      <DependentUpon>202205170644256_CreateTeamMemberTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205170655561_AddNamePropertyToTeamMembersTable.cs" />
+    <Compile Include="Migrations\202205170655561_AddNamePropertyToTeamMembersTable.designer.cs">
+      <DependentUpon>202205170655561_AddNamePropertyToTeamMembersTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205170709355_PopulateTeamMembersTable.cs" />
+    <Compile Include="Migrations\202205170709355_PopulateTeamMembersTable.designer.cs">
+      <DependentUpon>202205170709355_PopulateTeamMembersTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CustomMoviesDbContext.cs" />
@@ -249,6 +262,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IMDBMoviesDbContext.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\TeamMember.cs" />
     <Compile Include="Models\UserWithRole.cs" />
     <Compile Include="Models\CustomMovie.cs" />
     <Compile Include="Models\Movie.cs" />
@@ -360,8 +374,13 @@
     <Content Include="Views\Movies\Index.cshtml" />
     <Content Include="Views\Movies\SearchResult.cshtml" />
     <Content Include="Views\CustomMovie\CustomMovieForm.cshtml" />
+
     <Content Include="Views\Shared\_SearchForm.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
+
+    <Content Include="Views\CustomMovie\Index.cshtml" />
+    <Content Include="Views\Home\EditAbout.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -372,15 +391,6 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202205110705515_InitialModelIdentity.resx">
-      <DependentUpon>202205110705515_InitialModelIdentity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202205111123450_SeedUserRoles.resx">
-      <DependentUpon>202205111123450_SeedUserRoles.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202205130912021_SeedModeratorRole.resx">
-      <DependentUpon>202205130912021_SeedModeratorRole.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202205101634113_CreateMovieTable.resx">
       <DependentUpon>202205101634113_CreateMovieTable.cs</DependentUpon>
     </EmbeddedResource>
@@ -404,6 +414,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202205130651348_ChangeCustomMoviePropertyName.resx">
       <DependentUpon>202205130651348_ChangeCustomMoviePropertyName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205170644256_CreateTeamMemberTable.resx">
+      <DependentUpon>202205170644256_CreateTeamMemberTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205170655561_AddNamePropertyToTeamMembersTable.resx">
+      <DependentUpon>202205170655561_AddNamePropertyToTeamMembersTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205170709355_PopulateTeamMembersTable.resx">
+      <DependentUpon>202205170709355_PopulateTeamMembersTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

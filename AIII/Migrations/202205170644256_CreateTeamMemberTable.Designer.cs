@@ -7,13 +7,13 @@ namespace AIII.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class InitialModelIdentity : IMigrationMetadata
+    public sealed partial class CreateTeamMemberTable : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialModelIdentity));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(CreateTeamMemberTable));
         
         string IMigrationMetadata.Id
         {
-            get { return "202205110705515_InitialModelIdentity"; }
+            get { return "202205170644256_CreateTeamMemberTable"; }
         }
         
         string IMigrationMetadata.Source
