@@ -11,29 +11,28 @@
 </p>
 
 
-<table class="table table-bordered table-hover">
+<table class="table table-hover">
     <tr>
         <th>Movie</th>
         <th width="50px">Delete</th>
     </tr>
-    
-    <tr>
-        @foreach (var movie in Model)
-         {
+    @foreach (var movie in Model)
+    {
+        <tr>
             <td width="200px" style="float:left">
                 <img src="@movie.Image" width="150" />
                 <p>@Html.ActionLink(movie.Title, "Edit", "CustomMovie", new { id = movie.Id }, null)</p>
             </td>
             <td style="float:left">
-                <p class="Plot" >@movie.Plot</p>
+                <p class="Plot">@movie.Plot</p>
             </td>
             <td>
                 <p>
                     @Html.ActionLink("Delete", "Delete", "CustomMovie", new { id = movie.Id }, new { @class = "btn btn-primary" })
                 </p>
             </td>
-         }
-    </tr>
+        </tr>
+    }
 
 </table>
 
