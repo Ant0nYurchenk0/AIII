@@ -323,7 +323,7 @@ namespace AIII.Controllers
             return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,Moderator")]
         public ActionResult UsersRoles()
         {
             var users = UserManager.Users.ToList();
@@ -361,7 +361,6 @@ namespace AIII.Controllers
 
             return RedirectToAction("UsersRoles");
         }
-
 
         protected override void Dispose(bool disposing)
         {

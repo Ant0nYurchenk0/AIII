@@ -5,50 +5,57 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>UsersRoles</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
+<h2>List of users</h2>
+<table class="table" style="border-bottom-width:1px">
+    <tr class="table-primary">
         <th>
             @Html.DisplayNameFor(model => model.UserEmail)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.RolesNames)
         </th>
-        <th></th>
+        @if (User.IsInRole("Admin"))
+        {
+            <th></th>
+        }
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserEmail)
-        </td>
-        <td>
-            <ul>
-                @foreach (var role in item.RolesNames)
-                {
-                    <li class="nav">@Html.DisplayFor(modelItem => role)</li>
-                }
-            </ul>
-            
-        </td>
-        <td class="text-right" width="20%">
-            @if (User.Identity.Name != item.UserEmail)
+    @foreach (var item in Model)
+    {
+        <tr class="align-middle">
+            <td>
+                @Html.DisplayFor(modelItem => item.UserEmail)
+            </td>
+            <td>
+                <div>
+                    <ul class="navbar-nav me-auto">
+                        @foreach (var role in item.RolesNames)
+                        {
+                            <li class="nav ">@Html.DisplayFor(modelItem => role)</li>
+                        }
+                    </ul>
+                </div>
+                
+
+            </td>
+            @if (User.IsInRole("Admin"))
             {
-                if (!item.RolesNames.Contains("Moderator"))
-                {
-                    @Html.ActionLink("Set as moderator", "AddModeratorRole", new { userId = item.UserId })
-                }
-                else
-                {
-                    @Html.ActionLink("Remove from moderators", "RemoveModeratorRole", new { userId = item.UserId })
-                }
+                <td class="text-right" width="20%">
+                    @if (User.Identity.Name != item.UserEmail)
+                    {
+                        if (!item.RolesNames.Contains("Moderator"))
+                        {
+                            @Html.ActionLink("Set as moderator", "AddModeratorRole", new { userId = item.UserId })
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Remove from moderators", "RemoveModeratorRole", new { userId = item.UserId })
+                        }
+                    }
+
+                </td>
             }
-        </td>
-    </tr>
-}
+        </tr>
+    }
 
 </table>

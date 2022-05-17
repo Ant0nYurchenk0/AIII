@@ -197,8 +197,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-
-
     <Compile Include="Imdb_Api\Imdb.cs" />
     <Compile Include="Migrations\202205101634113_CreateMovieTable.cs" />
     <Compile Include="Migrations\202205101634113_CreateMovieTable.designer.cs">
@@ -243,6 +241,10 @@
     <Compile Include="Migrations\202205170709355_PopulateTeamMembersTable.cs" />
     <Compile Include="Migrations\202205170709355_PopulateTeamMembersTable.designer.cs">
       <DependentUpon>202205170709355_PopulateTeamMembersTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205171313009_AddImbdKeyToUser.cs" />
+    <Compile Include="Migrations\202205171313009_AddImbdKeyToUser.designer.cs">
+      <DependentUpon>202205171313009_AddImbdKeyToUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -363,13 +365,10 @@
     <Content Include="Views\Movies\Index.cshtml" />
     <Content Include="Views\Movies\SearchResult.cshtml" />
     <Content Include="Views\CustomMovie\CustomMovieForm.cshtml" />
-
     <Content Include="Views\Shared\_SearchForm.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
-
     <Content Include="Views\CustomMovie\Index.cshtml" />
     <Content Include="Views\Home\EditAbout.cshtml" />
-
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -412,6 +411,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202205170709355_PopulateTeamMembersTable.resx">
       <DependentUpon>202205170709355_PopulateTeamMembersTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205171313009_AddImbdKeyToUser.resx">
+      <DependentUpon>202205171313009_AddImbdKeyToUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
