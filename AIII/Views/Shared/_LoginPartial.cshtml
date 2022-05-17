@@ -9,7 +9,7 @@
         </li>
     }
     <li>
-        <a class="nav-link text-muted" href="@Url.Action("Index", "Manage")">@User.Identity.GetUserName().Substring(0, 7) ...</a>
+        <a class="nav-link text-muted" href="@Url.Action("Index", "Manage")">@User.Identity.GetUserName()</a>
     </li>
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right " }))
     {
