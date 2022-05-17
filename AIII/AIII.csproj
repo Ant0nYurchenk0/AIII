@@ -254,6 +254,10 @@
     <Compile Include="Migrations\202205171317370_Some.designer.cs">
       <DependentUpon>202205171317370_Some.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202205171449578_NewMigration.cs" />
+    <Compile Include="Migrations\202205171449578_NewMigration.designer.cs">
+      <DependentUpon>202205171449578_NewMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CustomMoviesDbContext.cs" />
@@ -430,6 +434,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202205171317370_Some.resx">
       <DependentUpon>202205171317370_Some.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205171449578_NewMigration.resx">
+      <DependentUpon>202205171449578_NewMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
