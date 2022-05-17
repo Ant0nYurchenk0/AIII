@@ -366,6 +366,7 @@
     <Content Include="Views\CustomMovie\Index.cshtml" />
     <Content Include="Views\Home\EditAbout.cshtml" />
     <Content Include="Views\CustomMovie\ReadOnlyCustomMovies.cshtml" />
+    <Content Include="Views\Home\ReadOnlyAbout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
