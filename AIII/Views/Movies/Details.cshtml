@@ -1,0 +1,47 @@
+﻿@model AIII.Dtos.MovieFullInfoDto
+<div class="main">
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-3">
+            <img class="poster border-secondary" src="@Model.Image"/>
+            <table class="table movie-info">
+                <tbody>
+                    <tr>
+                        <th scope="row">Imdb:</th>
+                        <td class="text-secondary">@Model.ImdbRating</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Cast:</th>
+                        <td class="text-secondary">@Model.Stars</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Directors:</th>
+                        <td class="text-secondary">@Model.Directors</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Genres:</th>
+                        <td class="text-secondary">@Model.Genres</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Contries:</th>
+                        <td class="text-secondary">@Model.Countries</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Budget:</th>
+                        <td class="text-secondary">@Model.Budget</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Gross:</th>
+                        <td class="text-secondary">@Model.CumulativeWorldwideGross</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-7 left">
+            <h1 class="Title movie-title text-secondary">@Model.Title</h1>
+            <h3 class="title">Plot</h3>
+            <p>@Model.Plot</p>
+        </div>
+        <div class="col-1"></div>
+    </div>
+</div>

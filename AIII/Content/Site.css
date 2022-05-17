@@ -87,7 +87,7 @@ nav{
 .title{
     text-align: left;
 }
-.member a{
+a{
     text-decoration: none;
 }
 .member img {
@@ -102,6 +102,26 @@ nav{
 .center{
     margin: auto;
 }
-.table{
+table{
+    margin: auto;
+    text-align: left;
+    width: 70% !important;
+}
+.header{
+    margin-bottom: 40px;
+}
+.poster {
+    width: 100%;
+    max-height: 600px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+.movie-info{
+    margin-left:0;
+}
+.movie-title{
+    margin: 30px 0 40px;
+}
+.left{
     text-align: left;
 }

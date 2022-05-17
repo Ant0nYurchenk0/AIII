@@ -7,14 +7,17 @@
     <h2 class="title">@Model.SearchString</h2>
     @foreach (var item in Model.Movies)
     {
-        <div class="card border-secondary mb-3" style="max-width: 20rem;">
-            <div class="card-body">
-                <img class="card-img-top" src="@item.Image" alt="Card image cap">
-                <div class="card-title-back">
-                    <h4 class="card-title">@item.Title</h4>
+        <a href="@Url.Action("GetMovie", "Imdb", new { id=item.Id})">
+
+            <div class="card border-secondary mb-3" style="max-width: 20rem;">
+                <div class="card-body">
+                    <img class="card-img-top" src="@item.Image" alt="Card image cap">
+                    <div class="card-title-back">
+                        <h4 class="card-title">@item.Title</h4>
+                    </div>
                 </div>
             </div>
-        </div>
+        </a>
     }
 </div>
 
