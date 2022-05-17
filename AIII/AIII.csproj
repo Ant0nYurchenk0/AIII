@@ -242,6 +242,10 @@
     <Compile Include="Migrations\202205170709355_PopulateTeamMembersTable.designer.cs">
       <DependentUpon>202205170709355_PopulateTeamMembersTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202205171317370_Some.cs" />
+    <Compile Include="Migrations\202205171317370_Some.designer.cs">
+      <DependentUpon>202205171317370_Some.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CustomMoviesDbContext.cs" />
@@ -409,6 +413,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202205170709355_PopulateTeamMembersTable.resx">
       <DependentUpon>202205170709355_PopulateTeamMembersTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205171317370_Some.resx">
+      <DependentUpon>202205171317370_Some.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
