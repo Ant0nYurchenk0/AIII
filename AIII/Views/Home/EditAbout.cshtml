@@ -1,0 +1,34 @@
+﻿@model AIII.Models.TeamMember
+@{
+    ViewBag.Title = "EditAbout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Update Team Member</h2>
+
+@using (Html.BeginForm("Save", "Home"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Role)
+        @Html.TextBoxFor(m => m.Role, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Photo)
+        @Html.TextBoxFor(m => m.Photo, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.GeneralInfo)
+        @Html.TextAreaFor(m => m.GeneralInfo, 5, 50, new { @class = "form-control" })
+    </div>
+
+    @Html.HiddenFor(m => m.Id)
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+

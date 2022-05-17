@@ -1,14 +1,14 @@
 ﻿using AIII.Controllers.Api;
 using AIII.Repositories;
 using AIII.ViewModels;
+using System.Web.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
 using System.Web.Http;
-
-
+using AIII.Models;
+using AutoMapper;
 
 namespace AIII.Controllers
 {
@@ -16,6 +16,7 @@ namespace AIII.Controllers
     {
         IImdbApiController _imdbApi;
         CustomMoviesAPIController _customApi;
+        ApplicationDbContext _context;
         public HomeController()
         {
             _imdbApi = new ImdbApiController();
@@ -33,9 +34,34 @@ namespace AIII.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            _context = new ApplicationDbContext();
 
-            return View();
+            var teamMembers = _context.TeamMembers.ToList();
+            
+            return View(teamMembers);
+        }
+
+        public ActionResult EditAbout(int id)
+        {
+            _context = new ApplicationDbContext();
+
+            var teamMember = _context.TeamMembers.FirstOrDefault(m => m.Id == id);
+
+            return View(teamMember);
+        }
+
+        [System.Web.Mvc.HttpPost]
+        public ActionResult Save(TeamMember teamMember)
+        {
+            if (!ModelState.IsValid)
+                return View("EditAbout", teamMember);
+
+            _context = new ApplicationDbContext();
+            var teamMemberInDb = _context.TeamMembers.Single(m => m.Id == teamMember.Id);
+            Mapper.Map(teamMember, teamMemberInDb);
+
+            _context.SaveChanges();
+            return RedirectToAction("About");
         }
 
         public ActionResult Contact()
