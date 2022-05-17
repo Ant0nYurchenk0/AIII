@@ -362,6 +362,30 @@ namespace AIII.Controllers
             return RedirectToAction("UsersRoles");
         }
 
+        [Authorize(Roles = "Admin")]
+        public ActionResult AddAdminRole(string userId)
+        {
+            try
+            {
+                UserManager.AddToRole(userId, "Admin");
+            }
+            catch (Exception) { }
+
+            return RedirectToAction("UsersRoles");
+        }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult RemoveAdminRole(string userId)
+        {
+            try
+            {
+                UserManager.RemoveFromRole(userId, "Admin");
+            }
+            catch (Exception) { }
+
+            return RedirectToAction("UsersRoles");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing && _userManager != null)

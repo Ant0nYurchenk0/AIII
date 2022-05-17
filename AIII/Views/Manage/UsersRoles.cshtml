@@ -10,7 +10,7 @@
 
         <div class="col-1"></div>
         <h2 class="col-2">
-            UsersRoles
+            Users
         </h2>
         <div class="col-6"></div>
         <div class="col-2">
@@ -26,37 +26,44 @@
             <th>
                 @Html.DisplayNameFor(model => model.RolesNames)
             </th>
-            <th></th>
+            @if (User.IsInRole("Admin"))
+            {
+                <th></th>
+            }
         </tr>
 
         @foreach (var item in Model)
         {
             <tr>
-                <td>
+                <td class="align-middle">
                     @Html.DisplayFor(modelItem => item.UserEmail)
                 </td>
                 <td>
                     <ul>
                         @foreach (var role in item.RolesNames)
                         {
-                            <li class="nav">@Html.DisplayFor(modelItem => role)</li>
+                            <li class="nav navbar-nav">@Html.DisplayFor(modelItem => role)</li>
                         }
                     </ul>
 
                 </td>
-                <td class="text-right" width="20%">
-                    @if (User.Identity.Name != item.UserEmail)
-                    {
-                        if (!item.RolesNames.Contains("Moderator"))
+                @if (User.IsInRole("Admin"))
+                {
+                    <td class="text-right align-middle" width="20%">
+                        @if (User.Identity.Name != item.UserEmail)
                         {
-                            @Html.ActionLink("Promote", "AddModeratorRole", new { userId = item.UserId }, new { @class = "btn btn-success" })
+                            if (!item.RolesNames.Contains("Moderator"))
+                            {
+                                @Html.ActionLink("Promote", "AddModeratorRole", new { userId = item.UserId }, new { @class = "btn btn-success" })
+                            }
+                            else
+                            {
+                                @Html.ActionLink("Demote", "RemoveModeratorRole", new { userId = item.UserId }, new { @class = "btn btn-danger" })
+                            }
                         }
-                        else
-                        {
-                            @Html.ActionLink("Demote", "RemoveModeratorRole", new { userId = item.UserId }, new { @class = "btn btn-danger" })
-                        }
-                    }
-                </td>
+                    </td>
+                }
+
             </tr>
         }
 
