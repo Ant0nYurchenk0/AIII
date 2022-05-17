@@ -83,5 +83,14 @@ namespace AIII.Controllers
             
             return RedirectToAction("Index");
         }
+
+        public ActionResult GetMovie(string id)
+        {
+            _apiController = new CustomMoviesAPIController();
+
+            var movie = new MovieFullInfoDto();
+            movie = _apiController.GetMovie(id);
+            return View("..\\Movies\\Details", movie);
+        }
     }
 }
