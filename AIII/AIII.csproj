@@ -242,6 +242,13 @@
     <Compile Include="Migrations\202205170709355_PopulateTeamMembersTable.designer.cs">
       <DependentUpon>202205170709355_PopulateTeamMembersTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202205171313009_AddImbdKeyToUser.cs" />
+    <Compile Include="Migrations\202205171313009_AddImbdKeyToUser.designer.cs">
+      <DependentUpon>202205171313009_AddImbdKeyToUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205171356541_AddImbdKeyToUserNullable.cs" />
+    <Compile Include="Migrations\202205171356541_AddImbdKeyToUserNullable.designer.cs">
+      <DependentUpon>202205171356541_AddImbdKeyToUserNullable.cs</DependentUpon>
     <Compile Include="Migrations\202205171317370_Some.cs" />
     <Compile Include="Migrations\202205171317370_Some.designer.cs">
       <DependentUpon>202205171317370_Some.cs</DependentUpon>
@@ -414,6 +421,11 @@
     <EmbeddedResource Include="Migrations\202205170709355_PopulateTeamMembersTable.resx">
       <DependentUpon>202205170709355_PopulateTeamMembersTable.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205171313009_AddImbdKeyToUser.resx">
+      <DependentUpon>202205171313009_AddImbdKeyToUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205171356541_AddImbdKeyToUserNullable.resx">
+      <DependentUpon>202205171356541_AddImbdKeyToUserNullable.cs</DependentUpon>
     <EmbeddedResource Include="Migrations\202205171317370_Some.resx">
       <DependentUpon>202205171317370_Some.cs</DependentUpon>
     </EmbeddedResource>
