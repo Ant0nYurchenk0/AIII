@@ -4,6 +4,63 @@
     ViewBag.Title = "UsersRoles";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="main">
+
+    <div class="row header">
+
+        <div class="col-1"></div>
+        <h2 class="col-2">
+            UsersRoles
+        </h2>
+        <div class="col-6"></div>
+        <div class="col-2">
+            @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-info " })
+        </div>
+        <div class="col-1"></div>
+    </div>
+    <table class="table table-bordered ">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RolesNames)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserEmail)
+                </td>
+                <td>
+                    <ul>
+                        @foreach (var role in item.RolesNames)
+                        {
+                            <li class="nav">@Html.DisplayFor(modelItem => role)</li>
+                        }
+                    </ul>
+
+                </td>
+                <td class="text-right" width="20%">
+                    @if (User.Identity.Name != item.UserEmail)
+                    {
+                        if (!item.RolesNames.Contains("Moderator"))
+                        {
+                            @Html.ActionLink("Promote", "AddModeratorRole", new { userId = item.UserId }, new { @class = "btn btn-success" })
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Demote", "RemoveModeratorRole", new { userId = item.UserId }, new { @class = "btn btn-danger" })
+                        }
+                    }
+                </td>
+            </tr>
+        }
+
+    </table>
 
 <h2>List of users</h2>
 <table class="table" style="border-bottom-width:1px">
@@ -58,4 +115,5 @@
         </tr>
     }
 
-</table>
+
+</div>

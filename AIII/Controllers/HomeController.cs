@@ -37,8 +37,11 @@ namespace AIII.Controllers
             _context = new ApplicationDbContext();
 
             var teamMembers = _context.TeamMembers.ToList();
-            
-            return View(teamMembers);
+
+            if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+                return View(teamMembers);
+            else
+                return View("ReadOnlyAbout", teamMembers);
         }
 
         public ActionResult EditAbout(int id)

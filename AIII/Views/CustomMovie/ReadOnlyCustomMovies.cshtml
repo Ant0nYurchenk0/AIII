@@ -1,0 +1,23 @@
+﻿@model IEnumerable<AIII.Dtos.MovieFullInfoDto>
+
+@{
+    ViewBag.Title = "ReadOnlyCustomMovies";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Old Movies</h2>
+<br />
+
+@foreach (var movie in Model)
+{
+    <div>
+        <img src="@movie.Image" width="150" />
+        @*<p>@Html.ActionLink(movie.Title, "Edit", "CustomMovie", new { id = movie.Id }, null)</p>*@
+        <p>@movie.Title</p>
+    </div>
+    <div>
+        <p class="Plot">@movie.Plot</p>
+    </div>
+    
+}
+

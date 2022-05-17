@@ -5,8 +5,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>New Movie</h2>
-
 @using (Html.BeginForm("Save", "CustomMovie"))
 {
     <table style="width:70%">
@@ -26,7 +24,7 @@
                 </div>
             </td>
         </tr>
-        
+
         <tr>
             <td>
                 <div class="form-group">
@@ -76,21 +74,30 @@
         </tr>
 
         <tr>
-             <td>
-                 <div class="form-group">
+            <td>
+                <div class="form-group">
                     @Html.LabelFor(m => m.Image)
                     @Html.TextBoxFor(m => m.Image, new { @class = "form-control" })
-                 </div>
-             </td>
+                </div>
+            </td>
         </tr>
-    </table>
-    <br />
 
-    <div class="form-group">
-        @Html.LabelFor(m => m.Plot)
-        @Html.TextAreaFor(m => m.Plot,5, 50, new { @class = "form-control" })
-    </div>
-    @Html.HiddenFor(m => m.Id)
-    <button type="submit" class="btn btn-primary">Save</button>
+        <tr>
+            <td>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Plot)
+                    @Html.TextAreaFor(m => m.Plot, 5, 50, new { @class = "form-control" })
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                @Html.HiddenFor(m => m.Id)
+                <button type="submit" class="btn btn-primary">Save</button>
+            </td>
+        </tr>
+   
+    </table>
 }
 

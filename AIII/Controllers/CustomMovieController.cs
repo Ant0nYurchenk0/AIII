@@ -1,6 +1,8 @@
 ﻿using AIII.Controllers.Api;
+using AIII.Dtos;
 using AIII.Models;
 using AIII.Repositories;
+using AIII.ViewModels;
 using AutoMapper;
 using System;
 using System.Collections.Generic;
@@ -24,10 +26,15 @@ namespace AIII.Controllers
         public ActionResult Index()
         {
             _apiController = new CustomMoviesAPIController();
+            var moviesSerchResult = new SearchResult();
 
             var movies = _apiController.GetMovies();
-            
-            return View(movies);
+            moviesSerchResult.Movies = _apiController.GetShortInfoMovies().ToList();
+                
+            if(User.IsInRole("Admin") || User.IsInRole("Moderator"))
+                return View(movies);
+            else
+                return View("..\\Movies\\SearchResult", moviesSerchResult);
         }
 
         public ActionResult NewMovie()
@@ -75,6 +82,15 @@ namespace AIII.Controllers
             _context.SaveChanges();
             
             return RedirectToAction("Index");
+        }
+
+        public ActionResult GetMovie(string id)
+        {
+            _apiController = new CustomMoviesAPIController();
+
+            var movie = new MovieFullInfoDto();
+            movie = _apiController.GetMovie(id);
+            return View("..\\Movies\\Details", movie);
         }
     }
 }

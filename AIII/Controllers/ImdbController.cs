@@ -1,4 +1,5 @@
 ﻿using AIII.Controllers.Api;
+using AIII.Dtos;
 using AIII.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,26 @@ namespace AIII.Controllers
         {
             _api = new ImdbApiController();
         }
-
+        public ActionResult GetMovie(string id)
+        {
+            var movie = new MovieFullInfoDto();
+            movie = _api.GetMovie(id);
+            return View("..\\Movies\\Details", movie);
+        }
+        public ActionResult PopularMovies()
+        {
+            var movies = new SearchResult();
+            movies.Movies = _api.GetPopularMovies();
+            movies.SearchString = "Popular IMDB Movies";
+            return View("..\\Movies\\SearchResult", movies);
+        }
+        public ActionResult PopularTVs()
+        {
+            var movies = new SearchResult();
+            movies.Movies = _api.GetPopularTVs();
+            movies.SearchString = "Popular IMDB TV series";
+            return View("..\\Movies\\SearchResult", movies);
+        }
         public ActionResult TopMovies()
         {
             var movies = new SearchResult();
@@ -24,7 +44,7 @@ namespace AIII.Controllers
             movies.SearchString = "Top Rated IMDB Movies";
             return View("..\\Movies\\SearchResult", movies);
         }
-        public ActionResult TopTVs(string id)
+        public ActionResult TopTVs()
         {
             var movies = new SearchResult();
             movies.Movies = _api.GetTopTVs();
@@ -50,10 +70,5 @@ namespace AIII.Controllers
             return true;
         }
 
-        public ActionResult RateMovie(string id)
-        {
-
-            return RedirectToAction("ShowMovie", new { id = id});
-        }
     }
 }
