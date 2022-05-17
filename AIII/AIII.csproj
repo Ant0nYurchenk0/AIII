@@ -249,6 +249,7 @@
     <Compile Include="Migrations\202205171356541_AddImbdKeyToUserNullable.cs" />
     <Compile Include="Migrations\202205171356541_AddImbdKeyToUserNullable.designer.cs">
       <DependentUpon>202205171356541_AddImbdKeyToUserNullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\202205171317370_Some.cs" />
     <Compile Include="Migrations\202205171317370_Some.designer.cs">
       <DependentUpon>202205171317370_Some.cs</DependentUpon>
@@ -426,6 +427,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202205171356541_AddImbdKeyToUserNullable.resx">
       <DependentUpon>202205171356541_AddImbdKeyToUserNullable.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202205171317370_Some.resx">
       <DependentUpon>202205171317370_Some.cs</DependentUpon>
     </EmbeddedResource>
