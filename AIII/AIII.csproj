@@ -187,6 +187,7 @@
     <Compile Include="Controllers\Api\CustomMoviesAPIController.cs" />
     <Compile Include="Controllers\Api\IImdbApiController.cs" />
     <Compile Include="Controllers\Api\ImdbApiController.cs" />
+    <Compile Include="Controllers\Api\UserRatingAPIController.cs" />
     <Compile Include="Controllers\CustomMovieController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -266,6 +267,14 @@
     <Compile Include="Migrations\202205180638156_AddDataAnnotationToCustomMovieTable.designer.cs">
       <DependentUpon>202205180638156_AddDataAnnotationToCustomMovieTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202205180815103_RenameUserRatingTableColumn.cs" />
+    <Compile Include="Migrations\202205180815103_RenameUserRatingTableColumn.designer.cs">
+      <DependentUpon>202205180815103_RenameUserRatingTableColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205180854429_ChangePropertyTypeInUserRatingTable.cs" />
+    <Compile Include="Migrations\202205180854429_ChangePropertyTypeInUserRatingTable.designer.cs">
+      <DependentUpon>202205180854429_ChangePropertyTypeInUserRatingTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CustomMoviesDbContext.cs" />
@@ -284,6 +293,7 @@
     <Compile Include="Repositories\ImdbRepository.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\HomeMovies.cs" />
+    <Compile Include="ViewModels\RatingMovies.cs" />
     <Compile Include="ViewModels\SearchResult.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -451,6 +461,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202205180638156_AddDataAnnotationToCustomMovieTable.resx">
       <DependentUpon>202205180638156_AddDataAnnotationToCustomMovieTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205180815103_RenameUserRatingTableColumn.resx">
+      <DependentUpon>202205180815103_RenameUserRatingTableColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205180854429_ChangePropertyTypeInUserRatingTable.resx">
+      <DependentUpon>202205180854429_ChangePropertyTypeInUserRatingTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
