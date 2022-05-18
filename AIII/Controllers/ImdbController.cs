@@ -23,7 +23,8 @@ namespace AIII.Controllers
             var movie = new MovieFullInfoDto();
 
             movie = _api.GetMovie(id);
-            movie.UserRating = userRating.GetUserRating(id);
+            if(User.Identity.IsAuthenticated)
+                movie.UserRating = userRating.GetUserRating(id);
 
             return View("..\\Movies\\Details", movie);
         }
