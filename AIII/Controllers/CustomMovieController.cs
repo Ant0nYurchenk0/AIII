@@ -87,9 +87,11 @@ namespace AIII.Controllers
         public ActionResult GetMovie(string id)
         {
             _apiController = new CustomMoviesAPIController();
+            var userRatingApi = new UserRatingAPIController();
             var movie = new MovieFullInfoDto();
 
             movie = _apiController.GetMovie(id);
+            movie.UserRating = userRatingApi.GetUserRating(id);
 
             return View("..\\Movies\\Details", movie);
         }

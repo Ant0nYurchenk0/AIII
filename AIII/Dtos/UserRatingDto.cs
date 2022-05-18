@@ -9,12 +9,12 @@ namespace AIII.Dtos
     {
         public int Id { get; set; }
 
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
-        public int MovieId { get; set; }
+        public string MovieId { get; set; }
 
-        public int GoodEmodjiAmount { get; set; }
+        public int? LikesAmount { get; set; }
 
-        public int BadEmodjiAmount { get; set; }
+        public int? DislikesAmount { get; set; }
     }
 }
