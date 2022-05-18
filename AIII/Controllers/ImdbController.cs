@@ -19,8 +19,12 @@ namespace AIII.Controllers
         }
         public ActionResult GetMovie(string id)
         {
+            var userRating = new UserRatingAPIController();
             var movie = new MovieFullInfoDto();
+
             movie = _api.GetMovie(id);
+            movie.UserRating = userRating.GetUserRating(id);
+
             return View("..\\Movies\\Details", movie);
         }
         public ActionResult PopularMovies()
