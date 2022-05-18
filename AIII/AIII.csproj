@@ -187,11 +187,11 @@
     <Compile Include="Controllers\Api\CustomMoviesAPIController.cs" />
     <Compile Include="Controllers\Api\IImdbApiController.cs" />
     <Compile Include="Controllers\Api\ImdbApiController.cs" />
-    <Compile Include="Controllers\Api\UserRatingAPIController.cs" />
     <Compile Include="Controllers\CustomMovieController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ImdbController.cs" />
+    <Compile Include="Models\UserRating.cs" />
     <Compile Include="Dtos\MovieShortInfoDto.cs" />
     <Compile Include="Dtos\MovieFullInfoDto.cs" />
     <Compile Include="Dtos\UserRatingDto.cs" />
@@ -286,14 +286,12 @@
     <Compile Include="Models\UserWithRole.cs" />
     <Compile Include="Models\CustomMovie.cs" />
     <Compile Include="Models\Movie.cs" />
-    <Compile Include="Models\UserRating.cs" />
     <Compile Include="Objects\BoxOffice.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CustomMovieRepository.cs" />
     <Compile Include="Repositories\ImdbRepository.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\HomeMovies.cs" />
-    <Compile Include="ViewModels\RatingMovies.cs" />
     <Compile Include="ViewModels\SearchResult.cs" />
   </ItemGroup>
   <ItemGroup>

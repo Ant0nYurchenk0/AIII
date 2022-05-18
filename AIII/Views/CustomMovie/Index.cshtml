@@ -4,35 +4,42 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Other Movies</h2>
-@Html.ActionLink("New Movie", "NewMovie", "CustomMovie", null, new { @class = "btn btn-success left" })
 
 <div class="main">
-    <table class="table">
-        <tr>
-            <th width="200px">Movie</th>
-            <th>Plot</th>
-            <th width="50px">Delete</th>
-        </tr>
+    <div class="row header">
+
+        <div class="col-1"></div>
+        <h2 class="col-2">
+            Other Movies
+        </h2>
+        <div class="col-6"></div>
+        <div class="col-2">
+            @Html.ActionLink("New Movie", "NewMovie", "CustomMovie", null, new { @class = "btn btn-info" })
+
+        </div>
+        <div class="col-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-4"><h5 class="text-secondary">Poster</h5></div>
+        <div class="col-5"><h5 class="text-secondary">Plot</h5></div>
+        <div class="col-3"><h5 class="text-secondary">Options</h5></div>
+    </div>
         @foreach (var movie in Model)
         {
-            <tr>
-                <td>
-                    <img src="@movie.Image" width="150" />
-                    <p>@Html.ActionLink(movie.Title, "Edit", "CustomMovie", new { id = movie.Id }, null)</p><br />
-                </td>
-                <td>
-                    <p class="Plot">@movie.Plot</p>
-                </td>
-                <td>
-                    <p>
-                        @Html.ActionLink("Delete", "Delete", "CustomMovie", new { id = movie.Id }, new { @class = "btn btn-primary" })
-                    </p>
-                </td>
-            </tr>
+            <div class="row">
+                <div class="card border-secondary mb-3 col-4" style="max-width: 20rem;">
+                    <div class="card-body">
+                        <img class="card-img-top" src="@movie.Image" alt="Card image cap">
+                    </div>
+                </div>
+                <p class="Plot col-5">@movie.Plot</p>
+                <div class="col-3">
+                    <button class = "btn btn-warning" href="@Url.Action("Edit", "CustomMovie")">Edit</button>
+                    <button class = "btn btn-danger" href="@Url.Action("Delete", "CustomMovie")">Delete</button>
+                </div>
+            </div>
         }
 
-    </table>
 </div>
 
 
