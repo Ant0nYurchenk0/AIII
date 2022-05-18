@@ -21,5 +21,6 @@ namespace AIII.Dtos
         public string Countries { get; set; }
         public string Budget { get; set; }
         public string CumulativeWorldwideGross { get; set; }
+        public UserRatingDto UserRating { get; set; }
     }
 }
