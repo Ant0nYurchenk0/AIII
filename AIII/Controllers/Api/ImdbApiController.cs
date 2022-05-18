@@ -1,7 +1,9 @@
 ﻿using AIII.Dtos;
+using AIII.Imdb_Api;
 using AIII.Models;
 using AIII.Repositories;
 using AutoMapper;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,8 +23,8 @@ namespace AIII.Controllers.Api
         [HttpGet]
         [Route("api/imdb/movie")]
         public MovieFullInfoDto GetMovie(string id)
-        {
-            var movie = _repository.SearchById(id);
+        {            
+            var movie = _repository.SearchById(id, GetImdbKey());
             return movie;
         }
 
@@ -42,7 +44,7 @@ namespace AIII.Controllers.Api
                 + (string.IsNullOrEmpty(country) ? string.Empty : "countries=" + country + "&")
                 + (string.IsNullOrEmpty(userRatingStr) ? string.Empty : "user_rating=" + userRatingStr + "&")
                 + (string.IsNullOrEmpty(releaseDateStr) ? string.Empty : "release_date=" + releaseDateStr + "&");
-            var movies = _repository.Search(param) ?? new List<MovieShortInfoDto>();
+            var movies = _repository.Search(param, GetImdbKey()) ?? new List<MovieShortInfoDto>();
             return movies;
         }
 
@@ -50,7 +52,7 @@ namespace AIII.Controllers.Api
         [Route("api/imdb/topmovies")]
         public List<MovieShortInfoDto> GetTopMovies()
         {
-            var movies = _repository.TopMovies();
+            var movies = _repository.TopMovies(GetImdbKey());
             return movies;
         }
 
@@ -58,7 +60,7 @@ namespace AIII.Controllers.Api
         [Route("api/imdb/toptvs")]
         public List<MovieShortInfoDto> GetTopTVs()
         {
-            var movie = _repository.TopTVs();
+            var movie = _repository.TopTVs(GetImdbKey());
             return movie;
         }
 
@@ -66,7 +68,7 @@ namespace AIII.Controllers.Api
         [Route("api/imdb/popularmovies")]
         public List<MovieShortInfoDto> GetPopularMovies()
         {
-            var movie = _repository.PopularMovies();
+            var movie = _repository.PopularMovies(GetImdbKey());
             return movie;
         }
 
@@ -74,9 +76,19 @@ namespace AIII.Controllers.Api
         [Route("api/imdb/populartvs")]
         public List<MovieShortInfoDto> GetPopularTVs()
         {
-            var movie = _repository.PopularTVs();
+            var movie = _repository.PopularTVs(GetImdbKey());
             return movie;
         }
 
+        private string GetImdbKey()
+        {
+
+            var manager = new ApplicationDbContext();
+            var userId = User.Identity.GetUserId();
+            if (userId == null)
+                return Imdb.DefaultKey;
+            var key = manager.Users.Single(u => u.Id == userId).ImdbKey;
+            return key;
+        }
     }
 }

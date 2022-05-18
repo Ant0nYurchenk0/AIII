@@ -399,6 +399,7 @@
     <Content Include="Views\Movies\Details.cshtml" />
     <Content Include="Views\CustomMovie\ReadOnlyCustomMovies.cshtml" />
     <Content Include="Views\Home\ReadOnlyAbout.cshtml" />
+    <Content Include="Views\Shared\InvalidKey.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

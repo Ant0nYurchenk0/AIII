@@ -30,12 +30,14 @@ namespace AIII.Controllers.Api
 
         public MovieFullInfoDto GetMovie(string id)
         {
+
             var movie = _context.CustomMovies.SingleOrDefault(m => m.Id == id);
 
             if (movie == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
             return Mapper.Map<CustomMovie, MovieFullInfoDto>(movie);
+
         }
 
         [HttpPost]
@@ -66,7 +68,7 @@ namespace AIII.Controllers.Api
             Mapper.Map(movieDto, movieInDb);
             movieInDb.Title = movieDto.Title;
             movieInDb.Image = movieDto.Image;
-            movieInDb.ReleaseDate= movieDto.ReleaseDate;
+            movieInDb.ReleaseDate= movieDto.ReleaseDate.Value;
             movieInDb.Genres = movieDto.Genres;
             movieInDb.Type = movieDto.Type;
             movieInDb.Countries = movieDto.Countries;
