@@ -91,7 +91,8 @@ namespace AIII.Controllers
             var movie = new MovieFullInfoDto();
 
             movie = _apiController.GetMovie(id);
-            movie.UserRating = userRatingApi.GetUserRating(id);
+            if(User.Identity.IsAuthenticated)
+                movie.UserRating = userRatingApi.GetUserRating(id);
 
             return View("..\\Movies\\Details", movie);
         }
