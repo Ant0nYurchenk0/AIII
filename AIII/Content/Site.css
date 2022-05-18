@@ -78,6 +78,7 @@ nav{
     box-sizing: border-box;
     text-align: center;
     margin-bottom: 50px;
+    padding-bottom: 60px;
 }
 .container{
     max-width: 100%;
