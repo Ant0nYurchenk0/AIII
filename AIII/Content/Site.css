@@ -144,3 +144,7 @@ table{
 .input-validation-error {
     border: 2px solid red;
 }
+
+.member-info {
+    margin: 20px 25px 0px 25px;
+}

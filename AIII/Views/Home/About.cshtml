@@ -6,29 +6,17 @@
 <div class="main">
 
     <div class="container">
-        <h1 id="Theteam">Our Team</h1>
+        <h1 id="Theteam">A\\\ Team</h1>
         <div class="members row">
-            <div class="member col-4">
-                <img src="@Model.FirstOrDefault(m => m.Id == 1).Photo" class="memberPhoto">
-                <h2 class="member-name">
-                    @Html.ActionLink(@Model.FirstOrDefault(m => m.Id == 1).Name, "EditAbout", "Home", new { id = 1 }, null)
-                </h2>
-                <span class="member-role">@Model.FirstOrDefault(m => m.Id == 1).Role</span>
-            </div>
-            <div class="member col-4">
-                <img src="@Model.FirstOrDefault(m => m.Id == 2).Photo" class="memberPhoto">
-                <h2 class="member-name">
-                    @Html.ActionLink(@Model.FirstOrDefault(m => m.Id == 2).Name, "EditAbout", "Home", new { id = 2 }, null)
-                </h2>
-                <span class="member-role">@Model.FirstOrDefault(m => m.Id == 2).Role</span>
-            </div>
-            <div class="member col-4">
-                <img src="@Model.FirstOrDefault(m => m.Id == 3).Photo" class="memberPhoto">
-                <h2 class="member-name">
-                    @Html.ActionLink(@Model.FirstOrDefault(m => m.Id == 3).Name, "EditAbout", "Home", new { id = 3 }, null)
-                </h2>
-                <span class="member-role">@Model.FirstOrDefault(m => m.Id == 3).Role</span>
-            </div>
+            @foreach(var member in Model)
+            {
+                <div class="member col-4">
+                    <img src="@member.Photo"/>
+                    <h2> @Html.ActionLink(member.Name, "EditAbout", "Home", new {id = member.Id}, null) </h2>
+                    <h5 class="text-primary"> @member.Role </h5>
+                    <p class="member-info text-muted"> @member.GeneralInfo </p>
+                </div>
+            }
         </div>
     </div>
 </div>
