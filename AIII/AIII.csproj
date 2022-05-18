@@ -262,6 +262,10 @@
     <Compile Include="Migrations\202205171629382_AddNameToApplicationUser.designer.cs">
       <DependentUpon>202205171629382_AddNameToApplicationUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202205180638156_AddDataAnnotationToCustomMovieTable.cs" />
+    <Compile Include="Migrations\202205180638156_AddDataAnnotationToCustomMovieTable.designer.cs">
+      <DependentUpon>202205180638156_AddDataAnnotationToCustomMovieTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CustomMoviesDbContext.cs" />
@@ -444,6 +448,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202205171629382_AddNameToApplicationUser.resx">
       <DependentUpon>202205171629382_AddNameToApplicationUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205180638156_AddDataAnnotationToCustomMovieTable.resx">
+      <DependentUpon>202205180638156_AddDataAnnotationToCustomMovieTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

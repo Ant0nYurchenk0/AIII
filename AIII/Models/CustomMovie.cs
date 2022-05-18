@@ -16,18 +16,23 @@ namespace AIII.Models
         [Required]
         public string Title { get; set; }
 
+        [Required]
         [Display(Name = "Poster URL")]
         public string Image { get; set; }
 
         [Display(Name ="Release Date")]
         public DateTime ReleaseDate { get; set; }
 
+        [Required]
         public string Genres { get; set; }
 
+        [Required]
         public string Type { get; set; }
 
+        [Required]
         public string Countries { get; set; }
 
+        [Required]
         public string Plot { get; set; }
 
         public string Budget { get; set; }

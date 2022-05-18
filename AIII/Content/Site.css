@@ -135,3 +135,11 @@ table{
     margin-left: 10px;
     font-weight: 800;
 }
+
+.field-validation-error {
+    color: red;
+}
+
+.input-validation-error {
+    border: 2px solid red;
+}
