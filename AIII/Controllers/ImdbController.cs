@@ -5,7 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Microsoft.AspNet.Identity;
 using System.Web.Mvc;
+using AIII.Models;
 
 namespace AIII.Controllers
 {
@@ -19,20 +21,32 @@ namespace AIII.Controllers
         }
         public ActionResult GetMovie(string id)
         {
+            try
+            {
             var userRating = new UserRatingAPIController();
             var movie = new MovieFullInfoDto();
 
             movie = _api.GetMovie(id);
+            if (movie.ImdbRating == null)
+                movie.ImdbRating = 0;
             if(User.Identity.IsAuthenticated)
                 movie.UserRating = userRating.GetUserRating(id);
 
             return View("..\\Movies\\Details", movie);
+            }
+            catch (Microsoft.CSharp.RuntimeBinder.RuntimeBinderException ex)
+            {
+                return View("InvalidKey");
+            }
         }
         public ActionResult PopularMovies()
         {
             var movies = new SearchResult();
             movies.Movies = _api.GetPopularMovies();
             movies.SearchString = "Popular IMDB Movies";
+            if(movies.Movies.Count == 0)
+                return View("InvalidKey");
+
             return View("..\\Movies\\SearchResult", movies);
         }
         public ActionResult PopularTVs()
@@ -40,6 +54,8 @@ namespace AIII.Controllers
             var movies = new SearchResult();
             movies.Movies = _api.GetPopularTVs();
             movies.SearchString = "Popular IMDB TV series";
+            if (movies.Movies.Count == 0)
+                return View("InvalidKey");
             return View("..\\Movies\\SearchResult", movies);
         }
         public ActionResult TopMovies()
@@ -47,6 +63,8 @@ namespace AIII.Controllers
             var movies = new SearchResult();
             movies.Movies = _api.GetTopMovies();
             movies.SearchString = "Top Rated IMDB Movies";
+            if (movies.Movies.Count == 0)
+                return View("InvalidKey");
             return View("..\\Movies\\SearchResult", movies);
         }
         public ActionResult TopTVs()
@@ -54,6 +72,8 @@ namespace AIII.Controllers
             var movies = new SearchResult();
             movies.Movies = _api.GetTopTVs();
             movies.SearchString = "Top Rated IMDB TV series";
+            if (movies.Movies.Count == 0)
+                return View("InvalidKey");
             return View("..\\Movies\\SearchResult", movies);
         }
         [Route("Imdb/Search/")]

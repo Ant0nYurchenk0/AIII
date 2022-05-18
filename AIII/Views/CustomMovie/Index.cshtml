@@ -4,35 +4,46 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Other Movies</h2>
-@Html.ActionLink("New Movie", "NewMovie", "CustomMovie", null, new { @class = "btn btn-success left" })
 
 <div class="main">
-    <table class="table">
-        <tr>
-            <th width="200px">Movie</th>
-            <th>Plot</th>
-            <th width="50px">Delete</th>
-        </tr>
-        @foreach (var movie in Model)
-        {
-            <tr>
-                <td>
-                    <img src="@movie.Image" width="150" />
-                    <p>@Html.ActionLink(movie.Title, "Edit", "CustomMovie", new { id = movie.Id }, null)</p><br />
-                </td>
-                <td>
-                    <p class="Plot">@movie.Plot</p>
-                </td>
-                <td>
-                    <p>
-                        @Html.ActionLink("Delete", "Delete", "CustomMovie", new { id = movie.Id }, new { @class = "btn btn-primary" })
-                    </p>
-                </td>
-            </tr>
-        }
+    <div class="row header">
 
-    </table>
+        <div class="col-1"></div>
+        <h2 class="col-2">
+            Other Movies
+        </h2>
+        <div class="col-6"></div>
+        <div class="col-2">
+            @Html.ActionLink("New Movie", "NewMovie", "CustomMovie", null, new { @class = "btn btn-info" })
+
+        </div>
+        <div class="col-1"></div>
+    </div>
+    <div class="row header">
+        <div class="col-4"><h4 class="text-secondary">Poster</h4></div>
+        <div class="col-5"><h4 class="text-secondary">Plot</h4></div>
+        <div class="col-3"><h4 class="text-secondary">Options</h4></div>
+    </div>
+    @foreach (var movie in Model)
+    {
+        <div class="row ">
+            <div class="col-4">
+                <div class="card border-secondary mb-3 ">
+                    <div class="card-body">
+                        <img class="card-img-top" src="@movie.Image" alt="Card image cap">
+                    </div>
+                </div>
+            </div>
+            <div class="col-5">
+                <p class="plot left">@movie.Plot</p>
+            </div>
+            <div class="col-3">
+                <a class="btn btn-warning" href="@Url.Action("Edit", "CustomMovie", new { id = movie.Id})">Edit</a>
+                <a class="btn btn-danger" href="@Url.Action("Delete", "CustomMovie", new { id = movie.Id})">Delete</a>
+            </div>
+        </div>
+    }
+
 </div>
 
 

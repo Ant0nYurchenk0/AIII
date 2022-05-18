@@ -11,6 +11,7 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web;
 
+
 namespace AIII.Repositories
 {
     public class ImdbRepository
@@ -20,9 +21,11 @@ namespace AIII.Repositories
         {
             _context = new ApplicationDbContext();
         }
-        public MovieFullInfoDto SearchById(string id)
+        public MovieFullInfoDto SearchById(string id, string key)
         {
-            string Baseurl = Imdb.Title+id;
+            
+
+            string Baseurl = string.Format(Imdb.Title, key)+id;
             var result = new MovieFullInfoDto();
             using (var client = new HttpClient())
             {
@@ -38,32 +41,33 @@ namespace AIII.Repositories
                     result.CumulativeWorldwideGross = JsonConvert.DeserializeObject<dynamic>(EmpResponse).boxOffice.cumulativeWorldwideGross;
                 }
             }
+            result.Video = GetTrailerUrl(id, key);
             return result;
         }
 
-        public List<MovieShortInfoDto> TopTVs()
+        public List<MovieShortInfoDto> TopTVs(string key)
         {
-            return GetListOfItems(Imdb.TopTVs);
+            return GetListOfItems(Imdb.TopTVs, key);
         }
 
-        public List<MovieShortInfoDto> PopularMovies()
+        public List<MovieShortInfoDto> PopularMovies(string key)
         {
-            return GetListOfItems(Imdb.PopularMovies);
+            return GetListOfItems(Imdb.PopularMovies, key);
         }
 
-        public List<MovieShortInfoDto> TopMovies()
+        public List<MovieShortInfoDto> TopMovies(string key)
         {
-            return GetListOfItems(Imdb.TopMovies);
+            return GetListOfItems(Imdb.TopMovies, key);
         }
 
-        public List<MovieShortInfoDto> PopularTVs()
+        public List<MovieShortInfoDto> PopularTVs(string key)
         {
-            return GetListOfItems(Imdb.PopularTVs);
+            return GetListOfItems(Imdb.PopularTVs, key);
         }
 
-        public List<MovieShortInfoDto> Search(string param)
+        public List<MovieShortInfoDto> Search(string param, string key)
         {
-            string Baseurl = Imdb.SearchTitle+ param;
+            string Baseurl = string.Format(Imdb.SearchTitle, key)+ param;
             var result = new List<MovieShortInfoDto>();
             using (var client = new HttpClient())
             {
@@ -81,9 +85,9 @@ namespace AIII.Repositories
             }
             return result;
         }
-        private List<MovieShortInfoDto> GetListOfItems(string link)
+        private List<MovieShortInfoDto> GetListOfItems(string link, string key)
         {
-            string Baseurl = link;
+            string Baseurl = string.Format(link, key);
             var result = new List<MovieShortInfoDto>();
             using (var client = new HttpClient())
             {
@@ -100,6 +104,24 @@ namespace AIII.Repositories
                 }
             }
             return result;
+        }
+        private string GetTrailerUrl(string id, string key)
+        {
+            var url = string.Empty;
+            string Baseurl = string.Format(Imdb.Trailer, key) + id;
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(Baseurl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage Res = client.GetAsync("").Result;
+                if (Res.IsSuccessStatusCode)
+                {
+                    var EmpResponse = Res.Content.ReadAsStringAsync().Result;
+                    url = JsonConvert.DeserializeObject<dynamic>(EmpResponse).videoUrl;
+                }
+            }
+            return "https://www.youtube.com/embed/" + url.Substring(url.Length-11, 11);
         }
     }
 }
