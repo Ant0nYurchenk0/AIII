@@ -4,38 +4,35 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Old Movies</h2>
-
-
-<div class="main">
-
+<h2>Other Movies</h2>
 @Html.ActionLink("New Movie", "NewMovie", "CustomMovie", null, new { @class = "btn btn-success left" })
 
-
-<table class="table">
-    <tr>
-        <th>Movie</th>
-        <th width="50px">Delete</th>
-    </tr>
-    @foreach (var movie in Model)
-    {
+<div class="main">
+    <table class="table">
         <tr>
-            <td >
-                <img src="@movie.Image" width="150" />
-                <p>@Html.ActionLink(movie.Title, "Edit", "CustomMovie", new { id = movie.Id }, null)</p>
-            </td>
-            <td style="float:left">
-                <p class="Plot">@movie.Plot</p>
-            </td>
-            <td>
-                <p>
-                    @Html.ActionLink("Delete", "Delete", "CustomMovie", new { id = movie.Id }, new { @class = "btn btn-primary" })
-                </p>
-            </td>
+            <th width="200px">Movie</th>
+            <th>Plot</th>
+            <th width="50px">Delete</th>
         </tr>
-    }
+        @foreach (var movie in Model)
+        {
+            <tr>
+                <td>
+                    <img src="@movie.Image" width="150" />
+                    <p>@Html.ActionLink(movie.Title, "Edit", "CustomMovie", new { id = movie.Id }, null)</p><br />
+                </td>
+                <td>
+                    <p class="Plot">@movie.Plot</p>
+                </td>
+                <td>
+                    <p>
+                        @Html.ActionLink("Delete", "Delete", "CustomMovie", new { id = movie.Id }, new { @class = "btn btn-primary" })
+                    </p>
+                </td>
+            </tr>
+        }
 
-</table>
+    </table>
 </div>
 
 

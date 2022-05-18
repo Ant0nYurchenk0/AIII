@@ -1,7 +1,7 @@
 ﻿@model AIII.Models.CustomMovie
 
 @{
-    ViewBag.Title = "NewMovie";
+    ViewBag.Title = "Other Movies";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -14,6 +14,7 @@
                 <div class="form-group">
                     @Html.LabelFor(m => m.Title)
                     @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Title)
                 </div>
             </td>
 
@@ -21,6 +22,7 @@
                 <div class="form-group">
                     @Html.LabelFor(m => m.Genres)
                     @Html.TextBoxFor(m => m.Genres, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Genres)
                 </div>
             </td>
         </tr>
@@ -30,6 +32,7 @@
                 <div class="form-group">
                     @Html.LabelFor(m => m.Type)
                     @Html.TextBoxFor(m => m.Type, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Type)
                 </div>
             </td>
 
@@ -37,6 +40,7 @@
                 <div class="form-group">
                     @Html.LabelFor(m => m.ReleaseDate)
                     @Html.TextBoxFor(m => m.ReleaseDate, "{0:d MMM yyyy}", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.ReleaseDate)
                 </div>
             </td>
         </tr>
@@ -46,6 +50,7 @@
                 <div class="form-group">
                     @Html.LabelFor(m => m.Countries)
                     @Html.TextBoxFor(m => m.Countries, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Countries)
                 </div>
             </td>
 
@@ -78,6 +83,7 @@
                 <div class="form-group">
                     @Html.LabelFor(m => m.Image)
                     @Html.TextBoxFor(m => m.Image, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Image)
                 </div>
             </td>
         </tr>
@@ -87,6 +93,7 @@
                 <div class="form-group">
                     @Html.LabelFor(m => m.Plot)
                     @Html.TextAreaFor(m => m.Plot, 5, 50, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Plot)
                 </div>
             </td>
         </tr>
