@@ -275,6 +275,10 @@
     <Compile Include="Migrations\202205180854429_ChangePropertyTypeInUserRatingTable.designer.cs">
       <DependentUpon>202205180854429_ChangePropertyTypeInUserRatingTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202205181014572_ChangePropertyTypeInUserRatingTable1.cs" />
+    <Compile Include="Migrations\202205181014572_ChangePropertyTypeInUserRatingTable1.designer.cs">
+      <DependentUpon>202205181014572_ChangePropertyTypeInUserRatingTable1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CustomMoviesDbContext.cs" />
@@ -466,6 +470,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202205180854429_ChangePropertyTypeInUserRatingTable.resx">
       <DependentUpon>202205180854429_ChangePropertyTypeInUserRatingTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205181014572_ChangePropertyTypeInUserRatingTable1.resx">
+      <DependentUpon>202205181014572_ChangePropertyTypeInUserRatingTable1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

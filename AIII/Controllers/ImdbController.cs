@@ -23,9 +23,14 @@ namespace AIII.Controllers
         {
             try
             {
-            var movie = _api.GetMovie(id);
+            var userRating = new UserRatingAPIController();
+            var movie = new MovieFullInfoDto();
+
+            movie = _api.GetMovie(id);
             if (movie.ImdbRating == null)
                 movie.ImdbRating = 0;
+            if(User.Identity.IsAuthenticated)
+                movie.UserRating = userRating.GetUserRating(id);
 
             return View("..\\Movies\\Details", movie);
             }

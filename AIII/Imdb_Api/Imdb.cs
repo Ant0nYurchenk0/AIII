@@ -7,6 +7,7 @@ namespace AIII.Imdb_Api
 {
     public class Imdb
     {
+
         internal static string Title = "https://imdb-api.com/en/API/Title/{0}/";
         internal static string SearchTitle = "https://imdb-api.com/API/AdvancedSearch/{0}/";
         internal static string TopMovies = "https://imdb-api.com/en/API/Top250Movies/{0}";
@@ -16,5 +17,6 @@ namespace AIII.Imdb_Api
         internal static string Trailer = "https://imdb-api.com/en/API/YouTubeTrailer/{0}/";
 
         internal static string DefaultKey = "k_l859g0cz";
+
     }
 }   
