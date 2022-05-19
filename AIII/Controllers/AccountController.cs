@@ -413,6 +413,12 @@ namespace AIII.Controllers
             return View();
         }
 
+        public ActionResult Edit()
+        {
+            var user = UserManager.Users.Where(x => x.Id == User.Identity.GetUserId()).FirstOrDefault();
+            return View(user);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

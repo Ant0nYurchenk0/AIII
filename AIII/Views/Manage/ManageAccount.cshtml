@@ -1,0 +1,45 @@
+﻿@model AIII.Models.ManageAccountViewModel
+
+@{
+    ViewBag.Title = "ManageAccount";
+}
+<div class="main">
+
+    <h2>Personal Account</h2>
+    <p class="text-success">@ViewBag.StatusMessage</p>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <hr />
+            <h5 class="form-group center text-primary">
+                @User.Identity.Name
+            </h5>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.ImdbKey, htmlAttributes: new { @class = "control-label col-md-2 center" })
+                <div>
+                    @Html.EditorFor(model => model.ImdbKey, new { @class = "form-control center" })
+                    @Html.ValidationMessageFor(model => model.ImdbKey, "", new { @class = "text-danger center" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <br />
+                <a class="text-muted" href="@Url.Action("ChangePassword")">Change password</a>
+                <hr />
+                <div>
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    }
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+</div>
+
