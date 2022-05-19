@@ -1,74 +1,74 @@
 ﻿@model AIII.Dtos.MovieFullInfoDto
-<div class="main">
-    <div class="row">
-        <div class="col-1"></div>
-        <div class="col-3 left">
-            <img class="poster " src="@Model.Image" />
-            <table class="table movie-info">
-                <tbody>
-                    @if (Model.ImdbRating.Value != 0)
-                    {
-                        <tr>
-                            <th scope="row">Imdb:</th>
-                            <td class="text-secondary">@Model.ImdbRating</td>
-                        </tr>
-                    }
-                    @if (Model.ReleaseDate != null)
-                    {
-                        <tr>
-                            <th scope="row">Released:</th>
-                            <td class="text-secondary">@Model.ReleaseDate.Value.ToShortDateString()</td>
-                        </tr>
-                    }
-                    @if (!string.IsNullOrEmpty(Model.Stars))
-                    {
-                        <tr>
-                            <th scope="row">Cast:</th>
-                            <td class="text-secondary">@Model.Stars</td>
-                        </tr>
+<div class="row">
+    <div class="col-1"></div>
+    <div class="col-3 left">
+        <img class="poster " src="@Model.Image" />
+        <table class="table movie-info">
+            <tbody>
+                @if (Model.ImdbRating.Value != 0)
+                {
+                    <tr>
+                        <th scope="row">Imdb:</th>
+                        <td class="text-secondary">@Model.ImdbRating</td>
+                    </tr>
+                }
+                @if (Model.ReleaseDate != null)
+                {
+                    <tr>
+                        <th scope="row">Released:</th>
+                        <td class="text-secondary">@Model.ReleaseDate.Value.ToShortDateString()</td>
+                    </tr>
+                }
+                @if (!string.IsNullOrEmpty(Model.Stars))
+                {
+                    <tr>
+                        <th scope="row">Cast:</th>
+                        <td class="text-secondary">@Model.Stars</td>
+                    </tr>
 
-                    }
-                    @if (!string.IsNullOrEmpty(Model.Directors))
-                    {
-                        <tr>
-                            <th scope="row">Directors:</th>
-                            <td class="text-secondary">@Model.Directors</td>
-                        </tr>
+                }
+                @if (!string.IsNullOrEmpty(Model.Directors))
+                {
+                    <tr>
+                        <th scope="row">Directors:</th>
+                        <td class="text-secondary">@Model.Directors</td>
+                    </tr>
 
-                    }
-                    @if (!string.IsNullOrEmpty(Model.Genres))
-                    {
-                        <tr>
-                            <th scope="row">Genres:</th>
-                            <td class="text-secondary">@Model.Genres</td>
-                        </tr>
+                }
+                @if (!string.IsNullOrEmpty(Model.Genres))
+                {
+                    <tr>
+                        <th scope="row">Genres:</th>
+                        <td class="text-secondary">@Model.Genres</td>
+                    </tr>
 
-                    }
+                }
 
-                    @if (!string.IsNullOrEmpty(Model.Countries))
-                    {
-                        <tr>
-                            <th scope="row">Contries:</th>
-                            <td class="text-secondary">@Model.Countries</td>
-                        </tr>
+                @if (!string.IsNullOrEmpty(Model.Countries))
+                {
+                    <tr>
+                        <th scope="row">Contries:</th>
+                        <td class="text-secondary">@Model.Countries</td>
+                    </tr>
 
-                    }
-                    @if (!string.IsNullOrEmpty(Model.Budget))
-                    {
-                        <tr>
-                            <th scope="row">Budget:</th>
-                            <td class="text-secondary">@Model.Budget</td>
-                        </tr>
+                }
+                @if (!string.IsNullOrEmpty(Model.Budget))
+                {
+                    <tr>
+                        <th scope="row">Budget:</th>
+                        <td class="text-secondary">@Model.Budget</td>
+                    </tr>
 
-                    }
-                    @if (!string.IsNullOrEmpty(Model.CumulativeWorldwideGross))
-                    {
-                        <tr>
-                            <th scope="row">Gross:</th>
-                            <td class="text-secondary">@Model.CumulativeWorldwideGross</td>
-                        </tr>
+                }
+                @if (!string.IsNullOrEmpty(Model.CumulativeWorldwideGross))
+                {
+                    <tr>
+                        <th scope="row">Gross:</th>
+                        <td class="text-secondary">@Model.CumulativeWorldwideGross</td>
+                    </tr>
 
-                    }
+                }
+
 
                 </tbody>
             </table>
@@ -121,8 +121,9 @@
                         </a>
                     }
                 </div>
+
             </div>
         </div>
-        <div class="col-1"></div>
     </div>
+    <div class="col-1"></div>
 </div>

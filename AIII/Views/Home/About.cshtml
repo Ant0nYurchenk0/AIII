@@ -3,21 +3,19 @@
 @{
     ViewBag.Title = "About";
 }
-<div class="main">
 
-    <div class="container">
-        <h1 id="Theteam">A\\\ Team</h1>
-        <div class="members row">
-            @foreach(var member in Model)
-            {
-                <div class="member col-4">
-                    <img src="@member.Photo"/>
-                    <h2> @Html.ActionLink(member.Name, "EditAbout", "Home", new {id = member.Id}, null) </h2>
-                    <h5 class="text-primary"> @member.Role </h5>
-                    <p class="member-info text-muted"> @member.GeneralInfo </p>
-                </div>
-            }
-        </div>
+<div class="container">
+    <h1 id="Theteam">A\\\ Team</h1>
+    <div class="members row">
+        @foreach (var member in Model)
+        {
+            <div class="member col-4">
+                <img src="@member.Photo" />
+                <h2> @Html.ActionLink(member.Name, "EditAbout", "Home", new { id = member.Id }, null) </h2>
+                <h5 class="text-primary"> @member.Role </h5>
+                <p class="member-info text-muted"> @member.GeneralInfo </p>
+            </div>
+        }
     </div>
 </div>
 

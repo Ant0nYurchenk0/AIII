@@ -406,6 +406,7 @@
     <Content Include="Views\CustomMovie\ReadOnlyCustomMovies.cshtml" />
     <Content Include="Views\Home\ReadOnlyAbout.cshtml" />
     <Content Include="Views\Shared\InvalidKey.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

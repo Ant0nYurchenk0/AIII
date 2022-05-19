@@ -76,7 +76,6 @@ nav{
 }
 .main{    
     padding-top: 20px;
-    padding-bottom: 40px;
     overflow: scroll;
     height: 95vh;
     box-sizing: border-box;
