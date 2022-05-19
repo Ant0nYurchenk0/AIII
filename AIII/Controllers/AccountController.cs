@@ -149,7 +149,7 @@ namespace AIII.Controllers
             if (ModelState.IsValid)
             {
                 var key = model.ImdbKey == null? "k_bj57saqe" : model.ImdbKey;
-                var user = new ApplicationUser { Email = model.Email, ImdbKey = key };
+                var user = new ApplicationUser { Email = model.Email, UserName = model.Email, ImdbKey = key };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
