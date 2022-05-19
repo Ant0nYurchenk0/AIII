@@ -84,30 +84,36 @@
         <div class="row rating">
             <div class="col-md-6"></div>
             <div class="col-md-2 col-4">
-                <a data-toggle="tooltip" data-bs-placement="bottom" title="Like" href="@Url.Action("IncrementLike", "UserRating", new { movieId = Model.Id})">
-                    <img class="icon" src="~/source/like.png" />
-                </a>
-                @if (@Model.UserRating.LikesAmount != null)
-                     {
-                         <span class="count"> @Model.UserRating.LikesAmount</span>
-                     }
-                     else
-                     {
-                         <span class="count">0</span>
-                     }
+                @if (Model.UserRating.UserId == null)
+                {
+                    <a data-toggle="tooltip" data-bs-placement="bottom" title="Like" href="@Url.Action("Register", "Account")">
+                        <img class="icon" src="~/source/like.png" />
+                    </a>
+                    <span class="count"> @Model.UserRating.LikesAmount</span>
+                }
+                else
+                {
+                    <a data-toggle="tooltip" data-bs-placement="bottom" title="Like" href="@Url.Action("IncrementLike", "UserRating", new { movieId = Model.Id})">
+                        <img class="icon" src="~/source/like.png" />
+                    </a>
+                    <span class="count"> @Model.UserRating.LikesAmount</span>
+                }
             </div>
             <div class="col-md-2 col-4">
-                <a data-bs-toggle="tooltip" data-bs-placement="bottom" title="Dislike" href="@Url.Action("IncrementDislike", "UserRating", new { movieId = Model.Id})">
-                    <img class="icon" src="~/source/dislike.png" />
-                </a>
-                @if (@Model.UserRating.DislikesAmount != null)
-                    {
-                        <span class="count"> @Model.UserRating.DislikesAmount</span>
-                    }
-                    else
-                    {
-                        <span class="count">0</span>
-                    }
+                @if (Model.UserRating.UserId == null)
+                {
+                   <a data-toggle="tooltip" data-bs-placement="bottom" title="Like" href="@Url.Action("Register", "Account")">
+                      <img class="icon" src="~/source/like.png" />
+                   </a>
+                    <span class="count"> @Model.UserRating.DislikesAmount</span>
+                }
+                else
+                {
+                    <a data-toggle="tooltip" data-bs-placement="bottom" title="Like" href="@Url.Action("IncrementDislike", "UserRating", new { movieId = Model.Id})">
+                        <img class="icon" src="~/source/like.png" />
+                    </a>
+                    <span class="count"> @Model.UserRating.DislikesAmount</span>
+                }
             </div>
             <div class="col-md-2 col-4 ">
                 @if (true)
