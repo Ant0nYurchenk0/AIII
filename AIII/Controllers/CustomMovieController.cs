@@ -93,6 +93,8 @@ namespace AIII.Controllers
             movie = _apiController.GetMovie(id);
             if(User.Identity.IsAuthenticated)
                 movie.UserRating = userRatingApi.GetUserRating(id);
+            else
+                movie.UserRating = new UserRatingDto();
 
             return View("..\\Movies\\Details", movie);
         }
