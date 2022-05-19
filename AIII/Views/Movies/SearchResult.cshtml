@@ -2,32 +2,30 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="main">
 
-    <h2 class="title">@Model.SearchString</h2>
-    @foreach (var item in Model.Movies)
+<h2 class="title">@Model.SearchString</h2>
+@foreach (var item in Model.Movies)
+{
+    string controllerName = "";
+    if (item.ImdbRating != null)
     {
-        string controllerName = "";
-        if (item.ImdbRating != null)
-        {
-            controllerName = "Imdb";
-        }
-        else
-        {
-            controllerName = "CustomMovie";
-        }
+        controllerName = "Imdb";
+    }
+    else
+    {
+        controllerName = "CustomMovie";
+    }
 
-        <a href="@Url.Action("GetMovie",controllerName, new { id = item.Id })">
+    <a href="@Url.Action("GetMovie",controllerName, new { id = item.Id })">
 
-            <div class="card border-secondary mb-3" style="max-width: 20rem;">
-                <div class="card-body">
-                    <img class="card-img-top" src="@item.Image" alt="Card image cap">
-                    <div class="card-title-back">
-                        <h4 class="card-title">@item.Title</h4>
-                    </div>
+        <div class="card border-secondary mb-3" style="max-width: 20rem;">
+            <div class="card-body">
+                <img class="card-img-top" src="@item.Image" alt="Card image cap">
+                <div class="card-title-back">
+                    <h4 class="card-title">@item.Title</h4>
                 </div>
             </div>
-        </a>
-    }
-</div>
+        </div>
+    </a>
+}
 

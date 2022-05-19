@@ -1,8 +1,8 @@
 ﻿@model AIII.Dtos.MovieFullInfoDto
 <div class="row">
     <div class="col-1"></div>
-    <div class="col-3 left">
-        <img class="poster " src="@Model.Image" />
+    <div class="col-md-3 left">
+        <img class="poster" src="@Model.Image" />
         <table class="table movie-info">
             <tbody>
                 @if (Model.ImdbRating.Value != 0)
@@ -72,27 +72,29 @@
             </tbody>
         </table>
     </div>
-    <div class="col-7 left">
+    <div class="col-md-7 left">
         <h1 class="Title movie-title text-secondary">@Model.Title</h1>
         <h3 class="title">Plot</h3>
         <p class="plot-details">@Model.Plot</p>
         <h3 class="title">Watch</h3>
-        <iframe class="trailer" src="@Model.Video"></iframe>
+        <div class="trailer-parent center">
+            <iframe class="trailer" src="@Model.Video"></iframe>
+        </div>
         <div class="row rating">
-            <div class="col-6"></div>
-            <div class="col-2">
+            <div class="col-md-6"></div>
+            <div class="col-md-2 col-4">
                 <a data-toggle="tooltip" data-bs-placement="bottom" title="Like" href="">
                     <img class="icon" src="~/source/like.png" />
                 </a>
                 <span class="count">123131</span>
             </div>
-            <div class="col-2">
+            <div class="col-md-2 col-4">
                 <a data-bs-toggle="tooltip" data-bs-placement="bottom" title="Dislike" href="">
                     <img class="icon" src="~/source/dislike.png" />
                 </a>
                 <span class="count">4562</span>
             </div>
-            <div class="col-2">
+            <div class="col-md-2 col-4 ">
                 @if (true)
                 {
                     <a type="button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Mark as unwatched" href="">
@@ -108,5 +110,5 @@
             </div>
         </div>
     </div>
-    <div class="col-1"></div>
+    <div class="col-md-1"></div>
 </div>
