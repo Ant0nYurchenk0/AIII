@@ -1,4 +1,5 @@
-﻿using AIII.Models;
+﻿using AIII.Imdb_Api;
+using AIII.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -148,7 +149,7 @@ namespace AIII.Controllers
         {
             if (ModelState.IsValid)
             {
-                var key = model.ImdbKey == null? "k_bj57saqe" : model.ImdbKey;
+                var key = model.ImdbKey == null? Imdb.DefaultKey : model.ImdbKey;
                 var user = new ApplicationUser { Email = model.Email, UserName = model.Email, ImdbKey = key };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
