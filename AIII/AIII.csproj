@@ -193,6 +193,10 @@
     <Compile Include="Controllers\ImdbController.cs" />
     <Compile Include="Controllers\Api\UserRatingAPIController.cs" />
     <Compile Include="Controllers\UserRatingController.cs" />
+    <Compile Include="Migrations\202205191119253_UserNameFieldDeleted.cs" />
+    <Compile Include="Migrations\202205191119253_UserNameFieldDeleted.designer.cs">
+      <DependentUpon>202205191119253_UserNameFieldDeleted.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\UserRating.cs" />
     <Compile Include="Dtos\MovieShortInfoDto.cs" />
     <Compile Include="Dtos\MovieFullInfoDto.cs" />
@@ -477,6 +481,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202205181014572_ChangePropertyTypeInUserRatingTable1.resx">
       <DependentUpon>202205181014572_ChangePropertyTypeInUserRatingTable1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205191119253_UserNameFieldDeleted.resx">
+      <DependentUpon>202205191119253_UserNameFieldDeleted.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
