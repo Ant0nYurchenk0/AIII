@@ -192,6 +192,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ImdbController.cs" />
     <Compile Include="Controllers\Api\UserRatingAPIController.cs" />
+    <Compile Include="Controllers\UserRatingController.cs" />
     <Compile Include="Models\UserRating.cs" />
     <Compile Include="Dtos\MovieShortInfoDto.cs" />
     <Compile Include="Dtos\MovieFullInfoDto.cs" />
@@ -409,6 +410,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\UserRating\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

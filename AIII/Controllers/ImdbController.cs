@@ -31,8 +31,10 @@ namespace AIII.Controllers
                 movie.ImdbRating = 0;
             if(User.Identity.IsAuthenticated)
                 movie.UserRating = userRating.GetUserRating(id);
+            else
+                movie.UserRating = new UserRatingDto();
 
-            return View("..\\Movies\\Details", movie);
+                return View("..\\Movies\\Details", movie);
             }
             catch (Microsoft.CSharp.RuntimeBinder.RuntimeBinderException ex)
             {
