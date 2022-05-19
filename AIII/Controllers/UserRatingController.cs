@@ -20,8 +20,12 @@ namespace AIII.Controllers
         {
             var userRating = _context.UserMovieRating.FirstOrDefault(r => r.MovieId == movieId && r.UserId == User.Identity.Name);
 
-            if(userRating.LikesAmount == 0)
+            if (userRating.LikesAmount == 0)
+            {
                 userRating.LikesAmount += 1;
+                if(userRating.DislikesAmount == 1)
+                    userRating.DislikesAmount -= 1;
+            }
             else
                 userRating.LikesAmount -= 1;
 
@@ -38,7 +42,11 @@ namespace AIII.Controllers
             var userRating = _context.UserMovieRating.FirstOrDefault(r => r.MovieId == movieId && r.UserId == User.Identity.Name);
 
             if (userRating.DislikesAmount == 0)
+            {
                 userRating.DislikesAmount += 1;
+                if(userRating.LikesAmount == 1)
+                    userRating.LikesAmount -= 1;
+            }
             else
                 userRating.DislikesAmount -= 1;
 

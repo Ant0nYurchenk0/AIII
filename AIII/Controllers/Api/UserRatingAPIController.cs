@@ -17,9 +17,9 @@ namespace AIII.Controllers.Api
 
         public UserRatingDto GetUserRating(string movieId)
         {
-            var userRating = _context.UserMovieRating.FirstOrDefault(r => r.MovieId == movieId);
+            var userRating = _context.UserMovieRating.FirstOrDefault(r => r.MovieId == movieId );
 
-            if(userRating == null)
+            if (userRating == null)
             {
                 userRating = new UserRating();
 
@@ -30,6 +30,11 @@ namespace AIII.Controllers.Api
 
                 _context.UserMovieRating.Add(userRating);
                 _context.SaveChanges();
+            }
+            else
+            {
+                userRating.LikesAmount = _context.UserMovieRating.Where(r => r.MovieId == movieId).Count(likes => likes.LikesAmount > 0);
+                userRating.DislikesAmount = _context.UserMovieRating.Where(r => r.MovieId == movieId).Count(Dislikes => Dislikes.DislikesAmount > 0);
             }
 
             return Mapper.Map<UserRating, UserRatingDto>(userRating);
