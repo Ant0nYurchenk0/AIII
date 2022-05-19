@@ -1,77 +1,75 @@
 ﻿@model AIII.ViewModels.HomeMovies
 
-<div class="main">
-    @if (Model.PopularMovies.Count != 0)
-    {
+@if (Model.PopularMovies.Count != 0)
+{
 
-        <a href="@Url.Action("PopularMovies", "Imdb")">
-            <h3 class="title">Top Movies</h3>
-        </a>
-        <div class="scrollmenu">
-            @foreach (var item in Model.PopularMovies)
-            {
-                <a href="@Url.Action("GetMovie", "Imdb", new { id=item.Id})">
-                    <div class="card border-secondary mb-3" style="max-width: 20rem;">
-                        <div class="card-body">
-                            <img class="card-img-top" src="@item.Image" alt="Card image cap">
-                            <div class="card-title-back">
-                                <h4 class="card-title">@item.Title</h4>
-                            </div>
+    <a href="@Url.Action("PopularMovies", "Imdb")">
+        <h3 class="title">Top Movies</h3>
+    </a>
+    <div class="scrollmenu">
+        @foreach (var item in Model.PopularMovies)
+        {
+            <a href="@Url.Action("GetMovie", "Imdb", new { id=item.Id})">
+                <div class="card border-secondary mb-3" style="max-width: 20rem;">
+                    <div class="card-body">
+                        <img class="card-img-top" src="@item.Image" alt="Card image cap">
+                        <div class="card-title-back">
+                            <h4 class="card-title">@item.Title</h4>
                         </div>
                     </div>
-                </a>
+                </div>
+            </a>
 
-            }
-        </div>
-    }
-    @if (Model.PopularTVs.Count != 0)
-    {
+        }
+    </div>
+}
+@if (Model.PopularTVs.Count != 0)
+{
 
-        <a href="@Url.Action("PopularTVs", "Imdb")">
-            <h3 class="title">Top TVs</h3>
-        </a>
-        <div class="scrollmenu">
-            @foreach (var item in Model.PopularTVs)
-            {
-                <a href="@Url.Action("GetMovie", "Imdb", new { id=item.Id})">
+    <a href="@Url.Action("PopularTVs", "Imdb")">
+        <h3 class="title">Top TVs</h3>
+    </a>
+    <div class="scrollmenu">
+        @foreach (var item in Model.PopularTVs)
+        {
+            <a href="@Url.Action("GetMovie", "Imdb", new { id=item.Id})">
 
-                    <div class="card border-secondary mb-3" style="max-width: 20rem;">
-                        <div class="card-body">
-                            <img class="card-img-top" src="@item.Image" alt="Card image cap">
-                            <div class="card-title-back">
-                                <h4 class="card-title">@item.Title</h4>
-                            </div>
+                <div class="card border-secondary mb-3" style="max-width: 20rem;">
+                    <div class="card-body">
+                        <img class="card-img-top" src="@item.Image" alt="Card image cap">
+                        <div class="card-title-back">
+                            <h4 class="card-title">@item.Title</h4>
                         </div>
                     </div>
-                </a>
+                </div>
+            </a>
 
-            }
-        </div>
-    }
-    @if (Model.CustomMovies.Count != 0)
-    {
+        }
+    </div>
+}
+@if (Model.CustomMovies.Count != 0)
+{
 
 
-        <a href="@Url.Action("Index", "CustomMovie")">
-            <h3 class="title">Other</h3>
-        </a>
-        <div class="scrollmenu">
-            @foreach (var item in Model.CustomMovies)
-            {
-                <a href="@Url.Action("GetMovie", "CustomMovie", new { id=item.Id})">
+    <a href="@Url.Action("Index", "CustomMovie")">
+        <h3 class="title">Other</h3>
+    </a>
+    <div class="scrollmenu">
+        @foreach (var item in Model.CustomMovies)
+        {
+            <a href="@Url.Action("GetMovie", "CustomMovie", new { id=item.Id})">
 
-                    <div class="card border-secondary mb-3" style="max-width: 20rem;">
-                        <div class="card-body">
-                            <img class="card-img-top" src="@item.Image" alt="Card image cap">
-                            <div class="card-title-back">
-                                <h4 class="card-title">@item.Title</h4>
-                            </div>
+                <div class="card border-secondary mb-3" style="max-width: 20rem;">
+                    <div class="card-body">
+                        <img class="card-img-top" src="@item.Image" alt="Card image cap">
+                        <div class="card-title-back">
+                            <h4 class="card-title">@item.Title</h4>
                         </div>
                     </div>
-                </a>
+                </div>
+            </a>
 
-            }
-        </div>
-    }
-</div>
+        }
+    </div>
+}
 
