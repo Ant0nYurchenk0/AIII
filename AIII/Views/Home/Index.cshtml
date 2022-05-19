@@ -44,20 +44,20 @@
                 </div>
             </a>
 
-        }
-    </div>
-}
-@if (Model.CustomMovies.Count != 0)
-{
+            }
+        </div>
+    }
+    @if (Model.CustomMovies.Count != 0)
+    {
 
 
-    <a href="@Url.Action("Index", "CustomMovie")">
-        <h3 class="title">Other</h3>
-    </a>
-    <div class="scrollmenu">
-        @foreach (var item in Model.CustomMovies)
-        {
-            <a href="@Url.Action("GetMovie", "CustomMovie", new { id=item.Id})">
+        <a href="@Url.Action("Index", "CustomMovie")">
+            <h3 class="title">Other</h3>
+        </a>
+        <div class="scrollmenu">
+            @foreach (var item in Model.CustomMovies)
+            {
+                <a href="@Url.Action("GetMovie", "CustomMovie", new { id=item.Id})">
 
                 <div class="card border-secondary mb-3" style="max-width: 20rem;">
                     <div class="card-body">

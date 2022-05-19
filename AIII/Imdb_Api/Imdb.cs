@@ -17,6 +17,5 @@ namespace AIII.Imdb_Api
         internal static string Trailer = "https://imdb-api.com/en/API/YouTubeTrailer/{0}/";
 
         internal static string DefaultKey = "k_l859g0cz";
-
     }
 }   

@@ -36,8 +36,10 @@ namespace AIII.Controllers.Api
             if (movie == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            return Mapper.Map<CustomMovie, MovieFullInfoDto>(movie);
+            var movieFullInfo = Mapper.Map<CustomMovie, MovieFullInfoDto>(movie);
+            movieFullInfo.ImdbRating = 0;
 
+            return movieFullInfo;
         }
 
         [HttpPost]
