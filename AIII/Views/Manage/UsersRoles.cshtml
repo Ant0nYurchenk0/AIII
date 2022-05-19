@@ -4,69 +4,67 @@
     ViewBag.Title = "UsersRoles";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="main">
 
-    <div class="row header">
+<div class="row header">
 
-        <div class="col-1"></div>
-        <h2 class="col-2">
-            Users
-        </h2>
-        <div class="col-6"></div>
-        <div class="col-2">
-            @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-info " })
-        </div>
-        <div class="col-1"></div>
+    <div class="col-1"></div>
+    <h2 class="col-2">
+        Users
+    </h2>
+    <div class="col-6"></div>
+    <div class="col-2">
+        @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-info " })
     </div>
-    <table class="table table-bordered ">
+    <div class="col-1"></div>
+</div>
+<table class="table table-bordered ">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RolesNames)
+        </th>
+        @if (User.IsInRole("Admin"))
+        {
+            <th></th>
+        }
+    </tr>
+
+    @foreach (var item in Model)
+    {
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.UserEmail)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RolesNames)
-            </th>
+            <td class="align-middle">
+                @Html.DisplayFor(modelItem => item.UserEmail)
+            </td>
+            <td>
+                <ul>
+                    @foreach (var role in item.RolesNames)
+                    {
+                        <li class="nav navbar-nav">@Html.DisplayFor(modelItem => role)</li>
+                    }
+                </ul>
+
+            </td>
             @if (User.IsInRole("Admin"))
             {
-                <th></th>
+                <td class="text-right align-middle" width="20%">
+                    @if (User.Identity.Name != item.UserEmail)
+                    {
+                        if (!item.RolesNames.Contains("Moderator"))
+                        {
+                            @Html.ActionLink("Promote", "AddModeratorRole", new { userId = item.UserId }, new { @class = "btn btn-success" })
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Demote", "RemoveModeratorRole", new { userId = item.UserId }, new { @class = "btn btn-danger" })
+                        }
+                    }
+                </td>
             }
+
         </tr>
+    }
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td class="align-middle">
-                    @Html.DisplayFor(modelItem => item.UserEmail)
-                </td>
-                <td>
-                    <ul>
-                        @foreach (var role in item.RolesNames)
-                        {
-                            <li class="nav navbar-nav">@Html.DisplayFor(modelItem => role)</li>
-                        }
-                    </ul>
-
-                </td>
-                @if (User.IsInRole("Admin"))
-                {
-                    <td class="text-right align-middle" width="20%">
-                        @if (User.Identity.Name != item.UserEmail)
-                        {
-                            if (!item.RolesNames.Contains("Moderator"))
-                            {
-                                @Html.ActionLink("Promote", "AddModeratorRole", new { userId = item.UserId }, new { @class = "btn btn-success" })
-                            }
-                            else
-                            {
-                                @Html.ActionLink("Demote", "RemoveModeratorRole", new { userId = item.UserId }, new { @class = "btn btn-danger" })
-                            }
-                        }
-                    </td>
-                }
-
-            </tr>
-        }
-
-    </table>
-    </div>
+</table>
 

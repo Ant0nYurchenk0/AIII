@@ -1,5 +1,5 @@
 ﻿@using AIII.Constants
-<div class="modal fade" id="search" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="search" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             @using (Html.BeginForm("Search", "Imdb", FormMethod.Get))
@@ -28,19 +28,18 @@
                     </div>
                     <div class="row">
                         <p>Date released</p>
-                        <div class="col-6">
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    From
-                                    <input type="date" class="form-input date" name="releaseDate">
+                        <div class="col-5 date-field center">
+                            <div class="date-field form-check">
+                                <label class="form-check-label">                                    
+                                    <input type="date" class="form-input date" name="releaseDate"  >
                                 </label>
                             </div>
                         </div>
-                        <div class="col-6">
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    To
-                                    <input type="date" class="form-input date" name="releaseDate">
+                        <div class="col-2 date-field"><p class="center">&#8212;</p></div>
+                        <div class="col-5 date-field center">
+                            <div class="date-field form-check">
+                                <label class="form-check-label">                                   
+                                    <input type="date" class="form-input date" name="releaseDate" >
                                 </label>
                             </div>
                         </div>

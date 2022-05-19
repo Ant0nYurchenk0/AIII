@@ -1,8 +1,8 @@
 ﻿@model AIII.Dtos.MovieFullInfoDto
 <div class="row">
     <div class="col-1"></div>
-    <div class="col-3 left">
-        <img class="poster " src="@Model.Image" />
+    <div class="col-md-3 left">
+        <img class="poster" src="@Model.Image" />
         <table class="table movie-info">
             <tbody>
                 @if (Model.ImdbRating.Value != 0)
@@ -70,22 +70,24 @@
                 }
 
 
-                </tbody>
-            </table>
-        </div>
-        <div class="col-7 left">
-            <h1 class="Title movie-title text-secondary">@Model.Title</h1>
-            <h3 class="title">Plot</h3>
-            <p class="plot-details">@Model.Plot</p>
-            <h3 class="title">Watch</h3>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-7 left">
+        <h1 class="Title movie-title text-secondary">@Model.Title</h1>
+        <h3 class="title">Plot</h3>
+        <p class="plot-details">@Model.Plot</p>
+        <h3 class="title">Watch</h3>
+        <div class="trailer-parent center">
             <iframe class="trailer" src="@Model.Video"></iframe>
-            <div class="row rating">
-                <div class="col-6"></div>
-                <div class="col-2">
-                    <a data-toggle="tooltip" data-bs-placement="bottom" title="Like" href="@Url.Action("IncrementLike", "UserRating", new { movieId = Model.Id})">
-                        <img class="icon" src="~/source/like.png" />
-                    </a>
-                    @if (@Model.UserRating.LikesAmount != null)
+        </div>
+        <div class="row rating">
+            <div class="col-md-6"></div>
+            <div class="col-md-2 col-4">
+                <a data-toggle="tooltip" data-bs-placement="bottom" title="Like" href="@Url.Action("IncrementLike", "UserRating", new { movieId = Model.Id})">
+                    <img class="icon" src="~/source/like.png" />
+                </a>
+                @if (@Model.UserRating.LikesAmount != null)
                      {
                          <span class="count"> @Model.UserRating.LikesAmount</span>
                      }
@@ -93,12 +95,12 @@
                      {
                          <span class="count">0</span>
                      }
-                </div>
-                <div class="col-2">
-                    <a data-bs-toggle="tooltip" data-bs-placement="bottom" title="Dislike" href="@Url.Action("IncrementDislike", "UserRating", new { movieId = Model.Id})">
-                        <img class="icon" src="~/source/dislike.png" />
-                    </a>
-                    @if (@Model.UserRating.DislikesAmount != null)
+            </div>
+            <div class="col-md-2 col-4">
+                <a data-bs-toggle="tooltip" data-bs-placement="bottom" title="Dislike" href="@Url.Action("IncrementDislike", "UserRating", new { movieId = Model.Id})">
+                    <img class="icon" src="~/source/dislike.png" />
+                </a>
+                @if (@Model.UserRating.DislikesAmount != null)
                     {
                         <span class="count"> @Model.UserRating.DislikesAmount</span>
                     }
@@ -106,12 +108,13 @@
                     {
                         <span class="count">0</span>
                     }
-                </div>
-                <div class="col-2">
-                    @if (true)
-                    {
-                        <a type="button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Mark as unwatched" href="">
-                            <img class="icon" src="~/source/watched.png" />
+            </div>
+            <div class="col-md-2 col-4 ">
+                @if (true)
+                {
+                    <a type="button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Mark as unwatched" href="">
+                        <img class="icon" src="~/source/watched.png" />
+
                         </a>
                     }
                     else
@@ -125,5 +128,5 @@
             </div>
         </div>
     </div>
-    <div class="col-1"></div>
+    <div class="col-md-1"></div>
 </div>
