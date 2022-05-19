@@ -300,6 +300,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CustomMovieRepository.cs" />
     <Compile Include="Repositories\ImdbRepository.cs" />
+    <Compile Include="Repositories\UserRatingRepository.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\HomeMovies.cs" />
     <Compile Include="ViewModels\SearchResult.cs" />

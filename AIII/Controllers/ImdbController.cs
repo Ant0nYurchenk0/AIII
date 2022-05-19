@@ -8,6 +8,7 @@ using System.Web;
 using Microsoft.AspNet.Identity;
 using System.Web.Mvc;
 using AIII.Models;
+using AIII.Repositories;
 
 namespace AIII.Controllers
 {
@@ -32,7 +33,12 @@ namespace AIII.Controllers
             if(User.Identity.IsAuthenticated)
                 movie.UserRating = userRating.GetUserRating(id);
             else
+            {
+                var userRatingRepository = new UserRatingRepository();
                 movie.UserRating = new UserRatingDto();
+                movie.UserRating.LikesAmount = userRatingRepository.GetAllUserAmountOfLikes(id);
+                movie.UserRating.DislikesAmount = userRatingRepository.GetAllUserAmountOfDislikes(id);
+            }
 
                 return View("..\\Movies\\Details", movie);
             }

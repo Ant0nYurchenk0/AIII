@@ -1,8 +1,6 @@
 ﻿using AIII.Models;
-using System;
-using System.Collections.Generic;
+using AIII.Repositories;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace AIII.Controllers
@@ -10,25 +8,19 @@ namespace AIII.Controllers
     public class UserRatingController : Controller
     {
         ApplicationDbContext _context;
+        UserRatingRepository _repository;
 
         public UserRatingController()
         {
             _context = new ApplicationDbContext();
+            _repository = new UserRatingRepository();  
         }
 
         public ActionResult IncrementLike(string movieId)
         {
             var userRating = _context.UserMovieRating.FirstOrDefault(r => r.MovieId == movieId && r.UserId == User.Identity.Name);
 
-            if (userRating.LikesAmount == 0)
-            {
-                userRating.LikesAmount += 1;
-                if(userRating.DislikesAmount == 1)
-                    userRating.DislikesAmount -= 1;
-            }
-            else
-                userRating.LikesAmount -= 1;
-
+            _repository.IncrementLike(userRating);
             _context.SaveChanges();
 
             if (!movieId.StartsWith("aaa"))
@@ -41,15 +33,7 @@ namespace AIII.Controllers
         {
             var userRating = _context.UserMovieRating.FirstOrDefault(r => r.MovieId == movieId && r.UserId == User.Identity.Name);
 
-            if (userRating.DislikesAmount == 0)
-            {
-                userRating.DislikesAmount += 1;
-                if(userRating.LikesAmount == 1)
-                    userRating.LikesAmount -= 1;
-            }
-            else
-                userRating.DislikesAmount -= 1;
-
+            _repository.IncrementDislike(userRating);
             _context.SaveChanges();
 
             if (!movieId.StartsWith("aaa"))
