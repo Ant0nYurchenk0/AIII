@@ -76,6 +76,42 @@ namespace AIII.Controllers
             return View(model);
         }
 
+        public ActionResult ManageAccount(ManageMessageId? message)
+        {
+            ViewBag.StatusMessage =
+                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
+                : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
+                : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
+                : message == ManageMessageId.Error ? "An error has occurred."
+                : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
+                : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
+                : "";
+
+            var key = UserManager.Users.Where(u => u.Email == User.Identity.Name).FirstOrDefault().ImdbKey;
+            var user = new ManageAccountViewModel { ImdbKey = key };
+            return View(user);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ManageAccount(ManageAccountViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = UserManager.Users.Where(u => u.Email == User.Identity.Name).FirstOrDefault();
+                user.ImdbKey = model.ImdbKey;
+                var result = await UserManager.UpdateAsync(user);
+
+                if (result.Succeeded)
+                {
+                    return View(model);
+                }
+                AddErrors(result);
+            }
+
+            return View(model);
+        }
+
         //
         // POST: /Manage/RemoveLogin
         [HttpPost]
@@ -239,7 +275,7 @@ namespace AIII.Controllers
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                 }
-                return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
+                return RedirectToAction("ManageAccount", new { Message = ManageMessageId.ChangePasswordSuccess });
             }
             AddErrors(result);
             return View(model);

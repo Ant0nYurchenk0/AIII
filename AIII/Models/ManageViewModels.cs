@@ -15,6 +15,14 @@ namespace AIII.Models
         public bool BrowserRemembered { get; set; }
     }
 
+    public class ManageAccountViewModel
+    {
+        [Required]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [Display(Name = "Imdb Key")]
+        public string ImdbKey { get; set; }
+    }
+
     public class ManageLoginsViewModel
     {
         public IList<UserLoginInfo> CurrentLogins { get; set; }
