@@ -24,8 +24,8 @@ namespace AIII
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/bootswatch.min.css",
-
+                      "~/Content/bootstrap_quartz.css",
+                      //"~/Content/bootswatch.min.css",
                       "~/Content/site.css"));
         }
     }
