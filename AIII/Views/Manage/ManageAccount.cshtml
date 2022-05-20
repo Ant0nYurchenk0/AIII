@@ -18,6 +18,34 @@
                 @User.Identity.Name
             </h5>
             <hr />
+            <h6 class="form-group center">
+                User rated films
+            </h6>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <a>
+                                <img class="icon" src="~/source/like.png" />
+                                <span> @Model.LikesAmount</span>
+                            </a>
+                        </td>
+                        <td>
+                            <a>
+                                <img class="icon" src="~/source/dislike.png" />
+                                <span> @Model.DislikesAmount</span>
+                            </a>
+                        </td>
+                        <td>
+                            <a>
+                                <img class="icon" src="~/source/watched.png" />
+                                <span> @Model.WatchedFilmsAmount</span>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
                 @Html.LabelFor(model => model.ImdbKey, htmlAttributes: new { @class = "control-label col-md-2 center" })
@@ -29,11 +57,11 @@
 
             <div class="form-group">
                 <br />
-                <a class="text-muted" href="@Url.Action("ChangePassword")">Change password</a>
-                <hr />
                 <div>
-                    <input type="submit" value="Save" class="btn btn-primary" />
+                    <input type="submit" value="Save" class="btn btn-primary form-control" />
                 </div>
+                <hr />
+                <a class="text-muted" href="@Url.Action("ChangePassword")">Change password</a>
             </div>
         </div>
     }
