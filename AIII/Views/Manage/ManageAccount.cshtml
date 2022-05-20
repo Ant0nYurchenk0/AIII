@@ -21,46 +21,40 @@
             <h6 class="form-group center">
                 User rated films
             </h6>
-            <table>
-                <tbody>
-                    <tr>
-                        <td>
-                            <a>
-                                <img class="icon" src="~/source/like.png" />
-                                <span> @Model.LikesAmount</span>
-                            </a>
-                        </td>
-                        <td>
-                            <a>
-                                <img class="icon" src="~/source/dislike.png" />
-                                <span> @Model.DislikesAmount</span>
-                            </a>
-                        </td>
-                        <td>
-                            <a>
-                                <img class="icon" src="~/source/watched.png" />
-                                <span> @Model.WatchedFilmsAmount</span>
-                            </a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <br />
+            <div class="center">
+                <a>
+                    <img class="icon" src="~/source/like.png" />
+                    <span class="count"> @Model.LikesAmount</span>
+                </a>
+                <span></span>
+                <a class="member-info">
+                    <img class="icon" src="~/source/dislike.png" />
+                    <span class="count"> @Model.DislikesAmount</span>
+                </a>
+                <span></span>
+                <a>
+                    <img class="icon" src="~/source/watched.png" />
+                    <span class="count"> @Model.WatchedFilmsAmount</span>
+                </a>
+            </div>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
                 @Html.LabelFor(model => model.ImdbKey, htmlAttributes: new { @class = "control-label col-md-2 center" })
+                <br />
                 <div>
-                    @Html.EditorFor(model => model.ImdbKey, new { @class = "form-control center" })
+                    @Html.EditorFor(model => model.ImdbKey, new { @class = "form-control center text-center" })
                     @Html.ValidationMessageFor(model => model.ImdbKey, "", new { @class = "text-danger center" })
                 </div>
             </div>
 
             <div class="form-group">
-                <br />
+                <hr />
                 <div>
                     <input type="submit" value="Save" class="btn btn-primary form-control" />
                 </div>
-                <hr />
+                <br />
                 <a class="text-muted" href="@Url.Action("ChangePassword")">Change password</a>
             </div>
         </div>
