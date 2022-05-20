@@ -96,9 +96,7 @@ namespace AIII.Controllers
             else
             {
                 var userRatingRepository = new UserRatingRepository();
-                movie.UserRating = new UserRatingDto();
-                movie.UserRating.LikesAmount = userRatingRepository.GetAllUserAmountOfLikes(id);
-                movie.UserRating.DislikesAmount = userRatingRepository.GetAllUserAmountOfDislikes(id);
+                movie.UserRating = new UserRatingDto(id, userRatingRepository);
             }
 
             return View("..\\Movies\\Details", movie);
