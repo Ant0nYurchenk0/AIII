@@ -11,9 +11,9 @@ namespace AIII.Repositories
     {
         ApplicationDbContext _context;
 
-        public UserRatingRepository()
+        public UserRatingRepository(ApplicationDbContext context)
         {
-            _context = new ApplicationDbContext();
+            _context = context;
         }
 
         public UserRating UserRatingIsNull(UserRating userRating, string movieId, string userName)
@@ -25,9 +25,6 @@ namespace AIII.Repositories
             userRating.LikesAmount = 0;
             userRating.DislikesAmount = 0;
             userRating.WatchedAmount = 0;
-
-            _context.UserMovieRating.Add(userRating);
-            _context.SaveChanges();
 
             return userRating;
         }
@@ -79,7 +76,7 @@ namespace AIII.Repositories
                 userRating.DislikesAmount -= 1;
         }
 
-        internal void SetAsWatched(UserRating userRating)
+        public void SetAsWatched(UserRating userRating)
         {
             if (userRating.WatchedAmount == 0)
             {

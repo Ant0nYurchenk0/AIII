@@ -95,7 +95,7 @@ namespace AIII.Controllers
                 movie.UserRating = userRatingApi.GetUserRating(id);
             else
             {
-                var userRatingRepository = new UserRatingRepository();
+                var userRatingRepository = new UserRatingRepository(_context);
                 movie.UserRating = new UserRatingDto(id, userRatingRepository);
             }
 

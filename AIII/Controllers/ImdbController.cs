@@ -15,10 +15,12 @@ namespace AIII.Controllers
     public class ImdbController : Controller
     {
         private IImdbApiController _api;
+        private ApplicationDbContext _dbContext;
         // GET: Movies
         public ImdbController()
         {
             _api = new ImdbApiController();
+            _dbContext = new ApplicationDbContext();
         }
         public ActionResult GetMovie(string id)
         {
@@ -34,7 +36,7 @@ namespace AIII.Controllers
                     movie.UserRating = userRating.GetUserRating(id);
                 else
                 {
-                    var userRatingRepository = new UserRatingRepository();
+                    var userRatingRepository = new UserRatingRepository(_dbContext);
                     movie.UserRating = new UserRatingDto(id, userRatingRepository);
                     
                 }
