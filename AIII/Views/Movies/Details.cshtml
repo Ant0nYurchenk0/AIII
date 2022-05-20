@@ -94,7 +94,16 @@
                 else
                 {
                     <a data-toggle="tooltip" data-bs-placement="bottom" title="Like" href="@Url.Action("IncrementLike", "UserRating", new { movieId = Model.Id})">
-                        <img class="icon" src="~/source/like.png" />
+                        @if (Model.UserRating.Liked.Value)
+                        {
+
+                            <img class="icon" src="~/source/like_filled.png" />
+                        }
+                        else
+                        {
+                            <img class="icon" src="~/source/like.png" />
+
+                        }
                     </a>
                     <span class="count"> @Model.UserRating.LikesAmount</span>
                 }
@@ -110,7 +119,16 @@
                 else
                 {
                     <a data-toggle="tooltip" data-bs-placement="bottom" title="Like" href="@Url.Action("IncrementDislike", "UserRating", new { movieId = Model.Id})">
-                        <img class="icon" src="~/source/dislike.png" />
+                        @if (Model.UserRating.Disliked.Value)
+                        {
+
+                            <img class="icon" src="~/source/dislike_filled.png" />
+                        }
+                        else
+                        {
+                            <img class="icon" src="~/source/dislike.png" />
+
+                        }
                     </a>
                     <span class="count"> @Model.UserRating.DislikesAmount</span>
                 }
@@ -126,22 +144,18 @@
                 else
                 {
 
-                    if (false)
-                    {
-                        <a type="button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Mark as unwatched" href="@Url.Action("SetAsWatched", "UserRating", new { movieId = Model.Id})">
+                    <a type="button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Mark as unwatched" href="@Url.Action("SetAsWatched", "UserRating", new { movieId = Model.Id})">
+                        @if (Model.UserRating.Watched.Value)
+                        {
+                            <img class="icon" src="~/source/watched_filled.png" />
+
+                        }
+                        else
+                        {
                             <img class="icon" src="~/source/watched.png" />
-                        </a>
-                        <span class="count"> @Model.UserRating.WatchedAmount</span>
-
-                    }
-                    else
-                    {
-                        <a data-bs-toggle="tooltip" data-bs-placement="bottom" title="Mark as watched" href="@Url.Action("SetAsWatched", "UserRating", new { movieId = Model.Id})">
-                            <img class="icon" src="~/source/unwatched.png" />
-                        </a>
-                        <span class="count"> @Model.UserRating.WatchedAmount</span>
-
-                    }
+                        }
+                    </a>
+                    <span class="count"> @Model.UserRating.WatchedAmount</span>
                 }
             </div>
 

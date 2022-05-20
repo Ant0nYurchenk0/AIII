@@ -31,7 +31,7 @@ namespace AIII.Repositories
 
             return userRating;
         }
-
+        
         public int GetAllUserAmountOfLikes(string movieId)
         {
             return _context.UserMovieRating.Where(r => r.MovieId == movieId).Count(likes => likes.LikesAmount > 0);
