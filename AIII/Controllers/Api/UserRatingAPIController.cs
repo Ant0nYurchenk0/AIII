@@ -27,6 +27,7 @@ namespace AIII.Controllers.Api
 
             userRating.LikesAmount = repository.GetAllUserAmountOfLikes(movieId) > 0 ? repository.GetAllUserAmountOfLikes(movieId) : 0;
             userRating.DislikesAmount = repository.GetAllUserAmountOfDislikes(movieId) > 0 ? repository.GetAllUserAmountOfDislikes(movieId) : 0;
+            userRating.WatchedAmount = repository.GetAllUserWatchedAmount(movieId) > 0 ? repository.GetAllUserWatchedAmount(movieId) : 0;
 
             return Mapper.Map<UserRating, UserRatingDto>(userRating);
         }

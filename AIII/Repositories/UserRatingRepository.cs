@@ -16,7 +16,7 @@ namespace AIII.Repositories
             _context = new ApplicationDbContext();
         }
 
-        public UserRating UserRatingIsNull(UserRating userRating,string movieId, string userName)
+        public UserRating UserRatingIsNull(UserRating userRating, string movieId, string userName)
         {
             userRating = new UserRating();
 
@@ -24,6 +24,7 @@ namespace AIII.Repositories
             userRating.UserId = userName;
             userRating.LikesAmount = 0;
             userRating.DislikesAmount = 0;
+            userRating.WatchedAmount = 0;
 
             _context.UserMovieRating.Add(userRating);
             _context.SaveChanges();
@@ -39,6 +40,10 @@ namespace AIII.Repositories
         public int GetAllUserAmountOfDislikes(string movieId)
         {
             return _context.UserMovieRating.Where(r => r.MovieId == movieId).Count(Dislikes => Dislikes.DislikesAmount > 0);
+        }
+        public int GetAllUserWatchedAmount(string movieId)
+        {
+            return _context.UserMovieRating.Where(r => r.MovieId == movieId).Count(Watched => Watched.WatchedAmount > 0);
         }
 
         public void IncrementLike(UserRating userRating)
@@ -63,6 +68,16 @@ namespace AIII.Repositories
             }
             else
                 userRating.DislikesAmount -= 1;
+        }
+
+        internal void SetAsWatched(UserRating userRating)
+        {
+            if (userRating.WatchedAmount == 0)
+            {
+                userRating.WatchedAmount += 1;
+            }
+            else
+                userRating.WatchedAmount -= 1;
         }
     }
 }

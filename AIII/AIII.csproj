@@ -197,6 +197,18 @@
     <Compile Include="Migrations\202205191119253_UserNameFieldDeleted.designer.cs">
       <DependentUpon>202205191119253_UserNameFieldDeleted.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202205200635244_AddWatchedToUserRating.cs" />
+    <Compile Include="Migrations\202205200635244_AddWatchedToUserRating.designer.cs">
+      <DependentUpon>202205200635244_AddWatchedToUserRating.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205200653590_ChangeTypeOfWatchedToInt.cs" />
+    <Compile Include="Migrations\202205200653590_ChangeTypeOfWatchedToInt.designer.cs">
+      <DependentUpon>202205200653590_ChangeTypeOfWatchedToInt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205200705130_ChangeTypeOfWatchedToInt1.cs" />
+    <Compile Include="Migrations\202205200705130_ChangeTypeOfWatchedToInt1.designer.cs">
+      <DependentUpon>202205200705130_ChangeTypeOfWatchedToInt1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\UserRating.cs" />
     <Compile Include="Dtos\MovieShortInfoDto.cs" />
     <Compile Include="Dtos\MovieFullInfoDto.cs" />
@@ -486,6 +498,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202205191119253_UserNameFieldDeleted.resx">
       <DependentUpon>202205191119253_UserNameFieldDeleted.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205200635244_AddWatchedToUserRating.resx">
+      <DependentUpon>202205200635244_AddWatchedToUserRating.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205200653590_ChangeTypeOfWatchedToInt.resx">
+      <DependentUpon>202205200653590_ChangeTypeOfWatchedToInt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205200705130_ChangeTypeOfWatchedToInt1.resx">
+      <DependentUpon>202205200705130_ChangeTypeOfWatchedToInt1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

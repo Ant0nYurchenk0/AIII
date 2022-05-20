@@ -41,5 +41,17 @@ namespace AIII.Controllers
             else
                 return RedirectToAction("GetMovie", "CustomMovie", new { id = movieId });
         }
+        public ActionResult SetAsWatched(string movieId)
+        {
+            var userRating = _context.UserMovieRating.FirstOrDefault(r => r.MovieId == movieId && r.UserId == User.Identity.Name);
+
+            _repository.SetAsWatched(userRating);
+            _context.SaveChanges();
+
+            if (!movieId.StartsWith("aaa"))
+                return RedirectToAction("GetMovie", "Imdb", new { id = movieId });
+            else
+                return RedirectToAction("GetMovie", "CustomMovie", new { id = movieId });
+        }
     }
 }
