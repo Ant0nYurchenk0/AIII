@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using System.Web.Mvc;
 using AIII.Models;
 using AIII.Repositories;
+using AutoMapper;
 
 namespace AIII.Controllers
 {
@@ -30,6 +31,7 @@ namespace AIII.Controllers
                 movie = _api.GetMovie(id);
                 if (movie.ImdbRating == null)
                     movie.ImdbRating = 0;
+                
                 if (User.Identity.IsAuthenticated)
                     movie.UserRating = userRating.GetUserRating(id);
                 else
@@ -101,6 +103,6 @@ namespace AIII.Controllers
                     return false;
             return true;
         }
-
+        
     }
 }

@@ -18,9 +18,15 @@ namespace AIII.App_Start
             Mapper.CreateMap<UserRating, UserRatingDto>();
             Mapper.CreateMap<UserRatingDto, UserRating>();
 
-            Mapper.CreateMap<CustomMovie, CustomMovie>();
             Mapper.CreateMap<TeamMember, TeamMember>();
-            Mapper.CreateMap<UserRating, UserRating>(); 
+            Mapper.CreateMap<UserRating, UserRating>();
+            Mapper.CreateMap<CustomMovie, CustomMovie>();
+
+            Mapper.CreateMap<MovieFullInfoDto, MovieShortInfoDto>();
+            Mapper.CreateMap<MovieShortInfoDto, MovieFullInfoDto>();
+
+            Mapper.CreateMap<MovieShortInfo, MovieShortInfoDto>();
+            Mapper.CreateMap<MovieShortInfoDto, MovieShortInfo>();
         }
     }
 }

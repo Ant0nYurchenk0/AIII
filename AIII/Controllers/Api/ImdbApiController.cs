@@ -25,6 +25,7 @@ namespace AIII.Controllers.Api
         public MovieFullInfoDto GetMovie(string id)
         {            
             var movie = _repository.SearchById(id, GetImdbKey());
+            _repository.SaveMovie(movie);
             return movie;
         }
 
@@ -90,5 +91,6 @@ namespace AIII.Controllers.Api
             var key = manager.Users.Single(u => u.Id == userId).ImdbKey;
             return key;
         }
+        
     }
 }
