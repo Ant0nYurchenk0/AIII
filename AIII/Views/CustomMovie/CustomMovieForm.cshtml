@@ -86,6 +86,14 @@
                     @Html.ValidationMessageFor(m => m.Image)
                 </div>
             </td>
+
+            <td>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Video)
+                    @Html.TextBoxFor(m => m.Video, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Video)
+                </div>
+            </td>
         </tr>
 
         <tr>
