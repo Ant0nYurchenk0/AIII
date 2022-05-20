@@ -121,6 +121,8 @@ namespace AIII.Repositories
                     url = JsonConvert.DeserializeObject<dynamic>(EmpResponse).videoUrl;
                 }
             }
+            if(string.IsNullOrEmpty(url))
+                return "https://www.youtube.com/embed/";
             return "https://www.youtube.com/embed/" + url.Substring(url.Length-11, 11);
         }
     }
