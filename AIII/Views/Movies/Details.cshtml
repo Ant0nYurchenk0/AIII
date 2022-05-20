@@ -138,7 +138,7 @@
                 @if (Model.UserRating.UserId == null)
                 {
                     <a data-bs-toggle="tooltip" data-bs-placement="bottom" title="Mark as watched" href="@Url.Action("Register", "Account")">
-                        <img class="icon" src="~/source/unwatched.png" />
+                        <img class="icon" src="~/source/watched.png" />
                     </a>
                     <span class="count"> @Model.UserRating.WatchedAmount</span>
                 }
@@ -164,4 +164,3 @@
     </div>
 </div>
 <div class="col-md-1"></div>
-</div>

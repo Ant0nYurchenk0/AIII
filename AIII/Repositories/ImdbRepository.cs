@@ -1,6 +1,7 @@
 ﻿using AIII.Dtos;
 using AIII.Imdb_Api;
 using AIII.Models;
+using AutoMapper;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -124,6 +125,16 @@ namespace AIII.Repositories
             if(string.IsNullOrEmpty(url))
                 return "https://www.youtube.com/embed/";
             return "https://www.youtube.com/embed/" + url.Substring(url.Length-11, 11);
+        }
+        public void SaveMovie(MovieFullInfoDto fullInfoDto)
+        {
+            if (!_context.MovieShortInfo.Any(m => m.Id == fullInfoDto.Id))
+            {
+                var shortInfoDto = Mapper.Map<MovieFullInfoDto, MovieShortInfoDto>(fullInfoDto);
+                var shortInfo = Mapper.Map<MovieShortInfoDto, MovieShortInfo>(shortInfoDto);
+                _context.MovieShortInfo.Add(shortInfo);
+                _context.SaveChanges();
+            }
         }
     }
 }
