@@ -217,6 +217,11 @@
     <Compile Include="Migrations\202205200712565_temp.designer.cs">
       <DependentUpon>202205200712565_temp.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202205200925040_AddMovieShortInfoTable.cs" />
+    <Compile Include="Migrations\202205200925040_AddMovieShortInfoTable.designer.cs">
+      <DependentUpon>202205200925040_AddMovieShortInfoTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MovieShortInfo.cs" />
     <Compile Include="Models\UserRating.cs" />
     <Compile Include="Dtos\MovieShortInfoDto.cs" />
     <Compile Include="Dtos\MovieFullInfoDto.cs" />
@@ -521,6 +526,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202205200712565_temp.resx">
       <DependentUpon>202205200712565_temp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205200925040_AddMovieShortInfoTable.resx">
+      <DependentUpon>202205200925040_AddMovieShortInfoTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

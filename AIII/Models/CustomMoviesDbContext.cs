@@ -10,6 +10,7 @@ namespace AIII.Models
         public DbSet<UserRating> UserMovieRating { get; set; }
         public DbSet<CustomMovie> CustomMovies { get; set; }
 
+
         public CustomMoviesDbContext() : base ("IdentityConnection") { }
     }
 }

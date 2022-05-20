@@ -25,6 +25,7 @@ namespace AIII.Models
         public DbSet<UserRating> UserMovieRating { get; set; }
         public DbSet<CustomMovie> CustomMovies { get; set; }
         public DbSet<TeamMember> TeamMembers { get; set; }
+        public DbSet<MovieShortInfo> MovieShortInfo { get; set; }
 
         public ApplicationDbContext()
             : base("IdentityConnection", throwIfV1Schema: false)
