@@ -3,10 +3,13 @@ using AIII.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.Cookies;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+
 
 namespace AIII.Controllers
 {
@@ -15,7 +18,7 @@ namespace AIII.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        
         public AccountController()
         {
         }

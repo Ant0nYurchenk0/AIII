@@ -18,17 +18,18 @@ namespace AIII.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private UserRatingRepository _userRating;
-
+        private ApplicationDbContext _context;
         public ManageController()
         {
-            _userRating = new UserRatingRepository();
+            _context = new ApplicationDbContext();
+            _userRating = new UserRatingRepository(_context);
         }
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
-            _userRating = new UserRatingRepository();
+            _userRating = new UserRatingRepository(_context);
         }
 
         public ApplicationSignInManager SignInManager

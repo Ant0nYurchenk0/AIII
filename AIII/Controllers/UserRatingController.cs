@@ -17,7 +17,7 @@ namespace AIII.Controllers
         public UserRatingController()
         {
             _context = new ApplicationDbContext();
-            _repository = new UserRatingRepository();  
+            _repository = new UserRatingRepository(_context);  
         }
 
         public ActionResult IncrementLike(string movieId)
