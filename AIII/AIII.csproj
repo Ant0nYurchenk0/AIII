@@ -197,6 +197,10 @@
     <Compile Include="Migrations\202205191119253_UserNameFieldDeleted.designer.cs">
       <DependentUpon>202205191119253_UserNameFieldDeleted.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202205200652471_AddVideoPropertyInCustomMovieModel.cs" />
+    <Compile Include="Migrations\202205200652471_AddVideoPropertyInCustomMovieModel.designer.cs">
+      <DependentUpon>202205200652471_AddVideoPropertyInCustomMovieModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\UserRating.cs" />
     <Compile Include="Dtos\MovieShortInfoDto.cs" />
     <Compile Include="Dtos\MovieFullInfoDto.cs" />
@@ -486,6 +490,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202205191119253_UserNameFieldDeleted.resx">
       <DependentUpon>202205191119253_UserNameFieldDeleted.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205200652471_AddVideoPropertyInCustomMovieModel.resx">
+      <DependentUpon>202205200652471_AddVideoPropertyInCustomMovieModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

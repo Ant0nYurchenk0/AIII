@@ -42,5 +42,7 @@ namespace AIII.Models
         [Display(Name = "Box office")]
         public string CumulativeWorldWideGross { get; set; }
 
+        [Required, Display(Name = "Trailer")]
+        public string Video { get; set; }
     }
 }
