@@ -38,6 +38,7 @@ namespace AIII.Controllers.Api
 
             var movieFullInfo = Mapper.Map<CustomMovie, MovieFullInfoDto>(movie);
             movieFullInfo.ImdbRating = 0;
+            movieFullInfo.Video = "https://www.youtube.com/embed/" + movieFullInfo.Video.Substring(movieFullInfo.Video.Length - 11, 11);
 
             return movieFullInfo;
         }
