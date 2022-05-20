@@ -118,14 +118,14 @@
             <div class="col-md-2 col-4 ">
                 @if (true)
                 {
-                    <a type="button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Mark as unwatched" href="">
+                    <a type="button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Mark as unwatched" href="@Url.Action("SetAsWatched", "UserRating", new { movieId = Model.Id})">
                         <img class="icon" src="~/source/watched.png" />
 
                         </a>
                     }
                     else
                     {
-                        <a data-bs-toggle="tooltip" data-bs-placement="bottom" title="Mark as watched" href="">
+                        <a data-bs-toggle="tooltip" data-bs-placement="bottom" title="Mark as watched" href="@Url.Action("SetAsWatched", "UserRating", new { movieId = Model.Id})">
                             <img class="icon" src="~/source/unwatched.png" />
                         </a>
                     }

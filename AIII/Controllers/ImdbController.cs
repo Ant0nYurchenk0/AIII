@@ -24,25 +24,26 @@ namespace AIII.Controllers
         {
             try
             {
-            var userRating = new UserRatingAPIController();
-            var movie = new MovieFullInfoDto();
+                var userRating = new UserRatingAPIController();
+                var movie = new MovieFullInfoDto();
 
-            movie = _api.GetMovie(id);
-            if (movie.ImdbRating == null)
-                movie.ImdbRating = 0;
-            if(User.Identity.IsAuthenticated)
-                movie.UserRating = userRating.GetUserRating(id);
-            else
-            {
-                var userRatingRepository = new UserRatingRepository();
-                movie.UserRating = new UserRatingDto();
-                movie.UserRating.LikesAmount = userRatingRepository.GetAllUserAmountOfLikes(id);
-                movie.UserRating.DislikesAmount = userRatingRepository.GetAllUserAmountOfDislikes(id);
-            }
+                movie = _api.GetMovie(id);
+                if (movie.ImdbRating == null)
+                    movie.ImdbRating = 0;
+                if (User.Identity.IsAuthenticated)
+                    movie.UserRating = userRating.GetUserRating(id);
+                else
+                {
+                    var userRatingRepository = new UserRatingRepository();
+                    movie.UserRating = new UserRatingDto();
+                    movie.UserRating.LikesAmount = userRatingRepository.GetAllUserAmountOfLikes(id);
+                    movie.UserRating.DislikesAmount = userRatingRepository.GetAllUserAmountOfDislikes(id);
+                    movie.UserRating.WatchedAmount = userRatingRepository.GetAllUserWatchedAmount(id);
+                }
 
                 return View("..\\Movies\\Details", movie);
             }
-            catch (Microsoft.CSharp.RuntimeBinder.RuntimeBinderException ex)
+            catch (Microsoft.CSharp.RuntimeBinder.RuntimeBinderException _)
             {
                 return View("InvalidKey");
             }
@@ -52,7 +53,7 @@ namespace AIII.Controllers
             var movies = new SearchResult();
             movies.Movies = _api.GetPopularMovies();
             movies.SearchString = "Popular IMDB Movies";
-            if(movies.Movies.Count == 0)
+            if (movies.Movies.Count == 0)
                 return View("InvalidKey");
 
             return View("..\\Movies\\SearchResult", movies);
@@ -86,8 +87,8 @@ namespace AIII.Controllers
         }
         [Route("Imdb/Search/")]
         public ActionResult Search(string title, string country, string type, List<string> genres, List<string> releaseDate, List<string> userRating)
-        {            
-            if(AllNulls(title, country, type, genres, releaseDate, userRating))
+        {
+            if (AllNulls(title, country, type, genres, releaseDate, userRating))
                 return View("Index", "Home");
             var movies = new SearchResult();
             movies.Movies = _api.Search(title, country, type, genres, releaseDate, userRating);

@@ -13,5 +13,7 @@ namespace AIII.Models
         public int? LikesAmount { get; set; }
 
         public int? DislikesAmount { get; set; }
+
+        public int? WatchedAmount { get; set; }
     }
 }
