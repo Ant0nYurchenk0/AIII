@@ -149,6 +149,11 @@ namespace AIII.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (UserManager.Users.Any(u => u.Email == model.Email))
+                {
+                    ModelState.AddModelError("", $"Name {model.Email} is alredy taken");
+                    return View(model);
+                }
                 var key = model.ImdbKey == null? Imdb.DefaultKey : model.ImdbKey;
                 var user = new ApplicationUser { Email = model.Email, UserName = model.Email, ImdbKey = key };
                 var result = await UserManager.CreateAsync(user, model.Password);
