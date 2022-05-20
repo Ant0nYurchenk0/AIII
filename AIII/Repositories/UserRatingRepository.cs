@@ -41,6 +41,15 @@ namespace AIII.Repositories
             return _context.UserMovieRating.Where(r => r.MovieId == movieId).Count(Dislikes => Dislikes.DislikesAmount > 0);
         }
 
+        public int GetUserAmountOfLikes(string iserId)
+        {
+            return _context.UserMovieRating.Where(u => u.UserId == iserId).Count(likes => likes.LikesAmount > 0);
+        }
+        public int GetUserAmountOfDislikes(string iserId)
+        {
+            return _context.UserMovieRating.Where(u => u.UserId == iserId).Count(likes => likes.DislikesAmount > 0);
+        }
+
         public void IncrementLike(UserRating userRating)
         {
             if (userRating.LikesAmount == 0)

@@ -8,6 +8,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using AIII.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
+using AIII.Repositories;
 
 namespace AIII.Controllers
 {
@@ -16,15 +17,18 @@ namespace AIII.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private UserRatingRepository _userRating;
 
         public ManageController()
         {
+            _userRating = new UserRatingRepository();
         }
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            _userRating = new UserRatingRepository();
         }
 
         public ApplicationSignInManager SignInManager
@@ -88,7 +92,9 @@ namespace AIII.Controllers
                 : "";
 
             var key = UserManager.Users.Where(u => u.Email == User.Identity.Name).FirstOrDefault().ImdbKey;
-            var user = new ManageAccountViewModel { ImdbKey = key };
+            var likes = _userRating.GetUserAmountOfLikes(User.Identity.Name);
+            var dislikes = _userRating.GetUserAmountOfDislikes(User.Identity.Name);
+            var user = new ManageAccountViewModel { ImdbKey = key, LikesAmount = likes, DislikesAmount = dislikes };
             return View(user);
         }
 
