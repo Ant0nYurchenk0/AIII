@@ -9,6 +9,9 @@ using Microsoft.Owin.Security;
 using AIII.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 using AIII.Repositories;
+using System.Collections.Generic;
+using AIII.ViewModels;
+using AIII.Dtos;
 
 namespace AIII.Controllers
 {
@@ -18,11 +21,13 @@ namespace AIII.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private UserRatingRepository _userRating;
+        private MovieRepository _movieRepository;
         private ApplicationDbContext _context;
         public ManageController()
         {
             _context = new ApplicationDbContext();
             _userRating = new UserRatingRepository(_context);
+            _movieRepository = new MovieRepository();
         }
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
@@ -92,9 +97,11 @@ namespace AIII.Controllers
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
                 : "";
 
+            var name = User.Identity.Name;
             var key = UserManager.Users.Where(u => u.Email == User.Identity.Name).FirstOrDefault().ImdbKey;
-            var likes = _userRating.GetUserAmountOfLikes(User.Identity.Name);
-            var dislikes = _userRating.GetUserAmountOfDislikes(User.Identity.Name);
+            var likes = _userRating.GetUserLikedMoviesId(name).Count();
+            var dislikes = _userRating.GetUserDislikedMoviesId(name).Count();
+            var watches = _userRating.GetUserWatchedMoviesId(name).Count();
             var user = new ManageAccountViewModel { ImdbKey = key, LikesAmount = likes, DislikesAmount = dislikes };
             return View(user);
         }
@@ -117,6 +124,51 @@ namespace AIII.Controllers
             }
 
             return View(model);
+        }
+
+        public ActionResult UserLikedMovies()
+        {
+            var userId = User.Identity.Name;
+            var likedMoviesId = _userRating.GetUserLikedMoviesId(userId);
+            var likedMovies = _movieRepository.GetMoviesByIds(likedMoviesId);
+
+            var result = new SearchResult
+            {
+                Movies = likedMovies,
+                SearchString = "List of liked movies"
+            };
+
+            return View(result);
+        }
+
+        public ActionResult UserDislikedMovies()
+        {
+            var userId = User.Identity.Name;
+            var dislikedMoviesId = _userRating.GetUserDislikedMoviesId(userId);
+            var dislikedMovies = _movieRepository.GetMoviesByIds(dislikedMoviesId);
+
+            var result = new SearchResult
+            {
+                Movies = dislikedMovies,
+                SearchString = "List of disliked movies"
+            };
+
+            return View(result);
+        }
+
+        public ActionResult UserWatchedMovies()
+        {
+            var userId = User.Identity.Name;
+            var watchedMoviesId = _userRating.GetUserWatchedMoviesId(userId);
+            var watchedMovies = _movieRepository.GetMoviesByIds(watchedMoviesId);
+
+            var result = new SearchResult
+            {
+                Movies = watchedMovies,
+                SearchString = "List of watched movies"
+            };
+
+            return View(result);
         }
 
         //

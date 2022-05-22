@@ -23,17 +23,17 @@
             </h6>
             <br />
             <div class="center">
-                <a>
+                <a href="@Url.Action("UserLikedMovies")">
                     <img class="icon" src="~/source/like.png" />
                     <span class="count"> @Model.LikesAmount</span>
                 </a>
                 <span></span>
-                <a class="member-info">
+                <a class="member-info" href="@Url.Action("UserDislikedMovies")">
                     <img class="icon" src="~/source/dislike.png" />
                     <span class="count"> @Model.DislikesAmount</span>
                 </a>
                 <span></span>
-                <a>
+                <a href="@Url.Action("UserWatchedMovies")">
                     <img class="icon" src="~/source/watched.png" />
                     <span class="count"> @Model.WatchedFilmsAmount</span>
                 </a>
