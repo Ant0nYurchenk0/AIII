@@ -43,13 +43,27 @@ namespace AIII.Repositories
             return _context.UserMovieRating.Where(r => r.MovieId == movieId).Count(Watched => Watched.WatchedAmount > 0);
         }
 
-        public int GetUserAmountOfLikes(string iserId)
+        public List<string> GetUserLikedMoviesId(string userId)
         {
-            return _context.UserMovieRating.Where(u => u.UserId == iserId).Count(likes => likes.LikesAmount > 0);
+            return _context.UserMovieRating
+                .Where(u => u.UserId == userId)
+                .Where(likes => likes.LikesAmount > 0)
+                .Select(m => m.MovieId).ToList();
         }
-        public int GetUserAmountOfDislikes(string iserId)
+        public List<string> GetUserDislikedMoviesId(string userId)
         {
-            return _context.UserMovieRating.Where(u => u.UserId == iserId).Count(likes => likes.DislikesAmount > 0);
+            return _context.UserMovieRating
+                .Where(u => u.UserId == userId)
+                .Where(dislikes => dislikes.DislikesAmount > 0)
+                .Select(m => m.MovieId).ToList();
+        }
+
+        public List<string> GetUserWatchedMoviesId (string userId)
+        {
+            return _context.UserMovieRating
+                .Where(u => u.UserId == userId)
+                .Where(watched => watched.LikesAmount > 0)
+                .Select(m => m.MovieId).ToList();
         }
 
         public void IncrementLike(UserRating userRating)
