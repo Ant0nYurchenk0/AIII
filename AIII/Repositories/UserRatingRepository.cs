@@ -46,24 +46,21 @@ namespace AIII.Repositories
         public List<string> GetUserLikedMoviesId(string userId)
         {
             return _context.UserMovieRating
-                .Where(u => u.UserId == userId)
-                .Where(likes => likes.LikesAmount > 0)
-                .Select(m => m.MovieId).ToList();
+                .Where(u => u.UserId == userId && u.LikesAmount > 0)
+                .Select(m => m.MovieId).Distinct().ToList();
         }
         public List<string> GetUserDislikedMoviesId(string userId)
         {
             return _context.UserMovieRating
-                .Where(u => u.UserId == userId)
-                .Where(dislikes => dislikes.DislikesAmount > 0)
-                .Select(m => m.MovieId).ToList();
+                .Where(u => u.UserId == userId && u.DislikesAmount > 0)
+                .Select(m => m.MovieId).Distinct().ToList();
         }
 
         public List<string> GetUserWatchedMoviesId (string userId)
         {
             return _context.UserMovieRating
-                .Where(u => u.UserId == userId)
-                .Where(watched => watched.LikesAmount > 0)
-                .Select(m => m.MovieId).ToList();
+                .Where(u => u.UserId == userId && u.WatchedAmount > 0)
+                .Select(m => m.MovieId).Distinct().ToList();
         }
 
         public void IncrementLike(UserRating userRating)
