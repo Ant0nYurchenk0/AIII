@@ -3,19 +3,38 @@
 @{
     ViewBag.Title = "ManageAccount";
 }
-<div class="row">
+<div class="main">
 
     <h2>Personal Account</h2>
     <p class="text-success">@ViewBag.StatusMessage</p>
     <br />
 
-    <div class="col-4"></div>
-    <div class="col-3 left">
+    <div class="center">
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
             <h4 class="form-group text-primary">@User.Identity.Name</h4>
+            <br />
+            <span>
+                <a href="@Url.Action("UserLikedMovies")">
+                    <img class="icon" src="~/source/like.png" />
+                    <span class="count"> @Model.LikesAmount</span>
+                </a>
+            </span>
+            <span  class="member-info">
+                <a href="@Url.Action("UserDislikedMovies")">
+                    <img class="icon" src="~/source/dislike.png" />
+                    <span class="count"> @Model.DislikesAmount</span>
+                </a>
+            </span>
+            <span>
 
+                <a href="@Url.Action("UserWatchedMovies")">
+                    <img class="icon" src="~/source/watched.png" />
+                    <span class="count"> @Model.WatchedFilmsAmount</span>
+                </a>
+            </span>
+            <br />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
                 <label class="col-form-label mt-4" for="inputDefault">
@@ -33,30 +52,6 @@
             </div>
         }
     </div>
-    <div class="left col-2">
-        <div>
-            <a href="@Url.Action("UserLikedMovies")">
-                <img class="icon" src="~/source/like.png" />
-                <span class="count"> @Model.LikesAmount</span>
-            </a>
-        </div>
-        <br />
-        <div>
-            <a href="@Url.Action("UserDislikedMovies")">
-                <img class="icon" src="~/source/dislike.png" />
-                <span class="count"> @Model.DislikesAmount</span>
-            </a>
-        </div>
-        <br />
-        <div>
-
-            <a href="@Url.Action("UserWatchedMovies")">
-                <img class="icon" src="~/source/watched.png" />
-                <span class="count"> @Model.WatchedFilmsAmount</span>
-            </a>
-        </div>
-    </div>
-    <div class="col-3"></div>
 
 </div>
 
