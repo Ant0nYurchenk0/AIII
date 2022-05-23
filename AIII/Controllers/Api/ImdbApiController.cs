@@ -15,9 +15,9 @@ namespace AIII.Controllers.Api
     public class ImdbApiController : ApiController, IImdbApiController
     {
         private ImdbRepository _repository;
-        public ImdbApiController()
+        public ImdbApiController(ImdbRepository repository)
         {
-            _repository = new ImdbRepository();
+            _repository = repository;
         }
 
         [HttpGet]

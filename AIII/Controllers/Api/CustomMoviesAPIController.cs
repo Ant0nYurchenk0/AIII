@@ -13,9 +13,9 @@ namespace AIII.Controllers.Api
     public class CustomMoviesAPIController : ApiController
     {
         private ApplicationDbContext _context;
-        public CustomMoviesAPIController()
+        public CustomMoviesAPIController(ApplicationDbContext context)
         {
-            _context = new ApplicationDbContext();
+            _context = context;
         }
 
         public IEnumerable<MovieShortInfoDto> GetShortInfoMovies()

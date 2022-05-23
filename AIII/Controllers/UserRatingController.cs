@@ -14,10 +14,10 @@ namespace AIII.Controllers
         ApplicationDbContext _context;
         UserRatingRepository _repository;
 
-        public UserRatingController()
+        public UserRatingController(ApplicationDbContext context, UserRatingRepository repository)
         {
-            _context = new ApplicationDbContext();
-            _repository = new UserRatingRepository(_context);  
+            _context = context;
+            _repository = repository;  
         }
 
         public ActionResult IncrementLike(string movieId)

@@ -11,12 +11,12 @@ namespace AIII.Controllers.Api
     public class UserRatingAPIController : ApiController
     {
         ApplicationDbContext _context;
-        UserRatingRepository repository;
+        UserRatingRepository _repository;
 
-        public UserRatingAPIController()
+        public UserRatingAPIController(ApplicationDbContext context, UserRatingRepository repository)
         {
-            _context = new ApplicationDbContext();
-            repository = new UserRatingRepository(_context);
+            _context = context;
+            _repository = repository;
         }
 
         public UserRatingDto GetUserRating(string movieId)
@@ -25,15 +25,15 @@ namespace AIII.Controllers.Api
 
             if (userRating == null)
             {
-                userRating = repository.UserRatingIsNull(userRating, movieId, User.Identity.Name);
+                userRating = _repository.UserRatingIsNull(userRating, movieId, User.Identity.Name);
 
                 _context.UserMovieRating.Add(userRating);
                 _context.SaveChanges();
             }
 
-            userRating.LikesAmount = repository.GetAllUserAmountOfLikes(movieId) > 0 ? repository.GetAllUserAmountOfLikes(movieId) : 0;
-            userRating.DislikesAmount = repository.GetAllUserAmountOfDislikes(movieId) > 0 ? repository.GetAllUserAmountOfDislikes(movieId) : 0;
-            userRating.WatchedAmount = repository.GetAllUserWatchedAmount(movieId) > 0 ? repository.GetAllUserWatchedAmount(movieId) : 0;
+            userRating.LikesAmount = _repository.GetAllUserAmountOfLikes(movieId) > 0 ? _repository.GetAllUserAmountOfLikes(movieId) : 0;
+            userRating.DislikesAmount = _repository.GetAllUserAmountOfDislikes(movieId) > 0 ? _repository.GetAllUserAmountOfDislikes(movieId) : 0;
+            userRating.WatchedAmount = _repository.GetAllUserWatchedAmount(movieId) > 0 ? _repository.GetAllUserWatchedAmount(movieId) : 0;
 
             var dto = Mapper.Map<UserRating, UserRatingDto>(userRating);
 
