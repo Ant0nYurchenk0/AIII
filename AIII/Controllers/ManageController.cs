@@ -23,18 +23,18 @@ namespace AIII.Controllers
         private UserRatingRepository _userRating;
         private MovieRepository _movieRepository;
         private ApplicationDbContext _context;
-        public ManageController()
+        public ManageController(ApplicationDbContext context, UserRatingRepository userRating, MovieRepository movieRepository)
         {
-            _context = new ApplicationDbContext();
-            _userRating = new UserRatingRepository(_context);
-            _movieRepository = new MovieRepository();
+            _context = context;
+            _userRating = userRating;
+            _movieRepository = movieRepository;
         }
 
-        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, UserRatingRepository userRating)
         {
             UserManager = userManager;
             SignInManager = signInManager;
-            _userRating = new UserRatingRepository(_context);
+            _userRating = userRating;
         }
 
         public ApplicationSignInManager SignInManager

@@ -17,15 +17,22 @@ namespace AIII.Controllers
     {
         private ApplicationDbContext _context;
         private CustomMoviesAPIController _apiController;
+        private UserRatingAPIController _userRatingApi;
+        private UserRatingRepository _userRatingRepository;
 
-        public CustomMovieController()
+        public CustomMovieController(UserRatingAPIController userRatingApi, 
+            ApplicationDbContext context, 
+            CustomMoviesAPIController apiController,
+            UserRatingRepository userRatingRepository)
         {
-            _context = new ApplicationDbContext();
+            _context = context;
+            _apiController = apiController;
+            _userRatingApi = userRatingApi;
+            _userRatingRepository = userRatingRepository;
         }
 
         public ActionResult Index()
         {
-            _apiController = new CustomMoviesAPIController();
             var moviesSerchResult = new SearchResult();
 
             var movies = _apiController.GetMovies();
@@ -54,7 +61,6 @@ namespace AIII.Controllers
 
         public ActionResult Delete(string id)
         {
-            _apiController = new CustomMoviesAPIController();
 
             _apiController.DeleteMovie(id);
 
@@ -86,17 +92,14 @@ namespace AIII.Controllers
 
         public ActionResult GetMovie(string id)
         {
-            _apiController = new CustomMoviesAPIController();
-            var userRatingApi = new UserRatingAPIController();
             var movie = new MovieFullInfoDto();
 
             movie = _apiController.GetMovie(id);
             if (User.Identity.IsAuthenticated)
-                movie.UserRating = userRatingApi.GetUserRating(id);
+                movie.UserRating = _userRatingApi.GetUserRating(id);
             else
             {
-                var userRatingRepository = new UserRatingRepository(_context);
-                movie.UserRating = new UserRatingDto(id, userRatingRepository);
+                movie.UserRating = new UserRatingDto(id, _userRatingRepository);
             }
 
             return View("..\\Movies\\Details", movie);

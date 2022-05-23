@@ -16,18 +16,21 @@ namespace AIII.Controllers
     public class ImdbController : Controller
     {
         private IImdbApiController _api;
-        private ApplicationDbContext _dbContext;
+        private ApplicationDbContext _context;
+        private UserRatingAPIController _userRating;
+        private UserRatingRepository _userRatingRepository;
         // GET: Movies
-        public ImdbController()
+        public ImdbController(ImdbApiController api, UserRatingAPIController userRating, ApplicationDbContext context, UserRatingRepository userRatingRepository)
         {
-            _api = new ImdbApiController();
-            _dbContext = new ApplicationDbContext();
+            _api = api;
+            _context = context;
+            _userRating = userRating;
+            _userRatingRepository = userRatingRepository;   
         }
         public ActionResult GetMovie(string id)
         {
             try
             {
-                var userRating = new UserRatingAPIController();
                 var movie = new MovieFullInfoDto();
 
                 movie = _api.GetMovie(id);
@@ -35,11 +38,10 @@ namespace AIII.Controllers
                     movie.ImdbRating = 0;
                 
                 if (User.Identity.IsAuthenticated)
-                    movie.UserRating = userRating.GetUserRating(id);
+                    movie.UserRating = _userRating.GetUserRating(id);
                 else
                 {
-                    var userRatingRepository = new UserRatingRepository(_dbContext);
-                    movie.UserRating = new UserRatingDto(id, userRatingRepository);
+                    movie.UserRating = new UserRatingDto(id, _userRatingRepository);
                     
                 }
 

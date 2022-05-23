@@ -17,10 +17,11 @@ namespace AIII.Controllers
         IImdbApiController _imdbApi;
         CustomMoviesAPIController _customApi;
         ApplicationDbContext _context;
-        public HomeController()
+        public HomeController(ImdbApiController imdbApi, CustomMoviesAPIController customApi, ApplicationDbContext context)
         {
-            _imdbApi = new ImdbApiController();
-            _customApi = new CustomMoviesAPIController();
+            _imdbApi = imdbApi;
+            _customApi = customApi;
+            _context = context;
         }
 
         public ActionResult Index()
