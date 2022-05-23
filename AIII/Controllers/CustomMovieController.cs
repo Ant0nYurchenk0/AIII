@@ -18,12 +18,17 @@ namespace AIII.Controllers
         private ApplicationDbContext _context;
         private CustomMoviesAPIController _apiController;
         private UserRatingAPIController _userRatingApi;
+        private UserRatingRepository _userRatingRepository;
 
-        public CustomMovieController(UserRatingAPIController userRatingApi, ApplicationDbContext context, CustomMoviesAPIController apiController)
+        public CustomMovieController(UserRatingAPIController userRatingApi, 
+            ApplicationDbContext context, 
+            CustomMoviesAPIController apiController,
+            UserRatingRepository userRatingRepository)
         {
             _context = context;
             _apiController = apiController;
             _userRatingApi = userRatingApi;
+            _userRatingRepository = userRatingRepository;
         }
 
         public ActionResult Index()
@@ -94,8 +99,7 @@ namespace AIII.Controllers
                 movie.UserRating = _userRatingApi.GetUserRating(id);
             else
             {
-                var userRatingRepository = new UserRatingRepository(_context);
-                movie.UserRating = new UserRatingDto(id, userRatingRepository);
+                movie.UserRating = new UserRatingDto(id, _userRatingRepository);
             }
 
             return View("..\\Movies\\Details", movie);
