@@ -102,7 +102,7 @@ namespace AIII.Controllers
             var likes = _userRating.GetUserLikedMoviesId(name).Count();
             var dislikes = _userRating.GetUserDislikedMoviesId(name).Count();
             var watches = _userRating.GetUserWatchedMoviesId(name).Count();
-            var user = new ManageAccountViewModel { ImdbKey = key, LikesAmount = likes, DislikesAmount = dislikes };
+            var user = new ManageAccountViewModel { ImdbKey = key, LikesAmount = likes, DislikesAmount = dislikes, WatchedFilmsAmount = watches };
             return View(user);
         }
 
