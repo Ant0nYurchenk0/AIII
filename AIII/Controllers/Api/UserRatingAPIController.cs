@@ -24,10 +24,12 @@ namespace AIII.Controllers.Api
             var userRating = _context.UserMovieRating.FirstOrDefault(r => r.MovieId == movieId && r.UserId == User.Identity.Name);
 
             if (userRating == null)
-                userRating = repository.UserRatingIsNull(userRating,movieId,User.Identity.Name);
+            {
+                userRating = repository.UserRatingIsNull(userRating, movieId, User.Identity.Name);
 
-            _context.UserMovieRating.Add(userRating);
-            _context.SaveChanges();
+                _context.UserMovieRating.Add(userRating);
+                _context.SaveChanges();
+            }
 
             userRating.LikesAmount = repository.GetAllUserAmountOfLikes(movieId) > 0 ? repository.GetAllUserAmountOfLikes(movieId) : 0;
             userRating.DislikesAmount = repository.GetAllUserAmountOfDislikes(movieId) > 0 ? repository.GetAllUserAmountOfDislikes(movieId) : 0;
