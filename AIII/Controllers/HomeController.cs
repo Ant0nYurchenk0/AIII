@@ -1,14 +1,9 @@
 ﻿using AIII.Controllers.Api;
-using AIII.Repositories;
-using AIII.ViewModels;
-using System.Web.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Http;
 using AIII.Models;
+using AIII.ViewModels;
 using AutoMapper;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace AIII.Controllers
 {

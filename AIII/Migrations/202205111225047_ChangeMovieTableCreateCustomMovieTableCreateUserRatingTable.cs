@@ -1,8 +1,7 @@
 ﻿namespace AIII.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
-    
+
     public partial class ChangeMovieTableCreateCustomMovieTableCreateUserRatingTable : DbMigration
     {
         public override void Up()
@@ -11,33 +10,33 @@
             CreateTable(
                 "dbo.CustomMovies",
                 c => new
-                    {
-                        MovieId = c.Int(nullable: false, identity: true),
-                        Title = c.String(),
-                        Poster = c.String(),
-                        Year = c.DateTime(nullable: false),
-                        Genre = c.String(),
-                        Type = c.String(),
-                        Country = c.String(),
-                        Plot = c.String(),
-                        Budget = c.Double(nullable: false),
-                        Cast = c.String(),
-                        BoxOffice = c.Double(nullable: false),
-                    })
+                {
+                    MovieId = c.Int(nullable: false, identity: true),
+                    Title = c.String(),
+                    Poster = c.String(),
+                    Year = c.DateTime(nullable: false),
+                    Genre = c.String(),
+                    Type = c.String(),
+                    Country = c.String(),
+                    Plot = c.String(),
+                    Budget = c.Double(nullable: false),
+                    Cast = c.String(),
+                    BoxOffice = c.Double(nullable: false),
+                })
                 .PrimaryKey(t => t.MovieId);
-            
+
             CreateTable(
                 "dbo.UserRatings",
                 c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        UserId = c.Int(nullable: false),
-                        MovieId = c.Int(nullable: false),
-                        GoodEmodjiAmount = c.Int(nullable: false),
-                        BadEmodjiAmount = c.Int(nullable: false),
-                    })
+                {
+                    Id = c.Int(nullable: false, identity: true),
+                    UserId = c.Int(nullable: false),
+                    MovieId = c.Int(nullable: false),
+                    GoodEmodjiAmount = c.Int(nullable: false),
+                    BadEmodjiAmount = c.Int(nullable: false),
+                })
                 .PrimaryKey(t => t.Id);
-            
+
             AddColumn("dbo.Movies", "Id", c => c.Int(nullable: false));
             AddColumn("dbo.Movies", "IsInIMDB", c => c.Boolean(nullable: false));
             AddPrimaryKey("dbo.Movies", "Id");
@@ -58,7 +57,7 @@
             DropColumn("dbo.Movies", "GoodEmodjiAmount");
             DropColumn("dbo.Movies", "BadEmodjiAmount");
         }
-        
+
         public override void Down()
         {
             AddColumn("dbo.Movies", "BadEmodjiAmount", c => c.Int(nullable: false));

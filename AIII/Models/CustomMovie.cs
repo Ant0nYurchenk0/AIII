@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
 
 namespace AIII.Models
 {
@@ -16,11 +13,13 @@ namespace AIII.Models
         [Required]
         public string Title { get; set; }
 
+        public double? ImdbRating { get; set; }
+
         [Required]
         [Display(Name = "Poster URL")]
         public string Image { get; set; }
 
-        [Display(Name ="Release Date")]
+        [Display(Name = "Release Date")]
         public DateTime ReleaseDate { get; set; }
 
         [Required]
@@ -43,6 +42,7 @@ namespace AIII.Models
         public string CumulativeWorldWideGross { get; set; }
 
         [Required, Display(Name = "Trailer")]
+        [MinLength(11)]
         public string Video { get; set; }
     }
 }

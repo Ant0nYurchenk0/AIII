@@ -17,7 +17,7 @@ namespace AIII.Controllers
         public UserRatingController(ApplicationDbContext context, UserRatingRepository repository)
         {
             _context = context;
-            _repository = repository;  
+            _repository = repository;
         }
 
         public ActionResult IncrementLike(string movieId)
@@ -42,7 +42,7 @@ namespace AIII.Controllers
             _context.SaveChanges();
 
             if (!movieId.StartsWith("aaa"))
-                return RedirectToAction("GetMovie", "Imdb", new {id = movieId});
+                return RedirectToAction("GetMovie", "Imdb", new { id = movieId });
             else
                 return RedirectToAction("GetMovie", "CustomMovie", new { id = movieId });
         }
@@ -63,12 +63,12 @@ namespace AIII.Controllers
             var movies = _context.UserMovieRating
                 .GroupBy(r => r.MovieId)
                 .Select(m => new { Likes = m.Sum(r => r.LikesAmount), Id = m.Select(r => r.MovieId).FirstOrDefault().ToString() })
-                .ToList()
-                .OrderByDescending(m=>m.Likes);
+                .OrderByDescending(m => m.Likes)
+                .ToList();
             var movieDtos = new List<MovieShortInfoDto>();
             foreach (var movie in movies.Where(r => r.Likes != 0))
             {
-                if(movie.Id[0] != 'a')
+                if (movie.Id[0] != 'a')
                 {
                     var info = _context.MovieShortInfo.First(m => m.Id == movie.Id);
                     movieDtos.Add(Mapper.Map<MovieShortInfo, MovieShortInfoDto>(info));
@@ -81,7 +81,6 @@ namespace AIII.Controllers
             }
             var result = new SearchResult();
             result.Movies = movieDtos;
-            result.SearchString = "Most Liked";
             return View("..\\Movies\\SearchResult", result);
         }
         public ActionResult GetMostWatched()
@@ -89,8 +88,8 @@ namespace AIII.Controllers
             var movies = _context.UserMovieRating
                 .GroupBy(r => r.MovieId)
                 .Select(m => new { Views = m.Sum(r => r.WatchedAmount), Id = m.Select(r => r.MovieId).FirstOrDefault().ToString() })
-                .ToList()
-                .OrderByDescending(m => m.Views);
+                .OrderByDescending(m => m.Views)
+                .ToList();
             var movieDtos = new List<MovieShortInfoDto>();
             foreach (var movie in movies.Where(r => r.Views != 0))
             {
@@ -107,7 +106,6 @@ namespace AIII.Controllers
             }
             var result = new SearchResult();
             result.Movies = movieDtos;
-            result.SearchString = "Most Watched";
             return View("..\\Movies\\SearchResult", result);
         }
 

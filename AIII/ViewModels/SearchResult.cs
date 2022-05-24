@@ -1,14 +1,18 @@
-﻿using AIII.Dtos;
-using System;
+﻿using AIII.Constants;
+using AIII.Dtos;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace AIII.ViewModels
 {
     public class SearchResult
     {
-        public List<MovieShortInfoDto> Movies { get; set; }
-        public string SearchString { get; set; }
+        public IEnumerable<MovieShortInfoDto> Movies { get; set; }
+        public string Title { get; set; }
+        public List<string> Genres { get; set; }
+        public List<string> UserRating { get; set; }
+        public Sorting Sorting { get; set; }
+        public int NumberOfPages { get; set; }
+        public int CurrentPage { get; set; }
+
     }
 }

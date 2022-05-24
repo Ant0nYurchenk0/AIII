@@ -1,8 +1,7 @@
 ﻿namespace AIII.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
-    
+
     public partial class RenameUserRatingTableColumn : DbMigration
     {
         public override void Up()
@@ -12,7 +11,7 @@
             DropColumn("dbo.UserRatings", "GoodEmodjiAmount");
             DropColumn("dbo.UserRatings", "BadEmodjiAmount");
         }
-        
+
         public override void Down()
         {
             AddColumn("dbo.UserRatings", "BadEmodjiAmount", c => c.Int(nullable: false));

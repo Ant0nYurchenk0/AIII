@@ -1,8 +1,7 @@
 ﻿namespace AIII.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
-    
+
     public partial class AddDataAnnotationToCustomMovieTable : DbMigration
     {
         public override void Up()
@@ -13,7 +12,7 @@
             AlterColumn("dbo.CustomMovies", "Countries", c => c.String(nullable: false));
             AlterColumn("dbo.CustomMovies", "Plot", c => c.String(nullable: false));
         }
-        
+
         public override void Down()
         {
             AlterColumn("dbo.CustomMovies", "Plot", c => c.String());

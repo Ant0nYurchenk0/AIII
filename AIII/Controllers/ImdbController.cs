@@ -1,31 +1,26 @@
 ﻿using AIII.Controllers.Api;
 using AIII.Dtos;
+using AIII.Repositories;
 using AIII.ViewModels;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using Microsoft.AspNet.Identity;
 using System.Web.Mvc;
-using AIII.Models;
-using AIII.Repositories;
-using AutoMapper;
 
 namespace AIII.Controllers
 {
     public class ImdbController : Controller
     {
         private IImdbApiController _api;
-        private ApplicationDbContext _context;
         private UserRatingAPIController _userRating;
         private UserRatingRepository _userRatingRepository;
         // GET: Movies
-        public ImdbController(ImdbApiController api, UserRatingAPIController userRating, ApplicationDbContext context, UserRatingRepository userRatingRepository)
+        public ImdbController(ImdbApiController api,
+            UserRatingAPIController userRating,
+            UserRatingRepository userRatingRepository)
         {
             _api = api;
-            _context = context;
             _userRating = userRating;
-            _userRatingRepository = userRatingRepository;   
+            _userRatingRepository = userRatingRepository;
         }
         public ActionResult GetMovie(string id)
         {
@@ -36,13 +31,13 @@ namespace AIII.Controllers
                 movie = _api.GetMovie(id);
                 if (movie.ImdbRating == null)
                     movie.ImdbRating = 0;
-                
+
                 if (User.Identity.IsAuthenticated)
                     movie.UserRating = _userRating.GetUserRating(id);
                 else
                 {
                     movie.UserRating = new UserRatingDto(id, _userRatingRepository);
-                    
+
                 }
 
                 return View("..\\Movies\\Details", movie);
@@ -56,8 +51,7 @@ namespace AIII.Controllers
         {
             var movies = new SearchResult();
             movies.Movies = _api.GetPopularMovies();
-            movies.SearchString = "Popular IMDB Movies";
-            if (movies.Movies.Count == 0)
+            if (movies.Movies.Count() == 0)
                 return View("InvalidKey");
 
             return View("..\\Movies\\SearchResult", movies);
@@ -66,8 +60,7 @@ namespace AIII.Controllers
         {
             var movies = new SearchResult();
             movies.Movies = _api.GetPopularTVs();
-            movies.SearchString = "Popular IMDB TV series";
-            if (movies.Movies.Count == 0)
+            if (movies.Movies.Count() == 0)
                 return View("InvalidKey");
             return View("..\\Movies\\SearchResult", movies);
         }
@@ -75,8 +68,7 @@ namespace AIII.Controllers
         {
             var movies = new SearchResult();
             movies.Movies = _api.GetTopMovies();
-            movies.SearchString = "Top Rated IMDB Movies";
-            if (movies.Movies.Count == 0)
+            if (movies.Movies.Count() == 0)
                 return View("InvalidKey");
             return View("..\\Movies\\SearchResult", movies);
         }
@@ -84,8 +76,7 @@ namespace AIII.Controllers
         {
             var movies = new SearchResult();
             movies.Movies = _api.GetTopTVs();
-            movies.SearchString = "Top Rated IMDB TV series";
-            if (movies.Movies.Count == 0)
+            if (movies.Movies.Count() == 0)
                 return View("InvalidKey");
             return View("..\\Movies\\SearchResult", movies);
         }
@@ -95,8 +86,7 @@ namespace AIII.Controllers
             if (AllNulls(title, country, type, genres, releaseDate, userRating))
                 return View("Index", "Home");
             var movies = new SearchResult();
-            movies.Movies = _api.Search(title, country, type, genres, releaseDate, userRating);
-            movies.SearchString = title;
+            //movies.Movies = _api.Search(title, country, type, genres, releaseDate, userRating);
             return View("..\\Movies\\SearchResult", movies);
         }
 
@@ -107,6 +97,6 @@ namespace AIII.Controllers
                     return false;
             return true;
         }
-        
+
     }
 }

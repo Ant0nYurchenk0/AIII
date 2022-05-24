@@ -1,8 +1,8 @@
-﻿using System.Data.Entity;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace AIII.Models
 {
@@ -25,6 +25,7 @@ namespace AIII.Models
         public DbSet<UserRating> UserMovieRating { get; set; }
         public DbSet<CustomMovie> CustomMovies { get; set; }
         public DbSet<TeamMember> TeamMembers { get; set; }
+        public DbSet<SearchInfo> SearchInfo { get; set; }
         public DbSet<MovieShortInfo> MovieShortInfo { get; set; }
 
         public ApplicationDbContext()

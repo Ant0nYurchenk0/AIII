@@ -1,8 +1,7 @@
 ﻿namespace AIII.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
-    
+
     public partial class AddPropertyToCustomMovieTable : DbMigration
     {
         public override void Up()
@@ -28,7 +27,7 @@
             //DropColumn("dbo.CustomMovies", "Cast");
             //DropColumn("dbo.CustomMovies", "BoxOffice");
         }
-        
+
         public override void Down()
         {
             AddColumn("dbo.CustomMovies", "BoxOffice", c => c.Double(nullable: false));

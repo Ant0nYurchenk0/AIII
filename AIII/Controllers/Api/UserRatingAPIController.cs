@@ -1,7 +1,6 @@
 ﻿using AIII.Dtos;
 using AIII.Models;
 using AIII.Repositories;
-using AIII.ViewModels;
 using AutoMapper;
 using System.Linq;
 using System.Web.Http;
@@ -37,7 +36,7 @@ namespace AIII.Controllers.Api
 
             var dto = Mapper.Map<UserRating, UserRatingDto>(userRating);
 
-            dto.Watched =_context.UserMovieRating.Any(r => r.MovieId == movieId && r.UserId == User.Identity.Name && r.WatchedAmount > 0);
+            dto.Watched = _context.UserMovieRating.Any(r => r.MovieId == movieId && r.UserId == User.Identity.Name && r.WatchedAmount > 0);
             dto.Liked = _context.UserMovieRating.Any(r => r.MovieId == movieId && r.UserId == User.Identity.Name && r.LikesAmount > 0);
             dto.Disliked = _context.UserMovieRating.Any(r => r.MovieId == movieId && r.UserId == User.Identity.Name && r.DislikesAmount > 0);
 

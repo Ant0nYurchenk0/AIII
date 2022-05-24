@@ -2,12 +2,9 @@
 using AIII.Imdb_Api;
 using AIII.Models;
 using AIII.Repositories;
-using AutoMapper;
 using Microsoft.AspNet.Identity;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Http;
 
 namespace AIII.Controllers.Api
@@ -23,7 +20,7 @@ namespace AIII.Controllers.Api
         [HttpGet]
         [Route("api/imdb/movie")]
         public MovieFullInfoDto GetMovie(string id)
-        {            
+        {
             var movie = _repository.SearchById(id, GetImdbKey());
             _repository.SaveMovie(movie);
             return movie;
@@ -31,12 +28,11 @@ namespace AIII.Controllers.Api
 
         [HttpGet]
         [Route("api/imdb/search")]
-        public List<MovieShortInfoDto> Search(string title, string country, string type, List<string> genres, List<string> releaseDate, List<string> userRating)
+        public List<MovieFullInfoDto> Search(string title, string country, string type, List<string> genres, List<string> releaseDate, List<string> userRating)
         {
-        
             title = title.Trim();
             var genreStr = genres == null || genres.Count == 0 ? null : string.Join(",", genres);
-            var releaseDateStr = releaseDate == null || releaseDate.Count == 0 ? null : string.Join(",",releaseDate);
+            var releaseDateStr = releaseDate == null || releaseDate.Count == 0 ? null : string.Join(",", releaseDate);
             var userRatingStr = userRating == null || userRating.Count == 0 ? null : string.Join(",", userRating);
             var param = "?"
                 + (string.IsNullOrEmpty(title) ? string.Empty : "title=" + title + "&")
@@ -45,7 +41,7 @@ namespace AIII.Controllers.Api
                 + (string.IsNullOrEmpty(country) ? string.Empty : "countries=" + country + "&")
                 + (string.IsNullOrEmpty(userRatingStr) ? string.Empty : "user_rating=" + userRatingStr + "&")
                 + (string.IsNullOrEmpty(releaseDateStr) ? string.Empty : "release_date=" + releaseDateStr + "&");
-            var movies = _repository.Search(param, GetImdbKey()) ?? new List<MovieShortInfoDto>();
+            var movies = _repository.Search(param, GetImdbKey()) ?? new List<MovieFullInfoDto>();
             return movies;
         }
 
@@ -91,6 +87,6 @@ namespace AIII.Controllers.Api
             var key = manager.Users.Single(u => u.Id == userId).ImdbKey;
             return key;
         }
-        
+
     }
 }

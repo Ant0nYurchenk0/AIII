@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace AIII.Controllers.Api
@@ -57,6 +56,8 @@ namespace AIII.Controllers.Api
             return Created(new Uri(Request.RequestUri + "/" + movie.Id), movieDto);
         }
 
+
+
         [HttpPut]
         public IHttpActionResult UpdateMovie(string id, MovieFullInfoDto movieDto)
         {
@@ -71,7 +72,7 @@ namespace AIII.Controllers.Api
             Mapper.Map(movieDto, movieInDb);
             movieInDb.Title = movieDto.Title;
             movieInDb.Image = movieDto.Image;
-            movieInDb.ReleaseDate= movieDto.ReleaseDate.Value;
+            movieInDb.ReleaseDate = movieDto.ReleaseDate.Value;
             movieInDb.Genres = movieDto.Genres;
             movieInDb.Type = movieDto.Type;
             movieInDb.Countries = movieDto.Countries;
@@ -87,10 +88,13 @@ namespace AIII.Controllers.Api
         public void DeleteMovie(string id)
         {
             var movieInDb = _context.CustomMovies.SingleOrDefault(m => m.Id == id);
+            var shortInDb = _context.MovieShortInfo.SingleOrDefault(m => m.Id == id);
+            var searchInDb = _context.SearchInfo.SingleOrDefault(m => m.Id == id);
 
             if (movieInDb == null)
-                throw  new HttpResponseException(HttpStatusCode.NotFound);
-
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            _context.MovieShortInfo.Remove(shortInDb);
+            _context.SearchInfo.Remove(searchInDb);
             _context.CustomMovies.Remove(movieInDb);
             _context.SaveChanges();
         }

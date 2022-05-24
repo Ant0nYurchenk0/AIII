@@ -4,9 +4,6 @@ using AIII.Models;
 using AIII.Repositories;
 using AIII.ViewModels;
 using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -21,8 +18,8 @@ namespace AIII.Controllers
         private UserRatingAPIController _userRatingApi;
         private UserRatingRepository _userRatingRepository;
 
-        public CustomMovieController(UserRatingAPIController userRatingApi, 
-            ApplicationDbContext context, 
+        public CustomMovieController(UserRatingAPIController userRatingApi,
+            ApplicationDbContext context,
             CustomMoviesAPIController apiController,
             UserRatingRepository userRatingRepository)
         {
@@ -38,8 +35,8 @@ namespace AIII.Controllers
 
             var movies = _apiController.GetMovies();
             moviesSerchResult.Movies = _apiController.GetShortInfoMovies().ToList();
-                
-            if(User.IsInRole("Admin") || User.IsInRole("Moderator"))
+
+            if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
                 return View(movies);
             else
                 return View("..\\Movies\\SearchResult", moviesSerchResult);
@@ -71,22 +68,26 @@ namespace AIII.Controllers
         [HttpPost]
         public ActionResult Save(CustomMovie customMovie)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
                 return View("CustomMovieForm", customMovie);
 
-            if(customMovie.Id == null) 
+            if (customMovie.Id == null)
             {
                 customMovie.Id = CustomMovieRepository.GetId();
                 _context.CustomMovies.Add(customMovie);
+                _context.SearchInfo.Add(Mapper.Map<SearchInfo>(
+                    Mapper.Map<SearchInfoDto>(customMovie)));
             }
             else
             {
                 var customMovieInDb = _context.CustomMovies.Single(m => m.Id == customMovie.Id);
-
                 Mapper.Map(customMovie, customMovieInDb);
+                var searchInfoInDb = _context.SearchInfo.Single(m => m.Id == customMovie.Id);
+                var searchInfoDto = Mapper.Map<SearchInfoDto>(customMovie);
+                Mapper.Map(searchInfoDto, searchInfoInDb);
             }
             _context.SaveChanges();
-            
+
             return RedirectToAction("Index");
         }
 

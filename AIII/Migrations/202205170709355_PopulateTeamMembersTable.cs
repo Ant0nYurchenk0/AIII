@@ -1,8 +1,7 @@
 ﻿namespace AIII.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
-    
+
     public partial class PopulateTeamMembersTable : DbMigration
     {
         public override void Up()
@@ -16,7 +15,7 @@
             Sql("INSERT INTO TeamMembers ( Name, Photo, Role, GeneralInfo) VALUES " +
                 "( 'Anna', 'https://ibb.co/B2YX0sN', 'Developer, Site Designer', '')");
         }
-        
+
         public override void Down()
         {
         }

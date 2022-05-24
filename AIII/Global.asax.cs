@@ -1,9 +1,9 @@
+using AIII.App_Start;
+using AutoMapper;
+using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using System.Web.Http;
-using AutoMapper;
-using AIII.App_Start;
 
 namespace AIII
 {

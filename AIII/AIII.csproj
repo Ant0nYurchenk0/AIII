@@ -199,6 +199,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Constants\MovieProperties.cs" />
+    <Compile Include="Constants\Sorting.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\CustomMoviesAPIController.cs" />
     <Compile Include="Controllers\Api\IImdbApiController.cs" />
@@ -208,7 +209,9 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ImdbController.cs" />
     <Compile Include="Controllers\Api\UserRatingAPIController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\UserRatingController.cs" />
+    <Compile Include="Dtos\SearchInfoDto.cs" />
     <Compile Include="Migrations\202205191119253_UserNameFieldDeleted.cs" />
     <Compile Include="Migrations\202205191119253_UserNameFieldDeleted.designer.cs">
       <DependentUpon>202205191119253_UserNameFieldDeleted.cs</DependentUpon>
@@ -237,7 +240,20 @@
     <Compile Include="Migrations\202205200925040_AddMovieShortInfoTable.designer.cs">
       <DependentUpon>202205200925040_AddMovieShortInfoTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202205240704404_AddImdbToCustomMovie.cs" />
+    <Compile Include="Migrations\202205240704404_AddImdbToCustomMovie.designer.cs">
+      <DependentUpon>202205240704404_AddImdbToCustomMovie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205240825208_AddSearchInfo.cs" />
+    <Compile Include="Migrations\202205240825208_AddSearchInfo.designer.cs">
+      <DependentUpon>202205240825208_AddSearchInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205240845058_AddImageToSearchInfo.cs" />
+    <Compile Include="Migrations\202205240845058_AddImageToSearchInfo.designer.cs">
+      <DependentUpon>202205240845058_AddImageToSearchInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\MovieShortInfo.cs" />
+    <Compile Include="Models\SearchInfo.cs" />
     <Compile Include="Models\UserRating.cs" />
     <Compile Include="Dtos\MovieShortInfoDto.cs" />
     <Compile Include="Dtos\MovieFullInfoDto.cs" />
@@ -328,10 +344,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\CustomMoviesDbContext.cs" />
-    <Compile Include="Models\IAlllDbContext.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\IMDBMoviesDbContext.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\TeamMember.cs" />
     <Compile Include="Models\UserWithRole.cs" />
@@ -343,6 +356,7 @@
     <Compile Include="Repositories\ImdbRepository.cs" />
     <Compile Include="Repositories\MovieRepository.cs" />
     <Compile Include="Repositories\UserRatingRepository.cs" />
+    <Compile Include="Service\Check.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\HomeMovies.cs" />
     <Compile Include="ViewModels\SearchResult.cs" />
@@ -461,6 +475,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Search\" />
     <Folder Include="Views\UserRating\" />
   </ItemGroup>
   <ItemGroup>
@@ -549,6 +564,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202205200925040_AddMovieShortInfoTable.resx">
       <DependentUpon>202205200925040_AddMovieShortInfoTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205240704404_AddImdbToCustomMovie.resx">
+      <DependentUpon>202205240704404_AddImdbToCustomMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205240825208_AddSearchInfo.resx">
+      <DependentUpon>202205240825208_AddSearchInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205240845058_AddImageToSearchInfo.resx">
+      <DependentUpon>202205240845058_AddImageToSearchInfo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

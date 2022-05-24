@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace AIII.Models
 {
@@ -13,7 +12,7 @@ namespace AIII.Models
 
         public string Role { get; set; }
 
-        [Display(Name ="General Info")]
+        [Display(Name = "General Info")]
         public string GeneralInfo { get; set; }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using AIII.Dtos;
 using System.Collections.Generic;
-using System.Web.Http;
 
 namespace AIII.Controllers.Api
 {
@@ -11,6 +10,6 @@ namespace AIII.Controllers.Api
         List<MovieShortInfoDto> GetPopularTVs();
         List<MovieShortInfoDto> GetTopMovies();
         List<MovieShortInfoDto> GetTopTVs();
-        List<MovieShortInfoDto> Search(string expression, string country, string type, List<string> genres, List<string> releaseDate, List<string> userRating);
+        List<MovieFullInfoDto> Search(string expression, string country, string type, List<string> genres, List<string> releaseDate, List<string> userRating);
     }
 }

@@ -1,17 +1,14 @@
-﻿using System;
+﻿using AIII.Models;
+using AIII.Repositories;
+using AIII.ViewModels;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using AIII.Models;
-using Microsoft.AspNet.Identity.EntityFramework;
-using AIII.Repositories;
-using System.Collections.Generic;
-using AIII.ViewModels;
-using AIII.Dtos;
 
 namespace AIII.Controllers
 {
@@ -43,9 +40,9 @@ namespace AIII.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -135,7 +132,6 @@ namespace AIII.Controllers
             var result = new SearchResult
             {
                 Movies = likedMovies,
-                SearchString = "List of liked movies"
             };
 
             return View(result);
@@ -150,7 +146,6 @@ namespace AIII.Controllers
             var result = new SearchResult
             {
                 Movies = dislikedMovies,
-                SearchString = "List of disliked movies"
             };
 
             return View(result);
@@ -165,7 +160,6 @@ namespace AIII.Controllers
             var result = new SearchResult
             {
                 Movies = watchedMovies,
-                SearchString = "List of watched movies"
             };
 
             return View(result);
@@ -429,7 +423,7 @@ namespace AIII.Controllers
                 UserEmail = u.Email,
                 RolesNames = UserManager.GetRoles(u.Id).ToList()
             });
-            
+
             return View(result);
         }
 
@@ -452,7 +446,7 @@ namespace AIII.Controllers
             {
                 UserManager.RemoveFromRole(userId, "Moderator");
             }
-            catch(Exception) { }
+            catch (Exception) { }
 
             return RedirectToAction("UsersRoles");
         }
@@ -492,7 +486,7 @@ namespace AIII.Controllers
             base.Dispose(disposing);
         }
 
-#region Helpers
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -543,6 +537,6 @@ namespace AIII.Controllers
             Error
         }
 
-#endregion
+        #endregion
     }
 }
