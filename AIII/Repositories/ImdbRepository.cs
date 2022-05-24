@@ -22,9 +22,9 @@ namespace AIII.Repositories
         }
         public MovieFullInfoDto SearchById(string id, string key)
         {
-            
 
-            string Baseurl = string.Format(Imdb.Title, key)+id;
+
+            string Baseurl = string.Format(Imdb.Title, key) + id;
             var result = new MovieFullInfoDto();
             using (var client = new HttpClient())
             {
@@ -64,10 +64,10 @@ namespace AIII.Repositories
             return GetListOfItems(Imdb.PopularTVs, key);
         }
 
-        public List<MovieShortInfoDto> Search(string param, string key)
+        public List<MovieFullInfoDto> Search(string param, string key)
         {
-            string Baseurl = string.Format(Imdb.SearchTitle, key)+ param;
-            var result = new List<MovieShortInfoDto>();
+            string Baseurl = string.Format(Imdb.SearchTitle, key) + param;
+            var result = new List<MovieFullInfoDto>();
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(Baseurl);
@@ -79,7 +79,7 @@ namespace AIII.Repositories
                     var EmpResponse = Res.Content.ReadAsStringAsync().Result;
                     var jsonResult = JObject.Parse(EmpResponse);
                     var results = jsonResult["results"].ToString();
-                    result = JsonConvert.DeserializeObject<List<MovieShortInfoDto>>(results);
+                    result = JsonConvert.DeserializeObject<List<MovieFullInfoDto>>(results);
                 }
             }
             return result;
@@ -120,9 +120,9 @@ namespace AIII.Repositories
                     url = JsonConvert.DeserializeObject<dynamic>(EmpResponse).videoUrl;
                 }
             }
-            if(string.IsNullOrEmpty(url))
+            if (string.IsNullOrEmpty(url))
                 return "https://www.youtube.com/embed/";
-            return "https://www.youtube.com/embed/" + url.Substring(url.Length-11, 11);
+            return "https://www.youtube.com/embed/" + url.Substring(url.Length - 11, 11);
         }
         public void SaveMovie(MovieFullInfoDto fullInfoDto)
         {

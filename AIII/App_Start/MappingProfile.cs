@@ -1,5 +1,4 @@
-﻿using System;
-using AIII.Dtos;
+﻿using AIII.Dtos;
 using AIII.Models;
 using AutoMapper;
 
@@ -25,8 +24,21 @@ namespace AIII.App_Start
             Mapper.CreateMap<MovieFullInfoDto, MovieShortInfoDto>();
             Mapper.CreateMap<MovieShortInfoDto, MovieFullInfoDto>();
 
+            Mapper.CreateMap<MovieFullInfoDto, SearchInfoDto>();
+            Mapper.CreateMap<SearchInfoDto, MovieFullInfoDto>();
+
+            Mapper.CreateMap<CustomMovie, SearchInfoDto>();
+            Mapper.CreateMap<SearchInfoDto, CustomMovie>();
+
+            Mapper.CreateMap<SearchInfo, SearchInfoDto>();
+            Mapper.CreateMap<SearchInfoDto, SearchInfo>();
+
+            Mapper.CreateMap<MovieShortInfoDto, SearchInfoDto>();
+            Mapper.CreateMap<SearchInfoDto, MovieShortInfoDto>();
+
             Mapper.CreateMap<MovieShortInfo, MovieShortInfoDto>();
             Mapper.CreateMap<MovieShortInfoDto, MovieShortInfo>();
+
         }
     }
 }

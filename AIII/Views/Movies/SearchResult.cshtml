@@ -1,31 +1,81 @@
 ﻿@model AIII.ViewModels.SearchResult
+@using AIII.Service
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2 class="title">@Model.SearchString</h2>
-@foreach (var item in Model.Movies)
+@using (Html.BeginForm("Index", "Search", FormMethod.Post))
 {
-    string controllerName = "";
-    if (item.ImdbRating != null)
+    if (Model.UserRating != null)
     {
-        controllerName = "Imdb";
+        foreach (var item in Model.UserRating)
+        {
+            <input type="hidden" name="userRating" value="@item" />
+        }
     }
-    else
+    if (Model.Genres != null)
     {
-        controllerName = "CustomMovie";
+        foreach (var item in Model.Genres)
+        {
+            <input type="hidden" name="genres" value="@item" />
+        }
     }
 
-    <a href="@Url.Action("GetMovie",controllerName, new { id = item.Id })">
+    @Html.HiddenFor(m => m.Title)
+    @Html.HiddenFor(m=>m.NumberOfPages)
 
-        <div class="card border-secondary mb-3" style="max-width: 20rem;">
-            <div class="card-body">
-                <img class="card-img-top" src="@item.Image" alt="Card image cap">
-                <div class="card-title-back">
-                    <h4 class="card-title">@item.Title</h4>
+    <div class="sorting">
+        <span class="text-secondary">Order by: </span>
+        @Html.EnumDropDownListFor(
+        x => x.Sorting,
+        new { type = "submit", @class = "dropdown btn btn-outline-primary dropdown-toggle" })
+        <button type="submit" class="btn btn-outline-secondary reload">
+            <img src="~/source/reload.png" />
+        </button>
+    </div>
+
+
+    foreach (var item in Model.Movies)
+    {
+        string controllerName = "";
+        if (Check.IsImdb(item.Id))
+        {
+            controllerName = "Imdb";
+        }
+        else
+        {
+            controllerName = "CustomMovie";
+        }
+
+        <a href="@Url.Action("GetMovie",controllerName, new { id = item.Id })">
+
+            <div class="card border-secondary mb-3" style="max-width: 20rem;">
+                <div class="card-body">
+                    <img class="card-img-top" src="@item.Image" alt="Card image cap">
+                    <div class="card-title-back">
+                        <h4 class="card-title">@item.Title</h4>
+                    </div>
                 </div>
             </div>
-        </div>
-    </a>
+        </a>
+    }
+    <nav class="center">
+        <ul class="pagination pagination-lg justify-content-center">
+            @for (var i = 0; i < Model.NumberOfPages; i++)
+            {
+                var num = i + 1; 
+                if (num == Model.CurrentPage)
+                {
+                    <li class="page-item active" aria-current="page">
+                        <span class="page-link">@num</span>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item"><input class="page-link" type="submit" name="currentPage" value="@num"/></li>
+                }
+            }
+        </ul>
+    </nav>
 }
 

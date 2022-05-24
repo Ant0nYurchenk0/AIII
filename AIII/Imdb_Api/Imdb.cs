@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace AIII.Imdb_Api
+﻿namespace AIII.Imdb_Api
 {
     public class Imdb
     {
@@ -18,4 +13,4 @@ namespace AIII.Imdb_Api
 
         internal static string DefaultKey = "k_l859g0cz";
     }
-}   
+}

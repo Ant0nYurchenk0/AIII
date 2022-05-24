@@ -2,12 +2,9 @@
 using AIII.Repositories;
 using Moq;
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AIIITests.RepositoriesTests
 {
@@ -58,21 +55,21 @@ namespace AIIITests.RepositoriesTests
         }
 
         [Test]
-        public void GetUserAmountOfLikes_UserWithId1LikedOneFilm_ReturnOne()
+        public void GetUserLikedMoviesId_UserWithId1LikedOneFilm_ReturnOne()
         {
             var userId = "1";
 
-            var result = _userRepository.GetUserAmountOfLikes(userId);
+            var result = _userRepository.GetUserLikedMoviesId(userId);
 
             Assert.That(result, Is.EqualTo(1));
         }
 
         [Test]
-        public void GetUserAmountOfDislikes_UserWithId1DislikedOneFilm_ReturnOne()
+        public void GetUserLikedMoviesId_UserWithId1DislikedOneFilm_ReturnOne()
         {
             var userId = "1";
 
-            var result = _userRepository.GetUserAmountOfDislikes(userId);
+            var result = _userRepository.GetUserLikedMoviesId(userId);
 
             Assert.That(result, Is.EqualTo(1));
         }
@@ -100,7 +97,7 @@ namespace AIIITests.RepositoriesTests
         [Test]
         public void IncrementLike_UserRatingLikeAmountEquelTo0AndDislikeAmountEquelTo1_UserRatingLikeAmountEquelTo1DislikeAmountEquelTo0()
         {
-            UserRating userRating = new UserRating() { LikesAmount = 0 ,DislikesAmount = 1};
+            UserRating userRating = new UserRating() { LikesAmount = 0, DislikesAmount = 1 };
 
             _userRepository.IncrementLike(userRating);
 
@@ -164,7 +161,7 @@ namespace AIIITests.RepositoriesTests
         {
             UserRating userRating = null;
 
-            userRating = _userRepository.UserRatingIsNull(userRating,"movieId","userName");
+            userRating = _userRepository.UserRatingIsNull(userRating, "movieId", "userName");
 
             Assert.That(userRating, Is.Not.Null);
             Assert.That(userRating.WatchedAmount, Is.EqualTo(0));

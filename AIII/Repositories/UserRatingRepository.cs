@@ -1,9 +1,6 @@
-﻿using AIII.Dtos;
-using AIII.Models;
-using System;
+﻿using AIII.Models;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace AIII.Repositories
 {
@@ -28,7 +25,7 @@ namespace AIII.Repositories
 
             return userRating;
         }
-        
+
         public int GetAllUserAmountOfLikes(string movieId)
         {
             return _context.UserMovieRating.Where(r => r.MovieId == movieId).Count(likes => likes.LikesAmount > 0);
@@ -56,7 +53,7 @@ namespace AIII.Repositories
                 .Select(m => m.MovieId).Distinct().ToList();
         }
 
-        public List<string> GetUserWatchedMoviesId (string userId)
+        public List<string> GetUserWatchedMoviesId(string userId)
         {
             return _context.UserMovieRating
                 .Where(u => u.UserId == userId && u.WatchedAmount > 0)

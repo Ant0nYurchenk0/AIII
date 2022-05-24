@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AIII.Dtos
+﻿namespace AIII.Dtos
 {
     public class MovieShortInfoDto
     {

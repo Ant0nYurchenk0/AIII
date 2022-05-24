@@ -1,9 +1,7 @@
 ﻿using AIII.Dtos;
 using AIII.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace AIII.Repositories
 {
@@ -15,7 +13,7 @@ namespace AIII.Repositories
             _context = new ApplicationDbContext();
         }
 
-        public MovieShortInfoDto GetMovieById (string id)
+        public MovieShortInfoDto GetMovieById(string id)
         {
             if (_context.MovieShortInfo.Any(m => m.Id == id))
             {
@@ -57,5 +55,5 @@ namespace AIII.Repositories
             return movies;
         }
     }
-    
+
 }

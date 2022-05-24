@@ -1,8 +1,7 @@
 ﻿namespace AIII.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
-    
+
     public partial class AddAnnotationToCustomMovieProperty : DbMigration
     {
         public override void Up()
@@ -11,7 +10,7 @@
             AlterColumn("dbo.CustomMovies", "Id", c => c.String(nullable: false, maxLength: 128));
             AddPrimaryKey("dbo.CustomMovies", "Id");
         }
-        
+
         public override void Down()
         {
             DropPrimaryKey("dbo.CustomMovies");

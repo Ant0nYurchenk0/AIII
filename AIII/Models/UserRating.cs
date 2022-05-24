@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AIII.Models
+﻿namespace AIII.Models
 {
     public class UserRating
     {
