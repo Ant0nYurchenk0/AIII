@@ -5,6 +5,8 @@ using AIII.Repositories;
 using AIII.ViewModels;
 using AutoMapper;
 using System.Linq;
+using System.Text;
+using System.Web;
 using System.Web.Mvc;
 
 namespace AIII.Controllers
@@ -84,7 +86,6 @@ namespace AIII.Controllers
                 var searchInfoDto = Mapper.Map<SearchInfoDto>(customMovie);
                 Mapper.Map(searchInfoDto, searchInfoInDb);
             }
-
             _context.SaveChanges();
 
             return RedirectToAction("Index");

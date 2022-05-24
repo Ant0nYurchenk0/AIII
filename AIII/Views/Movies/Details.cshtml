@@ -112,14 +112,14 @@
             <div class="col-md-2 col-4">
                 @if (Model.UserRating.UserId == null)
                 {
-                    <a data-toggle="tooltip" data-bs-placement="bottom" title="Like" href="@Url.Action("Register", "Account")">
+                    <a data-toggle="tooltip" data-bs-placement="bottom" title="Dislike" href="@Url.Action("Register", "Account")">
                         <img class="icon" src="~/source/dislike.png" />
                     </a>
                     <span class="count"> @Model.UserRating.DislikesAmount</span>
                 }
                 else
                 {
-                    <a data-toggle="tooltip" data-bs-placement="bottom" title="Like" href="@Url.Action("IncrementDislike", "UserRating", new { movieId = Model.Id})">
+                    <a data-toggle="tooltip" data-bs-placement="bottom" title="Dislike" href="@Url.Action("IncrementDislike", "UserRating", new { movieId = Model.Id})">
                         @if (Model.UserRating.Disliked.Value)
                         {
 
