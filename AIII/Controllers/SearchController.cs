@@ -23,7 +23,7 @@ namespace AIII.Controllers
             _api = api;
         }
         public ActionResult Index(string title, List<string> genres, List<string> userRating,
-            int numberOfPages = 0, int currentPage = 1, Sorting sorting = Sorting.Title)
+            int numberOfPages = 0, int currentPage = 1, Sorting sorting = Sorting.Title, bool newRequest = false)
         {
             if (AllNulls(title, genres, userRating))
                 return View("Index", "Home");
@@ -35,6 +35,8 @@ namespace AIII.Controllers
             result.UserRating = userRating;
             result.Genres = genres;
             result.Sorting = sorting;
+            if(newRequest)
+                SearchApi(title, genres, userRating);
             var searchResult = Search(title, genres, userRating, sorting);
             result.NumberOfPages = (int)Math.Ceiling(searchResult.Count / 12.0);
             result.Movies = searchResult.Skip(12 * (currentPage - 1)).Take(12);
@@ -58,7 +60,6 @@ namespace AIII.Controllers
         }
         private List<MovieShortInfoDto> Search(string title, List<string> genres, List<string> userRating, Sorting sorting)
         {
-            SearchApi(title, genres, userRating);
             var result = _context.SearchInfo.Select(m => m);
             result = FilterTitle(result, title);
             result = FilterGenres(result, genres);

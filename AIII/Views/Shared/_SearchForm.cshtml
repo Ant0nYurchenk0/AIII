@@ -4,6 +4,7 @@
         <div class="modal-content">
             @using (Html.BeginForm("Index", "Search", FormMethod.Get))
             {
+                <input type="hidden" name="newRequest" value="true"/>
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Search</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

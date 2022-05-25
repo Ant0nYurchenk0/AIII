@@ -469,9 +469,6 @@
     <Content Include="Views\Shared\InvalidKey.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Manage\ManageAccount.cshtml" />
-    <Content Include="Views\Manage\UserLikedMovies.cshtml" />
-    <Content Include="Views\Manage\UserDislikedMovies.cshtml" />
-    <Content Include="Views\Manage\UserWatchedMovies.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
