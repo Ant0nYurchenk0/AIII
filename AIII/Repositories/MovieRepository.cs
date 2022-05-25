@@ -8,9 +8,9 @@ namespace AIII.Repositories
     public class MovieRepository
     {
         private ApplicationDbContext _context;
-        public MovieRepository()
+        public MovieRepository(ApplicationDbContext context)
         {
-            _context = new ApplicationDbContext();
+            _context = context;
         }
 
         public MovieShortInfoDto GetMovieById(string id)

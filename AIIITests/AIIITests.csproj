@@ -134,6 +134,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositoriesTests\MovieRepositoryTest.cs" />
     <Compile Include="RepositoriesTests\UserRatingRepositoryTest.cs" />
   </ItemGroup>
   <ItemGroup>

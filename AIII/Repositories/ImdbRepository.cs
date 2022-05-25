@@ -22,8 +22,6 @@ namespace AIII.Repositories
         }
         public MovieFullInfoDto SearchById(string id, string key)
         {
-
-
             string Baseurl = string.Format(Imdb.Title, key) + id;
             var result = new MovieFullInfoDto();
             using (var client = new HttpClient())
