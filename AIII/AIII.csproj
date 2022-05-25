@@ -252,6 +252,10 @@
     <Compile Include="Migrations\202205240845058_AddImageToSearchInfo.designer.cs">
       <DependentUpon>202205240845058_AddImageToSearchInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202205250727447_AddTagToSearchInfo.cs" />
+    <Compile Include="Migrations\202205250727447_AddTagToSearchInfo.designer.cs">
+      <DependentUpon>202205250727447_AddTagToSearchInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\MovieShortInfo.cs" />
     <Compile Include="Models\SearchInfo.cs" />
     <Compile Include="Models\UserRating.cs" />
@@ -570,6 +574,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202205240845058_AddImageToSearchInfo.resx">
       <DependentUpon>202205240845058_AddImageToSearchInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205250727447_AddTagToSearchInfo.resx">
+      <DependentUpon>202205250727447_AddTagToSearchInfo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

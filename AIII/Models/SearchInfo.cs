@@ -1,4 +1,7 @@
-﻿namespace AIII.Models
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+
+namespace AIII.Models
 {
     public class SearchInfo
     {
@@ -8,6 +11,8 @@
         public double ImdbRating { get; set; }
 
         public string Image { get; set; }
+        [DefaultValue("")]
+        public string Tag { get; set; }
 
     }
 }
