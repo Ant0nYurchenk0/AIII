@@ -476,7 +476,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Search\" />
     <Folder Include="Views\UserRating\" />
   </ItemGroup>
   <ItemGroup>

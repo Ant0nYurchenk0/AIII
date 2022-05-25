@@ -2,46 +2,53 @@
 @using AIII.Service
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var actionName = Model.Tag == null ? "Index" : "GetByTag";
 
 }
-@if (Model.Tag != null)
+
+
+@using (Html.BeginForm(actionName, "Search", FormMethod.Post))
 {
+    @Html.HiddenFor(m => m.Title)
+    @Html.HiddenFor(m => m.NumberOfPages)
 
-    using (Html.BeginForm("Index", "Search", FormMethod.Post))
+    if (Model.UserRating != null)
     {
-        if (Model.UserRating != null)
+        foreach (var item in Model.UserRating)
         {
-            foreach (var item in Model.UserRating)
-            {
-                <input type="hidden" name="userRating" value="@item" />
-            }
+            <input type="hidden" name="userRating" value="@item" />
         }
-        if (Model.Genres != null)
+    }
+    if (Model.Genres != null)
+    {
+        foreach (var item in Model.Genres)
         {
-            foreach (var item in Model.Genres)
-            {
-                <input type="hidden" name="genres" value="@item" />
-            }
+            <input type="hidden" name="genres" value="@item" />
         }
+    }
 
+
+    if (Model.Tag == null)
+    {
+
+        <div class="sorting">
+            <span class="text-secondary">Order by: </span>
+            @Html.EnumDropDownListFor(
+            x => x.Sorting,
+            new { type = "submit", @class = "dropdown btn btn-outline-primary dropdown-toggle" })
+            <button type="submit" class="btn btn-outline-secondary reload">
+                <img src="~/source/reload.png" />
+            </button>
+        </div>
         @Html.HiddenFor(m => m.Title)
-        @Html.HiddenFor(m => m.NumberOfPages)
+    }
+    else
+    {
         @Html.HiddenFor(m => m.Tag)
-        if (Model.Tag == null)
-        {
-
-            <div class="sorting">
-                <span class="text-secondary">Order by: </span>
-                @Html.EnumDropDownListFor(
-                x => x.Sorting,
-                new { type = "submit", @class = "dropdown btn btn-outline-primary dropdown-toggle" })
-                <button type="submit" class="btn btn-outline-secondary reload">
-                    <img src="~/source/reload.png" />
-                </button>
-            </div>
-        }
 
     }
+
+
 
     foreach (var item in Model.Movies)
     {
