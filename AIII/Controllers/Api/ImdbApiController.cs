@@ -47,7 +47,7 @@ namespace AIII.Controllers.Api
 
         [HttpGet]
         [Route("api/imdb/topmovies")]
-        public List<MovieShortInfoDto> GetTopMovies()
+        public List<MovieFullInfoDto> GetTopMovies()
         {
             var movies = _repository.TopMovies(GetImdbKey());
             return movies;
@@ -55,7 +55,7 @@ namespace AIII.Controllers.Api
 
         [HttpGet]
         [Route("api/imdb/toptvs")]
-        public List<MovieShortInfoDto> GetTopTVs()
+        public List<MovieFullInfoDto> GetTopTVs()
         {
             var movie = _repository.TopTVs(GetImdbKey());
             return movie;
@@ -63,7 +63,7 @@ namespace AIII.Controllers.Api
 
         [HttpGet]
         [Route("api/imdb/popularmovies")]
-        public List<MovieShortInfoDto> GetPopularMovies()
+        public List<MovieFullInfoDto> GetPopularMovies()
         {
             var movie = _repository.PopularMovies(GetImdbKey());
             return movie;
@@ -71,7 +71,7 @@ namespace AIII.Controllers.Api
 
         [HttpGet]
         [Route("api/imdb/populartvs")]
-        public List<MovieShortInfoDto> GetPopularTVs()
+        public List<MovieFullInfoDto> GetPopularTVs()
         {
             var movie = _repository.PopularTVs(GetImdbKey());
             return movie;

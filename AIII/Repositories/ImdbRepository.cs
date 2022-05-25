@@ -42,22 +42,22 @@ namespace AIII.Repositories
             return result;
         }
 
-        public List<MovieShortInfoDto> TopTVs(string key)
+        public List<MovieFullInfoDto> TopTVs(string key)
         {
             return GetListOfItems(Imdb.TopTVs, key);
         }
 
-        public List<MovieShortInfoDto> PopularMovies(string key)
+        public List<MovieFullInfoDto> PopularMovies(string key)
         {
             return GetListOfItems(Imdb.PopularMovies, key);
         }
 
-        public List<MovieShortInfoDto> TopMovies(string key)
+        public List<MovieFullInfoDto> TopMovies(string key)
         {
             return GetListOfItems(Imdb.TopMovies, key);
         }
 
-        public List<MovieShortInfoDto> PopularTVs(string key)
+        public List<MovieFullInfoDto> PopularTVs(string key)
         {
             return GetListOfItems(Imdb.PopularTVs, key);
         }
@@ -82,10 +82,10 @@ namespace AIII.Repositories
             }
             return result;
         }
-        private List<MovieShortInfoDto> GetListOfItems(string link, string key)
+        private List<MovieFullInfoDto> GetListOfItems(string link, string key)
         {
             string Baseurl = string.Format(link, key);
-            var result = new List<MovieShortInfoDto>();
+            var result = new List<MovieFullInfoDto>();
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(Baseurl);
@@ -97,7 +97,7 @@ namespace AIII.Repositories
                     var EmpResponse = Res.Content.ReadAsStringAsync().Result;
                     var jsonResult = JObject.Parse(EmpResponse);
                     var results = jsonResult["items"].ToString();
-                    result = JsonConvert.DeserializeObject<List<MovieShortInfoDto>>(results);
+                    result = JsonConvert.DeserializeObject<List<MovieFullInfoDto>>(results);
                 }
             }
             return result;

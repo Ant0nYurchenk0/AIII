@@ -1,6 +1,7 @@
 ﻿using AIII.Dtos;
 using AIII.Models;
 using AIII.Repositories;
+using AIII.Service;
 using AIII.ViewModels;
 using AutoMapper;
 using System.Collections.Generic;
@@ -28,7 +29,8 @@ namespace AIII.Controllers
             _repository.IncrementLike(userRating);
             _context.SaveChanges();
 
-            if (!movieId.StartsWith("aaa"))
+            if (Check.IsImdb(movieId))
+
                 return RedirectToAction("GetMovie", "Imdb", new { id = movieId });
             else
                 return RedirectToAction("GetMovie", "CustomMovie", new { id = movieId });
@@ -41,7 +43,7 @@ namespace AIII.Controllers
             _repository.IncrementDislike(userRating);
             _context.SaveChanges();
 
-            if (!movieId.StartsWith("aaa"))
+            if (Check.IsImdb(movieId))
                 return RedirectToAction("GetMovie", "Imdb", new { id = movieId });
             else
                 return RedirectToAction("GetMovie", "CustomMovie", new { id = movieId });
@@ -53,61 +55,13 @@ namespace AIII.Controllers
             _repository.SetAsWatched(userRating);
             _context.SaveChanges();
 
-            if (!movieId.StartsWith("aaa"))
+            if (Check.IsImdb(movieId))
+
                 return RedirectToAction("GetMovie", "Imdb", new { id = movieId });
             else
                 return RedirectToAction("GetMovie", "CustomMovie", new { id = movieId });
         }
-        public ActionResult GetMostLiked()
-        {
-            var movies = _context.UserMovieRating
-                .GroupBy(r => r.MovieId)
-                .Select(m => new { Likes = m.Sum(r => r.LikesAmount), Id = m.Select(r => r.MovieId).FirstOrDefault().ToString() })
-                .OrderByDescending(m => m.Likes)
-                .ToList();
-            var movieDtos = new List<MovieShortInfoDto>();
-            foreach (var movie in movies.Where(r => r.Likes != 0))
-            {
-                if (movie.Id[0] != 'a')
-                {
-                    var info = _context.MovieShortInfo.First(m => m.Id == movie.Id);
-                    movieDtos.Add(Mapper.Map<MovieShortInfo, MovieShortInfoDto>(info));
-                }
-                else
-                {
-                    var info = _context.CustomMovies.First(m => m.Id == movie.Id);
-                    movieDtos.Add(Mapper.Map<CustomMovie, MovieShortInfoDto>(info));
-                }
-            }
-            var result = new SearchResult();
-            result.Movies = movieDtos;
-            return View("..\\Movies\\SearchResult", result);
-        }
-        public ActionResult GetMostWatched()
-        {
-            var movies = _context.UserMovieRating
-                .GroupBy(r => r.MovieId)
-                .Select(m => new { Views = m.Sum(r => r.WatchedAmount), Id = m.Select(r => r.MovieId).FirstOrDefault().ToString() })
-                .OrderByDescending(m => m.Views)
-                .ToList();
-            var movieDtos = new List<MovieShortInfoDto>();
-            foreach (var movie in movies.Where(r => r.Views != 0))
-            {
-                if (movie.Id[0] != 'a')
-                {
-                    var info = _context.MovieShortInfo.First(m => m.Id == movie.Id);
-                    movieDtos.Add(Mapper.Map<MovieShortInfo, MovieShortInfoDto>(info));
-                }
-                else
-                {
-                    var info = _context.CustomMovies.First(m => m.Id == movie.Id);
-                    movieDtos.Add(Mapper.Map<CustomMovie, MovieShortInfoDto>(info));
-                }
-            }
-            var result = new SearchResult();
-            result.Movies = movieDtos;
-            return View("..\\Movies\\SearchResult", result);
-        }
+        
 
     }
 }

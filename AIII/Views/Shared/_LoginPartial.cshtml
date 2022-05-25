@@ -5,23 +5,41 @@
     if (User.IsInRole("Admin"))
     {
         <li>
-            <a class="nav-link" href="@Url.Action("Index", "CustomMovie")">Movies</a>
+            <form action="@Url.Action("Index", "CustomMovie")">
+
+                <button class="btn nav-link">Movies</button>
+            </form>
         </li>
         <li>
-            <a class="nav-link" href="@Url.Action("UsersRoles", "Manage")">Roles</a>
+            <form action="@Url.Action("UsersRoles", "Manage")">
+
+                <button class="btn nav-link" href="@Url.Action("UsersRoles", "Manage")">Roles</button>
+            </form>
         </li>
     }
     <li>
-        <a class="nav-link text-muted" href="@Url.Action("ManageAccount", "Manage")">Account</a>
+        <form action="@Url.Action("ManageAccount", "Manage")">
+
+            <button class="btn nav-link text-muted" h>Account</button>
+        </form>
     </li>
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right " }))
     {
         @Html.AntiForgeryToken()
-        <li><a class="nav-link text-danger" href="javascript:document.getElementById('logoutForm').submit()">Log out</a></li>
+        <li><button class="btn nav-link text-danger" href="javascript:document.getElementById('logoutForm').submit()">Log out</button></li>
     }
 }
 else
 {
-    <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { @class = "nav-link text-success", id = "registerLink" })</li>
-    <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { @class = "nav-link text-success", id = "loginLink" })</li>
+    <li>
+        <form action="@Url.Action("Register", "Account")">
+            <button class="btn nav-link text-success" id="registerLink">Register</button>
+        </form>
+    </li>
+    <li>
+        <form action="@Url.Action("Login", "Account")">
+
+            <button class="btn nav-link text-success" id="loginLink">Log in</button>
+        </form>
+    </li>
 }

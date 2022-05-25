@@ -11,6 +11,7 @@ namespace AIII.Models
         public double ImdbRating { get; set; }
 
         public string Image { get; set; }
+
         [DefaultValue("")]
         public string Tag { get; set; }
 
