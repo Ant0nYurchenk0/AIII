@@ -35,7 +35,7 @@ namespace AIIITests.RepositoriesTests
 
             Assert.That(result, Is.Not.Null);
             Assert.That(result.Id == movieId && result.Title == "Title" && 
-                result.Image == "Image" && result.ImdbRating == "ImdbRating");
+                result.Image == "Image" && result.ImdbRating == 1);
         }
 
         [Test]
@@ -70,7 +70,7 @@ namespace AIIITests.RepositoriesTests
             Assert.That(result!= null);
             Assert.That(result[0].Id == "1" &&
                 result[0].Image == "Image" &&
-                result[0].ImdbRating == "ImdbRating" &&
+                result[0].ImdbRating == 1 &&
                 result[0].Title == "Title" &&
                 result[1].Id == "2" &&
                 result[1].Title == "Title" &&
@@ -86,7 +86,7 @@ namespace AIIITests.RepositoriesTests
                     Id = "1",
                     Title = "Title",
                     Image = "Image",
-                    ImdbRating = "ImdbRating"
+                    ImdbRating = "1"
                 }
             };
             var queryable = sourceList.AsQueryable();

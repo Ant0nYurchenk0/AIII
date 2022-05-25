@@ -21,7 +21,7 @@ namespace AIIITests.RepositoriesTests
             fakeDBContext.Object.UserMovieRating = SetUpUserRatings().Object;
             _context = fakeDBContext.Object;
 
-            _userRepository = new UserRatingRepository(_context);
+            _userRepository = new UserRatingRepository(_context,new MovieRepository(_context));
         }
 
         [Test]

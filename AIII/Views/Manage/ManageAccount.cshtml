@@ -13,36 +13,38 @@
 
         <h4 class="form-group text-primary">@User.Identity.Name</h4>
         <br />
-        <div class="member-info">
-            <form action="@Url.Action("GetByTag", "Search")">
-                <input type="hidden" value="userLikes" name="tag" />
-                <input type="hidden" value="true" name="newRequest" />
-                <button class="btn">
-                    <img class="icon" src="~/source/like.png" />
-                    <span class="count"> @Model.LikesAmount</span>
-                </button>
-            </form>
-        </div>
-        <div class="member-info">
-            <form action="@Url.Action("GetByTag", "Search")">
-                <input type="hidden" value="userDislikes" name="tag" />
-                <input type="hidden" value="true" name="newRequest" />
-                <button class="btn">
-                    <img class="icon" src="~/source/dislike.png" />
-                    <span class="count"> @Model.DislikesAmount</span>
-                </button>
-            </form>
-        </div>
-        <div class="member-info">
-            <form action="@Url.Action("GetByTag", "Search")">
-                <input type="hidden" value="userWatched" name="tag" />
-                <input type="hidden" value="true" name="newRequest" />
-                <button class="btn">
-                    <img class="icon" src="~/source/watched.png" />
-                    <span class="count"> @Model.WatchedFilmsAmount</span>
-                </button>
-            </form>
-        </div>
+        <table>
+            <tr class="member-info">
+                <form action="@Url.Action("GetByTag", "Search")">
+                    <input type="hidden" value="userLikes" name="tag" />
+                    <input type="hidden" value="true" name="newRequest" />
+                    <button class="btn">
+                        <img class="icon" src="~/source/like.png" />
+                        <span class="count"> @Model.LikesAmount</span>
+                    </button>
+                </form>
+            </tr>
+            <tr class="member-info">
+                <form action="@Url.Action("GetByTag", "Search")">
+                    <input type="hidden" value="userDislikes" name="tag" />
+                    <input type="hidden" value="true" name="newRequest" />
+                    <button class="btn">
+                        <img class="icon" src="~/source/dislike.png" />
+                        <span class="count"> @Model.DislikesAmount</span>
+                    </button>
+                </form>
+            </tr>
+            <tr class="member-info">
+                <form action="@Url.Action("GetByTag", "Search")">
+                    <input type="hidden" value="userWatched" name="tag" />
+                    <input type="hidden" value="true" name="newRequest" />
+                    <button class="btn">
+                        <img class="icon" src="~/source/watched.png" />
+                        <span class="count"> @Model.WatchedFilmsAmount</span>
+                    </button>
+                </form>
+            </tr>
+        </table>
         <br />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
