@@ -88,7 +88,7 @@
                 @if (Model.UserRating.UserId == null)
                 {
                     <a data-toggle="tooltip" data-bs-placement="bottom" title="Like" href="@Url.Action("Register", "Account")">
-                        <img class="icon" src="~/source/like.png" />
+                        <img class="icon" src="https://aiiiteam.blob.core.windows.net/aiii/like.png" />
                     </a>
                     <span class="count"> @Model.UserRating.LikesAmount</span>
                 }
@@ -98,11 +98,11 @@
                         @if (Model.UserRating.Liked.Value)
                         {
 
-                            <img class="icon" src="~/source/like_filled.png" />
+                            <img class="icon" src="https://aiiiteam.blob.core.windows.net/aiii/like_filled.png" />
                         }
                         else
                         {
-                            <img class="icon" src="~/source/like.png" />
+                            <img class="icon" src="https://aiiiteam.blob.core.windows.net/aiii/like.png" />
 
                         }
                     </a>
@@ -113,7 +113,7 @@
                 @if (Model.UserRating.UserId == null)
                 {
                     <a data-toggle="tooltip" data-bs-placement="bottom" title="Dislike" href="@Url.Action("Register", "Account")">
-                        <img class="icon" src="~/source/dislike.png" />
+                        <img class="icon" src="https://aiiiteam.blob.core.windows.net/aiii/dislike.png" />
                     </a>
                     <span class="count"> @Model.UserRating.DislikesAmount</span>
                 }
@@ -123,11 +123,11 @@
                         @if (Model.UserRating.Disliked.Value)
                         {
 
-                            <img class="icon" src="~/source/dislike_filled.png" />
+                            <img class="icon" src="https://aiiiteam.blob.core.windows.net/aiii/dislike_filled.png" />
                         }
                         else
                         {
-                            <img class="icon" src="~/source/dislike.png" />
+                            <img class="icon" src="https://aiiiteam.blob.core.windows.net/aiii/dislike.png" />
 
                         }
                     </a>
@@ -138,7 +138,7 @@
                 @if (Model.UserRating.UserId == null)
                 {
                     <a data-bs-toggle="tooltip" data-bs-placement="bottom" title="Mark as watched" href="@Url.Action("Register", "Account")">
-                        <img class="icon" src="~/source/watched.png" />
+                        <img class="icon" src="https://aiiiteam.blob.core.windows.net/aiii/watched.png" />
                     </a>
                     <span class="count"> @Model.UserRating.WatchedAmount</span>
                 }
@@ -148,12 +148,12 @@
                     <a type="button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Mark as unwatched" href="@Url.Action("SetAsWatched", "UserRating", new { movieId = Model.Id})">
                         @if (Model.UserRating.Watched.Value)
                         {
-                            <img class="icon" src="~/source/watched_filled.png" />
+                            <img class="icon" src="https://aiiiteam.blob.core.windows.net/aiii/watched_filled.png" />
 
                         }
                         else
                         {
-                            <img class="icon" src="~/source/watched.png" />
+                            <img class="icon" src="https://aiiiteam.blob.core.windows.net/aiii/watched.png" />
                         }
                     </a>
                     <span class="count"> @Model.UserRating.WatchedAmount</span>
