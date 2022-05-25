@@ -55,23 +55,23 @@ namespace AIIITests.RepositoriesTests
         }
 
         [Test]
-        public void GetUserLikedMoviesId_UserWithId1LikedOneFilm_ReturnOne()
+        public void GetUserLikedMoviesId_UserWithId1LikedOneFilm_ReturnListWithIdOne()
         {
             var userId = "1";
 
             var result = _userRepository.GetUserLikedMoviesId(userId);
 
-            Assert.That(result, Is.EqualTo(1));
+            Assert.That(result.Contains("1"));
         }
 
         [Test]
-        public void GetUserLikedMoviesId_UserWithId1DislikedOneFilm_ReturnOne()
+        public void GetUserDislikedMoviesId_UserWithId1DislikedOneFilm_ReturnListWithIdTwo()
         {
             var userId = "1";
 
-            var result = _userRepository.GetUserLikedMoviesId(userId);
+            var result = _userRepository.GetUserDislikedMoviesId(userId);
 
-            Assert.That(result, Is.EqualTo(1));
+            Assert.That(result.Contains("2"));
         }
 
         [Test]
