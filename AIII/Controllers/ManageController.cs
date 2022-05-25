@@ -134,7 +134,7 @@ namespace AIII.Controllers
                 Movies = likedMovies,
             };
 
-            return View(result);
+            return View("..\\Movies\\SearchResult",result);
         }
 
         public ActionResult UserDislikedMovies()
@@ -148,7 +148,7 @@ namespace AIII.Controllers
                 Movies = dislikedMovies,
             };
 
-            return View(result);
+            return View("..\\Movies\\SearchResult",result);
         }
 
         public ActionResult UserWatchedMovies()
@@ -162,7 +162,7 @@ namespace AIII.Controllers
                 Movies = watchedMovies,
             };
 
-            return View(result);
+            return View("..\\Movies\\SearchResult",result);
         }
 
         //
