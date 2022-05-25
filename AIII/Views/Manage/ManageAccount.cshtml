@@ -44,17 +44,17 @@
             </form>
         </div>
         <br />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            <label class="col-form-label mt-4" for="inputDefault">
-                ImDb Key
-                @Html.TextBoxFor(model => model.ImdbKey, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.ImdbKey, "", new { @class = "text-danger " })
-            </label>
-        </div>
-        <br />
         @using (Html.BeginForm())
         {
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="col-form-label mt-4" for="inputDefault">
+                    ImDb Key
+                    @Html.TextBoxFor(model => model.ImdbKey, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ImdbKey, "", new { @class = "text-danger " })
+                </label>
+            </div>
+            <br />
             @Html.AntiForgeryToken()
 
             <div class="form-group">
