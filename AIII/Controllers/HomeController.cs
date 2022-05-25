@@ -1,4 +1,5 @@
 ﻿using AIII.Controllers.Api;
+using AIII.Dtos;
 using AIII.Models;
 using AIII.ViewModels;
 using AutoMapper;
@@ -22,8 +23,8 @@ namespace AIII.Controllers
         public ActionResult Index()
         {
             var movies = new HomeMovies();
-            movies.PopularMovies = _imdbApi.GetPopularMovies().Take(10).ToList();
-            movies.PopularTVs = _imdbApi.GetPopularTVs().Take(10).ToList();
+            movies.PopularMovies = _imdbApi.GetPopularMovies().Take(10).Select(m=>Mapper.Map<MovieShortInfoDto>(m)).ToList();
+            movies.PopularTVs = _imdbApi.GetPopularTVs().Take(10).Select(m => Mapper.Map<MovieShortInfoDto>(m)).ToList();
             movies.CustomMovies = _customApi.GetShortInfoMovies().Take(10).ToList();
             return View(movies);
         }

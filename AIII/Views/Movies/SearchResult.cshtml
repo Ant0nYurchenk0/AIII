@@ -2,38 +2,46 @@
 @using AIII.Service
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
-
-@using (Html.BeginForm("Index", "Search", FormMethod.Post))
+@if (Model.Tag != null)
 {
-    if (Model.UserRating != null)
+
+    using (Html.BeginForm("Index", "Search", FormMethod.Post))
     {
-        foreach (var item in Model.UserRating)
+        if (Model.UserRating != null)
         {
-            <input type="hidden" name="userRating" value="@item" />
+            foreach (var item in Model.UserRating)
+            {
+                <input type="hidden" name="userRating" value="@item" />
+            }
         }
-    }
-    if (Model.Genres != null)
-    {
-        foreach (var item in Model.Genres)
+        if (Model.Genres != null)
         {
-            <input type="hidden" name="genres" value="@item" />
+            foreach (var item in Model.Genres)
+            {
+                <input type="hidden" name="genres" value="@item" />
+            }
         }
+
+        @Html.HiddenFor(m => m.Title)
+        @Html.HiddenFor(m => m.NumberOfPages)
+        @Html.HiddenFor(m => m.Tag)
+        if (Model.Tag == null)
+        {
+
+            <div class="sorting">
+                <span class="text-secondary">Order by: </span>
+                @Html.EnumDropDownListFor(
+                x => x.Sorting,
+                new { type = "submit", @class = "dropdown btn btn-outline-primary dropdown-toggle" })
+                <button type="submit" class="btn btn-outline-secondary reload">
+                    <img src="~/source/reload.png" />
+                </button>
+            </div>
+        }
+
     }
-
-    @Html.HiddenFor(m => m.Title)
-    @Html.HiddenFor(m=>m.NumberOfPages)
-
-    <div class="sorting">
-        <span class="text-secondary">Order by: </span>
-        @Html.EnumDropDownListFor(
-        x => x.Sorting,
-        new { type = "submit", @class = "dropdown btn btn-outline-primary dropdown-toggle" })
-        <button type="submit" class="btn btn-outline-secondary reload">
-            <img src="~/source/reload.png" />
-        </button>
-    </div>
-
 
     foreach (var item in Model.Movies)
     {
@@ -63,7 +71,7 @@
         <ul class="pagination pagination-lg justify-content-center">
             @for (var i = 0; i < Model.NumberOfPages; i++)
             {
-                var num = i + 1; 
+                var num = i + 1;
                 if (num == Model.CurrentPage)
                 {
                     <li class="page-item active" aria-current="page">
@@ -72,7 +80,7 @@
                 }
                 else
                 {
-                    <li class="page-item"><input class="page-link" type="submit" name="currentPage" value="@num"/></li>
+                    <li class="page-item"><input class="page-link" type="submit" name="currentPage" value="@num" /></li>
                 }
             }
         </ul>

@@ -6,26 +6,51 @@
         </button>
         <div class="collapse navbar-collapse" id="nav-bar-buttons">
             <ul class="navbar-nav me-auto">
+                @using (Html.BeginForm("GetByTag", "Search"))
+                {
+                    <li class="nav-item">
+                        <input type="hidden" value="movies250" name="tag" />
+                        <input type="hidden" value="true" name="newRequest" />
+                        <button class="btn nav-link" type="submit">
+                            Top 250 Imdb Movies
+                        </button>
+                    </li>
+                }
+                @using (Html.BeginForm("GetByTag", "Search"))
+                {
+                    <li class="nav-item">
+                        <input type="hidden" value="tvs250" name="tag" />
+                        <input type="hidden" value="true" name="newRequest" />
+                        <button class=" btn nav-link">
+                            Top 250 Imdb TV Series
+                        </button>
+                    </li>
+                }
                 <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("TopMovies", "Imdb")">Top 250 Imdb Movies</a>
+                    <form action="@Url.Action("GetByTag", "Search")">
+                        <input type="hidden" value="liked" name="tag" />
+                        <input type="hidden" value="true" name="newRequest" />
+                        <button class="btn nav-link">Most Liked</button>
+                    </form>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("TopTVs", "Imdb")">Top 250 Imdb TV Series</a>
+                    <form action="@Url.Action("GetByTag", "Search")">
+                        <input type="hidden" value="watched" name="tag" />
+                        <input type="hidden" value="true" name="newRequest" />
+                        <button class="btn nav-link">Most Watched</button>
+                    </form>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("GetMostLiked", "UserRating")">Most Liked</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("GetMostWatched", "UserRating")">Most Watched</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="modal" data-bs-target="#search" href="">Search</a>
+                    <button class="btn nav-link" data-bs-toggle="modal" data-bs-target="#search" href="">Search</button>
                 </li>
             </ul>
-            <hr/>
+            <hr />
             <ul class="navbar-nav ms-md-auto">
                 <li class="nav-item">
-                    <a  class="nav-link" href="@Url.Action("About", "Home")">About</a>
+                    <form action="@Url.Action("About", "Home")">
+
+                        <button class="btn nav-link">About</button>
+                    </form>
                 </li>
                 @Html.Partial("_LoginPartial")
             </ul>

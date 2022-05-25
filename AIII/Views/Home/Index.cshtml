@@ -2,10 +2,18 @@
 
 @if (Model.PopularMovies.Count != 0)
 {
+    <div class="left">
 
-    <a href="@Url.Action("PopularMovies", "Imdb")">
-        <h3 class="title">Top Movies</h3>
-    </a>
+        @using (Html.BeginForm("GetByTag", "Search"))
+        {
+            <input type="hidden" value="popMov" name="tag" />
+
+            <input type="hidden" value="true" name="newRequest" />
+            <button class="btn">
+                <h3 class="title">Top Movies</h3>
+            </button>
+        }
+    </div>
     <div class="scrollmenu">
         @foreach (var item in Model.PopularMovies)
         {
@@ -25,10 +33,18 @@
 }
 @if (Model.PopularTVs.Count != 0)
 {
+    <div class="left">
 
-    <a href="@Url.Action("PopularTVs", "Imdb")">
-        <h3 class="title">Top TVs</h3>
-    </a>
+        @using (Html.BeginForm("GetByTag", "Search"))
+        {
+            <input type="hidden" value="popTV" name="tag" />
+
+            <input type="hidden" value="true" name="newRequest" />
+            <button class="btn">
+                <h3 class="title">Top TVs</h3>
+            </button>
+        }
+    </div>
     <div class="scrollmenu">
         @foreach (var item in Model.PopularTVs)
         {
@@ -43,21 +59,30 @@
                     </div>
                 </div>
             </a>
+        }
+    </div>
+}
+@if (Model.CustomMovies.Count != 0)
+{
+    <div class="left">
 
-            }
-        </div>
-    }
-    @if (Model.CustomMovies.Count != 0)
-    {
-        <a href="@Url.Action("Index", "CustomMovie")">
-            <h3 class="title">Other</h3>
-        </a>
+        @using (Html.BeginForm("GetByTag", "Search"))
+        {
+            <input type="hidden" value="custom" name="tag" />
+
+            <input type="hidden" value="true" name="newRequest" />
+            <button class="btn">
+                <h3 class="title">Other</h3>
+            </button>
+        }
+    </div>
 
 
-        <div class="scrollmenu">
-            @foreach (var item in Model.CustomMovies)
-            {
-                <a href="@Url.Action("GetMovie", "CustomMovie", new { id=item.Id})">
+
+    <div class="scrollmenu">
+        @foreach (var item in Model.CustomMovies)
+        {
+            <a href="@Url.Action("GetMovie", "CustomMovie", new { id=item.Id})">
 
                 <div class="card border-secondary mb-3" style="max-width: 20rem;">
                     <div class="card-body">

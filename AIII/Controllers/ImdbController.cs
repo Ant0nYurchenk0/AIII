@@ -2,6 +2,7 @@
 using AIII.Dtos;
 using AIII.Repositories;
 using AIII.ViewModels;
+using AutoMapper;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -50,7 +51,7 @@ namespace AIII.Controllers
         public ActionResult PopularMovies()
         {
             var movies = new SearchResult();
-            movies.Movies = _api.GetPopularMovies();
+            movies.Movies = _api.GetPopularMovies().Select(m => Mapper.Map<MovieShortInfoDto>(m));
             if (movies.Movies.Count() == 0)
                 return View("InvalidKey");
 
@@ -59,7 +60,7 @@ namespace AIII.Controllers
         public ActionResult PopularTVs()
         {
             var movies = new SearchResult();
-            movies.Movies = _api.GetPopularTVs();
+            movies.Movies = _api.GetPopularTVs().Select(m => Mapper.Map<MovieShortInfoDto>(m));
             if (movies.Movies.Count() == 0)
                 return View("InvalidKey");
             return View("..\\Movies\\SearchResult", movies);
@@ -67,7 +68,7 @@ namespace AIII.Controllers
         public ActionResult TopMovies()
         {
             var movies = new SearchResult();
-            movies.Movies = _api.GetTopMovies();
+            movies.Movies = _api.GetTopMovies().Select(m => Mapper.Map<MovieShortInfoDto>(m));
             if (movies.Movies.Count() == 0)
                 return View("InvalidKey");
             return View("..\\Movies\\SearchResult", movies);
@@ -75,7 +76,7 @@ namespace AIII.Controllers
         public ActionResult TopTVs()
         {
             var movies = new SearchResult();
-            movies.Movies = _api.GetTopTVs();
+            movies.Movies = _api.GetTopTVs().Select(m => Mapper.Map<MovieShortInfoDto>(m));
             if (movies.Movies.Count() == 0)
                 return View("InvalidKey");
             return View("..\\Movies\\SearchResult", movies);

@@ -13,6 +13,8 @@ namespace AIII.ViewModels
         public Sorting Sorting { get; set; }
         public int NumberOfPages { get; set; }
         public int CurrentPage { get; set; }
+        public string Tag { get; set; }
+
 
     }
 }

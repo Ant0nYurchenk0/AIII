@@ -16,26 +16,84 @@ namespace AIII.Controllers
         // GET: Search
         private ApplicationDbContext _context;
         private IImdbApiController _api;
+        private CustomMoviesAPIController _custom;
+        private UserRatingAPIController _rating;
 
-        public SearchController(ApplicationDbContext context, IImdbApiController api)
+        public SearchController(ApplicationDbContext context, IImdbApiController api, CustomMoviesAPIController custom, UserRatingAPIController rating)
         {
             _context = context;
             _api = api;
+            _custom=custom;
+            _rating=rating;
         }
-        public ActionResult Index(string title, List<string> genres, List<string> userRating,
-            int numberOfPages = 0, int currentPage = 1, Sorting sorting = Sorting.Title, bool newRequest = false)
+
+        public ActionResult GetByTag(string tag, int numberOfPages = 0, int currentPage = 1,  bool newRequest = false)
         {
-            if (AllNulls(title, genres, userRating))
-                return View("Index", "Home");
+            if (AllNulls(tag))
+                return RedirectToAction("Index", "Home");
             if (currentPage < 0 || currentPage > numberOfPages)
                 currentPage = 1;
             var result = new SearchResult();
             result.CurrentPage = currentPage;
+            result.Tag = tag;
+            var searchResult = SearchApi(tag);
+            result.NumberOfPages = (int)Math.Ceiling(searchResult.Count / 12.0);
+            result.Movies = searchResult.Skip(12 * (currentPage - 1)).Take(12).Select(m => Mapper.Map<MovieShortInfoDto>(m));
+            return View("..\\Movies\\SearchResult", result);
+        }
+
+        private IQueryable<SearchInfo> FilterTag(IQueryable<SearchInfo> result, string tag)
+        {
+            if (tag != null)
+                result = result.Where(m => m.Tag.Contains(tag));
+            return result;
+        }
+
+        private List<MovieFullInfoDto> SearchApi(string tag)
+        {
+            var result = new List<MovieFullInfoDto>();
+            switch (tag)
+            {
+                case "movies250":
+                    result = _api.GetTopMovies();
+                    break;
+                case "tvs250":
+                    result = _api.GetTopTVs();
+                    break;
+                case "popMov":
+                    result = _api.GetPopularMovies();
+                    break;
+                case "popTV":
+                    result = _api.GetPopularTVs();
+                    break;
+                case "custom":
+                    result = _custom.GetMovies().ToList();
+                    break;
+                case "liked":
+                    result = _rating.GetMostLiked().ToList();
+                    break;
+                case "watched":
+                    result = _rating.GetMostWatched().ToList();
+                    break;
+                default: break;
+            }
+            return result;
+        }
+
+        public ActionResult Index(string title, List<string> genres, List<string> userRating,
+            int numberOfPages = 0, int currentPage = 1, Sorting sorting = Sorting.Title, bool newRequest = false)
+        {
+            if (AllNulls(title, genres, userRating))
+                return RedirectToAction("Index", "Home");
+            if (currentPage < 0 || currentPage > numberOfPages)
+                currentPage = 1;
+            var result = new SearchResult();
+            result.CurrentPage = currentPage;
+            result.Sorting = sorting;
             result.Title = title;
             result.UserRating = userRating;
             result.Genres = genres;
-            result.Sorting = sorting;
-            if(newRequest)
+            if (newRequest)
                 SearchApi(title, genres, userRating);
             var searchResult = Search(title, genres, userRating, sorting);
             result.NumberOfPages = (int)Math.Ceiling(searchResult.Count / 12.0);
