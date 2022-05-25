@@ -1,16 +1,24 @@
-﻿using AIII.Models;
+﻿using AIII.Dtos;
+using AIII.Models;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNet.Identity;
+using AIII.Imdb_Api;
+using AIII.Repositories;
+using System.Web.Http;
+using AIII.ViewModels;
 
 namespace AIII.Repositories
 {
     public class UserRatingRepository
     {
-        ApplicationDbContext _context;
+        private ApplicationDbContext _context;
+        private MovieRepository _movieRepository;
 
-        public UserRatingRepository(ApplicationDbContext context)
+        public UserRatingRepository(ApplicationDbContext context, MovieRepository movieRepository)
         {
             _context = context;
+            _movieRepository = movieRepository;
         }
 
         public UserRating UserRatingIsNull(UserRating userRating, string movieId, string userName)
@@ -92,6 +100,27 @@ namespace AIII.Repositories
             }
             else
                 userRating.WatchedAmount -= 1;
+        }
+        public List<MovieFullInfoDto> UserLikedMovies(string userId)
+        {
+            var likedMoviesId = GetUserLikedMoviesId(userId);
+            var likedMovies = _movieRepository.GetMoviesByIds(likedMoviesId);
+
+            return likedMovies;
+        }
+
+        public List<MovieFullInfoDto> UserDislikedMovies(string userId)
+        {
+            var dislikedMoviesId = GetUserDislikedMoviesId(userId);
+            var dislikedMovies = _movieRepository.GetMoviesByIds(dislikedMoviesId);            
+            return dislikedMovies;
+        }
+
+        public List<MovieFullInfoDto> UserWatchedMovies(string userId)
+        {
+            var watchedMoviesId = GetUserWatchedMoviesId(userId);
+            var watchedMovies = _movieRepository.GetMoviesByIds(watchedMoviesId);
+            return watchedMovies;
         }
     }
 }

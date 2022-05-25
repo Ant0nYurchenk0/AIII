@@ -10,40 +10,53 @@
     <br />
 
     <div class="center">
+
+        <h4 class="form-group text-primary">@User.Identity.Name</h4>
+        <br />
+        <div class="member-info">
+            <form action="@Url.Action("GetByTag", "Search")">
+                <input type="hidden" value="userLikes" name="tag" />
+                <input type="hidden" value="true" name="newRequest" />
+                <button class="btn">
+                    <img class="icon" src="~/source/like.png" />
+                    <span class="count"> @Model.LikesAmount</span>
+                </button>
+            </form>
+        </div>
+        <div class="member-info">
+            <form action="@Url.Action("GetByTag", "Search")">
+                <input type="hidden" value="userDislikes" name="tag" />
+                <input type="hidden" value="true" name="newRequest" />
+                <button class="btn">
+                    <img class="icon" src="~/source/dislike.png" />
+                    <span class="count"> @Model.DislikesAmount</span>
+                </button>
+            </form>
+        </div>
+        <div class="member-info">
+            <form action="@Url.Action("GetByTag", "Search")">
+                <input type="hidden" value="userWatched" name="tag" />
+                <input type="hidden" value="true" name="newRequest" />
+                <button class="btn">
+                    <img class="icon" src="~/source/watched.png" />
+                    <span class="count"> @Model.WatchedFilmsAmount</span>
+                </button>
+            </form>
+        </div>
+        <br />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label class="col-form-label mt-4" for="inputDefault">
+                ImDb Key
+                @Html.TextBoxFor(model => model.ImdbKey, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ImdbKey, "", new { @class = "text-danger " })
+            </label>
+        </div>
+        <br />
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
-            <h4 class="form-group text-primary">@User.Identity.Name</h4>
-            <br />
-            <span>
-                <a href="@Url.Action("UserLikedMovies")">
-                    <img class="icon" src="~/source/like.png" />
-                    <span class="count"> @Model.LikesAmount</span>
-                </a>
-            </span>
-            <span  class="member-info">
-                <a href="@Url.Action("UserDislikedMovies")">
-                    <img class="icon" src="~/source/dislike.png" />
-                    <span class="count"> @Model.DislikesAmount</span>
-                </a>
-            </span>
-            <span>
 
-                <a href="@Url.Action("UserWatchedMovies")">
-                    <img class="icon" src="~/source/watched.png" />
-                    <span class="count"> @Model.WatchedFilmsAmount</span>
-                </a>
-            </span>
-            <br />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                <label class="col-form-label mt-4" for="inputDefault">
-                    ImDb Key
-                    @Html.TextBoxFor(model => model.ImdbKey, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.ImdbKey, "", new { @class = "text-danger " })
-                </label>
-            </div>
-            <br />
             <div class="form-group">
                 <div>
                     <a class="btn btn-primary" href="@Url.Action("ChangePassword")">Change password</a>

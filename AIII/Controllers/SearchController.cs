@@ -2,6 +2,9 @@
 using AIII.Controllers.Api;
 using AIII.Dtos;
 using AIII.Models;
+using Microsoft.AspNet.Identity;
+
+using AIII.Repositories;
 using AIII.ViewModels;
 using AutoMapper;
 using System;
@@ -18,13 +21,16 @@ namespace AIII.Controllers
         private IImdbApiController _api;
         private CustomMoviesAPIController _custom;
         private UserRatingAPIController _rating;
+        private UserRatingRepository _repository;
 
-        public SearchController(ApplicationDbContext context, IImdbApiController api, CustomMoviesAPIController custom, UserRatingAPIController rating)
+        public SearchController(ApplicationDbContext context, IImdbApiController api, CustomMoviesAPIController custom, 
+            UserRatingAPIController rating, UserRatingRepository repository)
         {
             _context = context;
             _api = api;
             _custom=custom;
             _rating=rating;
+            _repository=repository;
         }
 
         public ActionResult GetByTag(string tag, int numberOfPages = 0, int currentPage = 1,  bool newRequest = false)
@@ -75,8 +81,18 @@ namespace AIII.Controllers
                 case "watched":
                     result = _rating.GetMostWatched().ToList();
                     break;
+                case "userLikes":
+                    result = _repository.UserLikedMovies(User.Identity.GetUserName()).ToList();
+                    break;
+                case "userDislikes":
+                    result = _repository.UserDislikedMovies(User.Identity.GetUserName()).ToList();
+                    break;
+                case "userWatched":
+                    result = _repository.UserWatchedMovies(User.Identity.GetUserName()).ToList(); 
+                    break;
                 default: break;
             }
+            
             return result;
         }
 

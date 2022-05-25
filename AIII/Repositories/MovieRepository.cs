@@ -1,5 +1,6 @@
 ﻿using AIII.Dtos;
 using AIII.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -13,25 +14,25 @@ namespace AIII.Repositories
             _context = context;
         }
 
-        public MovieShortInfoDto GetMovieById(string id)
+        public MovieFullInfoDto GetMovieById(string id)
         {
             if (_context.MovieShortInfo.Any(m => m.Id == id))
             {
                 var movie = _context.MovieShortInfo
                     .FirstOrDefault(x => x.Id == id);
-                return new MovieShortInfoDto
+                return new MovieFullInfoDto
                 {
                     Id = id,
                     Image = movie.Image,
                     Title = movie.Title,
-                    ImdbRating = movie.ImdbRating
+                    ImdbRating = Convert.ToDouble(movie.ImdbRating)
                 };
             }
             else if (_context.CustomMovies.Any(m => m.Id == id))
             {
                 var movie = _context.CustomMovies
                     .FirstOrDefault(customMovie => customMovie.Id == id);
-                return new MovieShortInfoDto
+                return new MovieFullInfoDto
                 {
                     Id = id,
                     Image = movie.Image,
@@ -41,9 +42,9 @@ namespace AIII.Repositories
             else return null;
         }
 
-        public List<MovieShortInfoDto> GetMoviesByIds(List<string> moviesIds)
+        public List<MovieFullInfoDto> GetMoviesByIds(List<string> moviesIds)
         {
-            List<MovieShortInfoDto> movies = new List<MovieShortInfoDto>();
+            var movies = new List<MovieFullInfoDto>();
             foreach (string id in moviesIds)
             {
                 var movie = GetMovieById(id);

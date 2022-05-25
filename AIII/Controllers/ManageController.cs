@@ -123,47 +123,7 @@ namespace AIII.Controllers
             return View(model);
         }
 
-        public ActionResult UserLikedMovies()
-        {
-            var userId = User.Identity.Name;
-            var likedMoviesId = _userRating.GetUserLikedMoviesId(userId);
-            var likedMovies = _movieRepository.GetMoviesByIds(likedMoviesId);
-
-            var result = new SearchResult
-            {
-                Movies = likedMovies,
-            };
-
-            return View("..\\Movies\\SearchResult",result);
-        }
-
-        public ActionResult UserDislikedMovies()
-        {
-            var userId = User.Identity.Name;
-            var dislikedMoviesId = _userRating.GetUserDislikedMoviesId(userId);
-            var dislikedMovies = _movieRepository.GetMoviesByIds(dislikedMoviesId);
-
-            var result = new SearchResult
-            {
-                Movies = dislikedMovies,
-            };
-
-            return View("..\\Movies\\SearchResult",result);
-        }
-
-        public ActionResult UserWatchedMovies()
-        {
-            var userId = User.Identity.Name;
-            var watchedMoviesId = _userRating.GetUserWatchedMoviesId(userId);
-            var watchedMovies = _movieRepository.GetMoviesByIds(watchedMoviesId);
-
-            var result = new SearchResult
-            {
-                Movies = watchedMovies,
-            };
-
-            return View("..\\Movies\\SearchResult",result);
-        }
+        
 
         //
         // POST: /Manage/RemoveLogin
