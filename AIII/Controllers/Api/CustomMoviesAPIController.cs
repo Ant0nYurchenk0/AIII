@@ -93,7 +93,6 @@ namespace AIII.Controllers.Api
 
             if (movieInDb == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
-            _context.MovieShortInfo.Remove(shortInDb);
             _context.SearchInfo.Remove(searchInDb);
             _context.CustomMovies.Remove(movieInDb);
             _context.SaveChanges();
