@@ -18,6 +18,7 @@ namespace AIII.Dtos
         public string Budget { get; set; }
         public string CumulativeWorldwideGross { get; set; }
         public string Video { get; set; }
+        public string Seasons { get; set; }
         public UserRatingDto UserRating { get; set; }
     }
 }

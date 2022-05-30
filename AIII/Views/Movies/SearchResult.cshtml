@@ -74,23 +74,27 @@
             </div>
         </a>
     }
-    <nav class="center">
-        <ul class="pagination pagination-lg justify-content-center">
-            @for (var i = 0; i < Model.NumberOfPages; i++)
-            {
-                var num = i + 1;
-                if (num == Model.CurrentPage)
+    if (Model.NumberOfPages > 1)
+    {
+
+        <nav class="center">
+            <ul class="pagination pagination-lg justify-content-center">
+                @for (var i = 0; i < Model.NumberOfPages; i++)
                 {
-                    <li class="page-item active" aria-current="page">
-                        <span class="page-link">@num</span>
-                    </li>
+                    var num = i + 1;
+                    if (num == Model.CurrentPage)
+                    {
+                        <li class="page-item active" aria-current="page">
+                            <span class="page-link">@num</span>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="page-item"><input class="page-link" type="submit" name="currentPage" value="@num" /></li>
+                    }
                 }
-                else
-                {
-                    <li class="page-item"><input class="page-link" type="submit" name="currentPage" value="@num" /></li>
-                }
-            }
-        </ul>
-    </nav>
+            </ul>
+        </nav>
+    }
 }
 

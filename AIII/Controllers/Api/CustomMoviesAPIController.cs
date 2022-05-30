@@ -88,11 +88,13 @@ namespace AIII.Controllers.Api
         public void DeleteMovie(string id)
         {
             var movieInDb = _context.CustomMovies.SingleOrDefault(m => m.Id == id);
-            var shortInDb = _context.MovieShortInfo.SingleOrDefault(m => m.Id == id);
+            var ratingInDb = _context.UserMovieRating.Where(m => m.MovieId == id);
             var searchInDb = _context.SearchInfo.SingleOrDefault(m => m.Id == id);
 
             if (movieInDb == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
+            foreach(var rating in ratingInDb)
+                _context.UserMovieRating.Remove(rating);
             _context.SearchInfo.Remove(searchInDb);
             _context.CustomMovies.Remove(movieInDb);
             _context.SaveChanges();

@@ -20,6 +20,13 @@
                         <td class="text-secondary">@Model.ReleaseDate.Value.ToShortDateString()</td>
                     </tr>
                 }
+                @if (Model.Seasons != null)
+                {
+                    <tr>
+                        <th scope="row">Seasons:</th>
+                        <td class="text-secondary">@Model.Seasons</td>
+                    </tr>
+                }
                 @if (!string.IsNullOrEmpty(Model.Stars))
                 {
                     <tr>

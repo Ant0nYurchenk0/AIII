@@ -23,6 +23,7 @@ namespace AIII.Controllers
             _userRating = userRating;
             _userRatingRepository = userRatingRepository;
         }
+
         public ActionResult GetMovie(string id)
         {
             try
