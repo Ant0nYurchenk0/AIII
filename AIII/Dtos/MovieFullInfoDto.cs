@@ -16,7 +16,7 @@ namespace AIII.Dtos
         public double? ImdbRating { get; set; }
         public string Countries { get; set; }
         public string Budget { get; set; }
-        public string CumulativeWorldwideGross { get; set; }
+        public string CumulativeWorldWideGross { get; set; }
         public string Video { get; set; }
         public string Seasons { get; set; }
         public UserRatingDto UserRating { get; set; }

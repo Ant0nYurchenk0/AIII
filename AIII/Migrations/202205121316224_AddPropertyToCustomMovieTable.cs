@@ -14,7 +14,7 @@
             //AddColumn("dbo.CustomMovies", "Genres", c => c.String());
             //AddColumn("dbo.CustomMovies", "Countries", c => c.String());
             //AddColumn("dbo.CustomMovies", "Stars", c => c.String());
-            AddColumn("dbo.CustomMovies", "CumulativeWorldwideGross", c => c.String());
+            AddColumn("dbo.CustomMovies", "CumulativeWorldWideGross", c => c.String());
             AlterColumn("dbo.CustomMovies", "Budget", c => c.String());
             AlterColumn("dbo.Movies", "Id", c => c.String(nullable: false, maxLength: 128));
             AddPrimaryKey("dbo.CustomMovies", "Id");
@@ -41,7 +41,7 @@
             DropPrimaryKey("dbo.CustomMovies");
             AlterColumn("dbo.Movies", "Id", c => c.Int(nullable: false, identity: true));
             AlterColumn("dbo.CustomMovies", "Budget", c => c.Double(nullable: false));
-            DropColumn("dbo.CustomMovies", "CumulativeWorldwideGross");
+            DropColumn("dbo.CustomMovies", "CumulativeWorldWideGross");
             DropColumn("dbo.CustomMovies", "Stars");
             DropColumn("dbo.CustomMovies", "Countries");
             DropColumn("dbo.CustomMovies", "Genres");
