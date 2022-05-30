@@ -51,7 +51,14 @@
                     </tr>
 
                 }
+                @if (!string.IsNullOrEmpty(Model.Type))
+                {
+                    <tr>
+                        <th scope="row">Type:</th>
+                        <td class="text-secondary">@Model.Type</td>
+                    </tr>
 
+                }
                 @if (!string.IsNullOrEmpty(Model.Countries))
                 {
                     <tr>
@@ -68,11 +75,11 @@
                     </tr>
 
                 }
-                @if (!string.IsNullOrEmpty(Model.CumulativeWorldwideGross))
+                @if (!string.IsNullOrEmpty(Model.CumulativeWorldWideGross))
                 {
                     <tr>
                         <th scope="row">Gross:</th>
-                        <td class="text-secondary">@Model.CumulativeWorldwideGross</td>
+                        <td class="text-secondary">@Model.CumulativeWorldWideGross</td>
                     </tr>
 
                 }
